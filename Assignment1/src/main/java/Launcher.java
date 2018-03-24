@@ -11,9 +11,10 @@ public class Launcher {
 
     public static void main(String[] args) {
         ComponentFactory componentFactory = ComponentFactory.instance();
-        EmployeeView ev=new EmployeeView();
-        new LoginController(new LoginView(), componentFactory.getAuthenticationService(),ev);
-        new EmployeeController(ev, componentFactory.getClientService());
+//        EmployeeView ev = new EmployeeView();
+        new LoginController(new LoginView(), componentFactory.getAuthenticationService())
+            .attachEmployeeController(new EmployeeController(componentFactory.getClientService()));
+//        new EmployeeController(componentFactory.getClientService());
     }
 
 }

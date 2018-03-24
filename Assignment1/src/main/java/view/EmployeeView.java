@@ -1,6 +1,9 @@
 package view;
 
+import controller.EmployeeController;
+
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
@@ -17,9 +20,10 @@ public class EmployeeView extends JDialog {
     private JTextField idcardnr;
     private JTextField persnum;
     private JTextField address;
+    private JButton button1;
 
     private final String[] cols={"id","name","id_card_nr","pers_num_code","address"};
-    //private final String[][] data={{"dal","bla","bla","bla"},{"dal2","bla","bla","bla"},{"dal3","bla","bla","bla"},};
+    private final String[][] data={{"dal","bla","bla","bla"},{"dal2","bla","bla","bla"},{"dal3","bla","bla","bla"},};
 
     public EmployeeView() {
 
@@ -29,7 +33,8 @@ public class EmployeeView extends JDialog {
         setModal(true);
         pack();
         setResizable(false);
-//        add(viewClientButton);
+        setVisible(false);
+
 //        add(deleteClientButton);
 //        add(addClientButton);
 
@@ -44,13 +49,17 @@ public class EmployeeView extends JDialog {
 //        contentPane.setVisible(true);
 //        frame.setVisible(true);
         //frame.setVisible(true);
-        //setContentPane(contentPane);
+//        setContentPane(contentPane);
         //setModal(true);
         //setSize(400, 400);
         //setResizable(false);
         //scroll.add(table);
 //        DefaultTableModel d = new DefaultTableModel(data, cols);
-        //table=new JTable(data, cols);
+
+//        table=new JTable(data, cols);
+//        scroll=new JScrollPane(table);
+//        table.setVisible(true);
+//        scroll.setVisible(true);
 //        table.setPreferredScrollableViewportSize(new Dimension(450,63));
 //        table.setFillsViewportHeight(true);
 //        scroll=new JScrollPane(table);
@@ -64,6 +73,25 @@ public class EmployeeView extends JDialog {
         //add(clientName);
 //        add(scroll);
         //getRootPane().setDefaultButton(buttonOK)
+//        button1.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                JOptionPane.showInputDialog("HEEI");
+//            }
+//        });
+//        updateClientButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                JOptionPane.showInputDialog("HEEEEEEEI");
+//            }
+//        });
+
+//        viewClientButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                JOptionPane.showInputDialog("HEI");
+//            }
+//        });
     }
 
 //    private void initialize(){
@@ -76,6 +104,7 @@ public class EmployeeView extends JDialog {
     public JTable getTable() {
         return table;
     }
+
     public JFrame getFrame(){
         return frame;
     }
@@ -83,18 +112,24 @@ public class EmployeeView extends JDialog {
         return scroll;
     }
 
-    public void setTable(Vector<Vector<String>> data) {
-        String[][] newdata = new String[data.size()][5];
-        for (int i = 0; i < data.size(); i++){
-            newdata[i] = data.elementAt(i).toArray(new String[0]);
+    public JButton getViewClientButton() {
+        return viewClientButton;
+    }
+
+    public void setTable(Vector<Vector<String>> data1) {
+//        System.out.println("AYE");
+        String[][] newdata = new String[data1.size()][5];
+        for (int i = 0; i < data1.size(); i++){
+            newdata[i] = data1.elementAt(i).toArray(new String[0]);
         }
-        table=new JTable(newdata, cols);
+        table=new JTable(data, cols);
         scroll=new JScrollPane(table);
         table.setVisible(true);
         scroll.setVisible(true);
     }
     public static void main(String[] args){
         EmployeeView ev=new EmployeeView();
+        ev.setVisible(true);
     }
     public String getClientName(){
         return  name.getText();
@@ -116,13 +151,19 @@ public class EmployeeView extends JDialog {
     public void setAddButtonListener(ActionListener addButtonListener) {
         addClientButton.addActionListener(addButtonListener);
     }
+    public void setButton1Listener(ActionListener button1Listener) {
+        button1.addActionListener(button1Listener);
+    }
 
     public void setViewButtonListener(ActionListener viewClientListener) {
         viewClientButton.addActionListener(viewClientListener);
     }
+
     public void setDeleteButtonListener(ActionListener deleteClientListener) {
         deleteClientButton.addActionListener(deleteClientListener);
     }
 
-
+    public void showUI(){
+        setVisible(true);
+    }
 }

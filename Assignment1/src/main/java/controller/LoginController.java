@@ -4,6 +4,7 @@ import model.User;
 import model.validation.Notification;
 import repository.user.AuthenticationException;
 import service.user.AuthenticationService;
+import view.EmployeeView;
 import view.LoginView;
 
 import javax.swing.*;
@@ -15,10 +16,12 @@ import java.awt.event.ActionListener;
  */
 public class LoginController {
     private final LoginView loginView;
+    private EmployeeView employeeView;
     private final AuthenticationService authenticationService;
 
-    public LoginController(LoginView loginView, AuthenticationService authenticationService) {
+    public LoginController(LoginView loginView, AuthenticationService authenticationService,EmployeeView employeeView) {
         this.loginView = loginView;
+        this.employeeView=employeeView;
         this.authenticationService = authenticationService;
         loginView.setLoginButtonListener(new LoginButtonListener());
         loginView.setRegisterButtonListener(new RegisterButtonListener());
@@ -43,6 +46,10 @@ public class LoginController {
                     JOptionPane.showMessageDialog(loginView.getContentPane(), loginNotification.getFormattedErrors());
                 } else {
                     JOptionPane.showMessageDialog(loginView.getContentPane(), "Login successful!");
+                    loginView.setVisible(false);
+                    employeeView=new EmployeeView();
+                    employeeView.setResizable(false);
+                    employeeView.setVisible(true);
                 }
             }
         }
@@ -63,6 +70,7 @@ public class LoginController {
                     JOptionPane.showMessageDialog(loginView.getContentPane(), "Registration not successful, please try again later.");
                 } else {
                     JOptionPane.showMessageDialog(loginView.getContentPane(), "Registration successful!");
+
                 }
             }
         }

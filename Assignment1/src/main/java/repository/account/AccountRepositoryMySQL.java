@@ -100,6 +100,7 @@ public class AccountRepositoryMySQL implements AccountRepository {
                 .setType(rs.getString("type"))
                 .setAmount(rs.getFloat("amount"))
                 .setDate(new Date(rs.getDate("date_of_creation").getTime()))
+                .setOwner(rs.getLong("ownerID"))
                 .build();
     }
 }

@@ -1,4 +1,7 @@
+import controller.EmployeeController;
 import controller.LoginController;
+import repository.client.ClientRepository;
+import view.EmployeeView;
 import view.LoginView;
 
 /**
@@ -8,7 +11,9 @@ public class Launcher {
 
     public static void main(String[] args) {
         ComponentFactory componentFactory = ComponentFactory.instance();
-        new LoginController(new LoginView(), componentFactory.getAuthenticationService());
+        EmployeeView ev=new EmployeeView();
+        new LoginController(new LoginView(), componentFactory.getAuthenticationService(),ev);
+        new EmployeeController(ev, componentFactory.getClientService());
     }
 
 }

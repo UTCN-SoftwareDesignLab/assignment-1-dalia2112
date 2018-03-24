@@ -21,7 +21,7 @@ public class SQLTableCreationFactory {
                         "  INDEX ownerID_idx (ownerID ASC)," +
                         "  CONSTRAINT ownerID" +
                         "    FOREIGN KEY (ownerID)" +
-                        "    REFERENCES user (id)" +
+                        "    REFERENCES client (id)" +
                         "    ON DELETE CASCADE" +
                         "    ON UPDATE CASCADE);" ;
                        // ") ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;";
@@ -34,6 +34,17 @@ public class SQLTableCreationFactory {
                         "  PRIMARY KEY (id)," +
                         "  UNIQUE INDEX id_UNIQUE (id ASC)," +
                         "  UNIQUE INDEX username_UNIQUE (username ASC));";
+
+            case CLIENT:
+                return "CREATE TABLE IF NOT EXISTS client (" +
+                        "  id INT NOT NULL AUTO_INCREMENT," +
+                        "  name VARCHAR(200) NOT NULL," +
+                        "  id_card_nr int(20) NOT NULL," +
+                        "  pers_num_code int(20) NOT NULL,"+
+                        "  address VARCHAR(64) NOT NULL," +
+                        "  PRIMARY KEY (id)," +
+                        "  UNIQUE INDEX id_UNIQUE (id ASC));" ;
+                        //"  UNIQUE INDEX name_UNIQUE (name ASC));";
 
             case ROLE:
                 return "  CREATE TABLE IF NOT EXISTS role (" +

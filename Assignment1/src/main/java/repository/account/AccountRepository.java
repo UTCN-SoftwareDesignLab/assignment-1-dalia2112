@@ -5,6 +5,7 @@ import model.Book;
 import repository.EntityNotFoundException;
 
 import java.util.List;
+import java.util.Vector;
 
 public interface AccountRepository {
 
@@ -16,4 +17,10 @@ public interface AccountRepository {
     boolean save(Account account);
 
     void removeAll();
+
+    void updateAccount(Long id,int col,String newval);
+
+    void deleteAccount(Long id);
+
+    public Vector<Vector<String>> getAllAccountsTable();
 }

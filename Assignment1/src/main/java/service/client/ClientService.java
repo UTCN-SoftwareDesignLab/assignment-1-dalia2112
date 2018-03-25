@@ -19,4 +19,6 @@ public interface ClientService {
     Vector<Vector<String>> getAllClientsTable();
     void deleteClient(Long id);
     void updateClient(Long id,int col,String newval);
+
+
 }

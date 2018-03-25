@@ -1,5 +1,7 @@
 import database.DBConnectionFactory;
 import model.Client;
+import repository.account.AccountRepository;
+import repository.account.AccountRepositoryMySQL;
 import repository.client.ClientRepository;
 import repository.client.ClientRepositoryMySQL;
 import repository.security.RightsRolesRepository;
@@ -7,6 +9,8 @@ import repository.security.RightsRolesRepositoryMySQL;
 import repository.user.UserRepository;
 import repository.user.UserRepositoryMySQL;
 import repository.client.ClientRepositoryMySQL;
+import service.account.AccountService;
+import service.account.AccountServiceImpl;
 import service.client.ClientService;
 import service.client.ClientServiceImpl;
 import service.user.AuthenticationService;
@@ -25,6 +29,8 @@ public class ComponentFactory {
     private final RightsRolesRepository rightsRolesRepository;
     private final ClientService clientService;
     private final ClientRepository clientRepository;
+    private final AccountService accountService;
+    private final AccountRepository accountRepository;
 
     private static ComponentFactory instance;
 
@@ -42,6 +48,8 @@ public class ComponentFactory {
         this.authenticationService = new AuthenticationServiceMySQL(this.userRepository, this.rightsRolesRepository);
         this.clientRepository=new ClientRepositoryMySQL(connection);
         this.clientService=new ClientServiceImpl(this.clientRepository);
+        this.accountRepository=new AccountRepositoryMySQL(connection);
+        this.accountService=new AccountServiceImpl(this.accountRepository);
     }
 
     public AuthenticationService getAuthenticationService() {
@@ -58,5 +66,9 @@ public class ComponentFactory {
 
     public ClientService getClientService() {
         return clientService;
+    }
+
+    public AccountService getAccountService() {
+        return accountService;
     }
 }

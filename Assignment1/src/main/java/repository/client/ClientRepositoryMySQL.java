@@ -113,15 +113,7 @@ public class ClientRepositoryMySQL implements ClientRepository {
     public Vector<Vector<String>> getAllClientsTable(){
         String[][] t=new String[][]{};
         Vector<Vector<String>> clients = new Vector<>();
-        int i=0;
         for(Client c:findAll()){
-//            System.out.println("got "+ c.toString());
-//            t[i][0]=c.getId().toString();
-//            t[i][1]=c.getName();
-//            t[i][2]=c.getId_card_nr().toString();
-//            t[i][3]=c.getPers_num_code().toString();
-//            t[i][4]=c.getAddress();
-//            i++;
             Vector<String> data = new Vector<>();
             data.add(c.getId().toString());
             data.add(c.getName());

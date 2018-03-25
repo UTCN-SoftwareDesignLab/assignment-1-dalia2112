@@ -8,6 +8,7 @@ import repository.account.AccountRepository;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 
 public class AccountServiceImpl implements AccountService {
 
@@ -35,6 +36,17 @@ public class AccountServiceImpl implements AccountService {
         return repository.save(account);
     }  //CREATE
 
+    public void updateAccount(Long id,int col,String newval){
+        repository.updateAccount(id,col,newval);
+    }
+
+    public void deleteAccount(Long id){
+        repository.deleteAccount(id);
+    }
+
+    public Vector<Vector<String>> getAllAccountsTable(){
+        return repository.getAllAccountsTable();
+    }
    /* @Override
     public int getAgeOfBook(Long id) throws EntityNotFoundException {
         Book book = findById(id);

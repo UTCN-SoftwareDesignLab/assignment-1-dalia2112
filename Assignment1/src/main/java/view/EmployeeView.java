@@ -9,7 +9,7 @@ import java.util.Vector;
 
 public class EmployeeView extends JDialog {
     private JPanel contentPane;
-    private JFrame frame;
+//    private JFrame frame;
     private JTable table;
     private JButton updateClientButton;
     private JButton addClientButton;
@@ -20,19 +20,40 @@ public class EmployeeView extends JDialog {
     private JTextField idcardnr;
     private JTextField persnum;
     private JTextField address;
+    private JTabbedPane tabbedPane;
+    private JPanel clientTab;
+    private JPanel accountTab;
+    private JButton viewAccountBtn;
+    private JButton addAccountBtn;
+    private JButton updateAccountBtn;
+    private JButton deleteAccountBtn;
+    private JTable accTable;
+    private JTextField amount;
+    private JComboBox ownerCombo;
+    private JLabel owner;
+    private JComboBox typeCombo;
     private int rowClicked;
     private int colClicked;
+    private int rowAccClicked;
+    private int colAccClicked;
 
     private final Object[] cols={"Id","Name","Id_card_nr","Pers_num_code","Address"};
-    private final String[][] data={{"dal","bla","bla","bla"},{"dal2","bla","bla","bla"},{"dal3","bla","bla","bla"},};
+    private final Object[] accCols={"Id","Type","Amount","Date of creation","Owner ID"};
 
     public EmployeeView() {
 
+        tabbedPane.addTab("Client",clientTab);
+        tabbedPane.addTab("Account",accountTab);
+        contentPane.setSize(500,315);
+        setSize(735,600);
         setContentPane(contentPane);
+        scroll.setSize(500,500);
+        clientTab.setSize(200,200);
         setModal(true);
-        pack();
+//        pack();
         setResizable(false);
         setVisible(false);
+        setTypeCombo();
     }
 
     public int getRowClicked() {
@@ -51,8 +72,47 @@ public class EmployeeView extends JDialog {
         this.colClicked = colClicked;
     }
 
+    public int getRowAccClicked() {
+        return rowAccClicked;
+    }
+
+    public void setRowAccClicked(int rowAccClicked) {
+        this.rowAccClicked = rowAccClicked;
+    }
+
+    public int getColAccClicked() {
+        return colAccClicked;
+    }
+
+    public void setColAccClicked(int colAccClicked) {
+        this.colAccClicked = colAccClicked;
+    }
+
+    public void setTypeCombo(){
+        typeCombo.addItem("Personal");
+        typeCombo.addItem("Real");
+        typeCombo.addItem("Nominal");
+
+    }
+
+    public void addOwnerCombo(DefaultComboBoxModel own){
+        ownerCombo.setModel(own);
+    }
+
+    public JComboBox getOwnerCombo() {
+        return ownerCombo;
+    }
+
+    public JComboBox getTypeCombo() {
+        return typeCombo;
+    }
+
     public JTable getTable() {
         return table;
+    }
+
+    public JTable getAccTable(){
+        return accTable;
     }
 
     public void setTable(Vector<Vector<String>> data1) {
@@ -63,9 +123,18 @@ public class EmployeeView extends JDialog {
             dtm.addRow(c);
         }
     }
+
+    public void setAccTable(Vector<Vector<String>> data1) {
+        DefaultTableModel dtm=new DefaultTableModel();
+        dtm.setColumnIdentifiers(accCols);
+        accTable.setModel(dtm);
+        for(Vector<String> c:data1){
+            dtm.addRow(c);
+        }
+    }
     public static void main(String[] args){
-       // EmployeeView ev=new EmployeeView();
-        //ev.setVisible(true);
+        EmployeeView ev=new EmployeeView();
+        ev.setVisible(true);
         System.out.println( Long.valueOf("3"));
     }
     public String getClientName(){
@@ -73,6 +142,9 @@ public class EmployeeView extends JDialog {
     }
     public String getClientAddress(){
         return  address.getText();
+    }
+    public float getAmount(){
+        return Long.parseLong(amount.getText());
     }
     public Long getClientId_card_nr(){
 //        System.out.println();
@@ -102,7 +174,28 @@ public class EmployeeView extends JDialog {
         table.addMouseListener(m);
     }
 
-    public void showUI(){
-        setVisible(true);
+    public void setViewAccountButtonListener(ActionListener viewAccounListener) {
+        viewAccountBtn.addActionListener(viewAccounListener);
     }
+
+    public void setAddAccountButtonListener(ActionListener addAccounListener) {
+        addAccountBtn.addActionListener(addAccounListener);
+    }
+
+    public void setUpdateAccountButtonListener(ActionListener updateAccounListener) {
+        updateAccountBtn.addActionListener(updateAccounListener);
+    }
+
+    public void setDeleteAccountButtonListener(ActionListener deleteAccounListener) {
+        deleteAccountBtn.addActionListener(deleteAccounListener);
+    }
+    public void setAccTableMouseListener(MouseAdapter m) {
+        accTable.addMouseListener(m);
+    }
+
+//    public void showUI(){
+//        setVisible(true);
+//    }
+
+
 }

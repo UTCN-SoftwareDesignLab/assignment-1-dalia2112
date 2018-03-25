@@ -17,4 +17,6 @@ public interface ClientRepository {
 
     void removeAll();
     Vector<Vector<String>> getAllClientsTable();
+    void deleteClient(Long id);
+    void updateClient(Long id,int col,String newval);
 }

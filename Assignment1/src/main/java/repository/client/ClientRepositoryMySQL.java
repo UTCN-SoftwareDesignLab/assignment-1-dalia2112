@@ -5,6 +5,7 @@ import model.builder.ClientBuilder;
 import repository.EntityNotFoundException;
 import repository.client.ClientRepository;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import java.util.ArrayList;
@@ -132,5 +133,42 @@ public class ClientRepositoryMySQL implements ClientRepository {
         return clients;
     }
 
+        public void deleteClient(Long id){
+            try {
+                Statement statement = connection.createStatement();
+                String sql = "DELETE from client where id="+id;
+                statement.executeUpdate(sql);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        public void updateClient(Long id,int col,String newval){
+            String column="";
+            switch (col) {
+                case 0:
+                    JOptionPane.showMessageDialog(null,"Cannot change id!");
+                    break;
+                case 1:
+                    column="name";
+                    break;
+                case 2:
+                    column="id_card_nr";
+                    break;
+                case 3:
+                    column="pers_num_code";
+                    break;
+                case 4:
+                    column="address";
+                    break;
+                    default: column="name";
+            }
+            try {
+                Statement statement = connection.createStatement();
+                String sql = "UPDATE client SET "+column+"='"+newval+"' where id="+id;
+                statement.executeUpdate(sql);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 
 }

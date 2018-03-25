@@ -1,20 +1,11 @@
 package controller;
 
 import model.Client;
-import model.User;
 import model.builder.ClientBuilder;
-import model.validation.Notification;
-import repository.EntityNotFoundException;
-import repository.user.AuthenticationException;
 import service.client.ClientService;
 import view.EmployeeView;
 
-import javax.print.attribute.standard.JobOriginatingUserName;
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.Vector;
 
 
@@ -29,34 +20,55 @@ public class EmployeeController {
         employeeView.setUpdateButtonListener(new UpdateButtonListener());
         employeeView.setAddButtonListener(new AddButtonListener());
         employeeView.setViewButtonListener(new ViewButtonListener());
+        employeeView.setDeleteButtonListener(new DeleteButtonListener());
+        employeeView.setTableMouseListener(new TableMouseListener());
         employeeView.setVisible(false);
+    }
+
+    private  void writeTable(){
+        Vector<Vector<String>> data = clientService.getAllClientsTable();
+        employeeView.setTable(data);
+    }
+    private class TableMouseListener extends MouseAdapter {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+
+            employeeView.setRowClicked(employeeView.getTable().getSelectedRow());
+            employeeView.setColClicked(employeeView.getTable().getSelectedColumn());
+        }
     }
 
     private class UpdateButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            String clientname = employeeView.getClientName();
-            System.out.println("client \n" + clientname);
+            int row=employeeView.getRowClicked();
+            int col=employeeView.getColClicked();
+            String idd=String.valueOf(employeeView.getTable().getModel().getValueAt(row,0));
+            Long id=Long.parseLong(idd);
+            String nv= String.valueOf(employeeView.getTable().getValueAt(row,col));
+            clientService.updateClient(id,col,nv);
+            writeTable();
+        }
+    }
 
-            try {
-                Client c = clientService.findByName(clientname);
-            } catch (EntityNotFoundException e1) {
-                e1.printStackTrace();
-            }
+    private class DeleteButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int row=employeeView.getRowClicked();
+            String idd=String.valueOf(employeeView.getTable().getModel().getValueAt(row,0));
+            Long id=Long.parseLong(idd);
+            clientService.deleteClient(id);
+            writeTable();
         }
     }
 
     private class ViewButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
-            Vector<Vector<String>> data = clientService.getAllClientsTable();
-            employeeView.setTable(data);
-//            employeeView.setVisible(true);
-//            System.out.println(data.toString());
-//            System.out.println("size= "+data.size());
-//            employeeView.getTable().setVisible(true);
+            writeTable();
         }
     }
 
@@ -65,15 +77,17 @@ public class EmployeeController {
         @Override
         public void actionPerformed(ActionEvent e) {
             String clientname = employeeView.getClientName();
-            System.out.println("client \n"+clientname);
+            String clientAddress=employeeView.getClientAddress();
+            Long clientIDcard=employeeView.getClientId_card_nr();
+            Long clientPersNum=employeeView.getClientPersNr();
             Client c=new ClientBuilder ()
-                    .setID((long)0.0)
-                    .setName("daldal")
-                    .setIdCard((long)1.0)
-                    .setPersNumCode((long)2.0)
-                    .setAddress("fantanele")
+                    .setName(clientname)
+                    .setIdCard(clientIDcard)
+                    .setPersNumCode(clientPersNum)
+                    .setAddress(clientAddress)
                     .build();
             clientService.save(c);
+            writeTable();
         }
     }
 

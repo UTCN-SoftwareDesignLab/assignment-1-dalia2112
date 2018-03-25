@@ -35,4 +35,11 @@ public class ClientServiceImpl implements ClientService {
     }
     public Vector<Vector<String>> getAllClientsTable(){return repository.getAllClientsTable();}
 
+    public void deleteClient(Long id){
+        repository.deleteClient(id);
+    }
+    public void updateClient(Long id,int col,String newval){
+        repository.updateClient(id,col,newval);
+    }
+
 }

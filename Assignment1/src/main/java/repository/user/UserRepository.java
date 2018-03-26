@@ -2,6 +2,7 @@ package repository.user;
 
 import model.User;
 import model.validation.Notification;
+import repository.EntityNotFoundException;
 
 import java.util.List;
 
@@ -17,5 +18,8 @@ public interface UserRepository {
     boolean save(User user);
 
     void removeAll();
+    User findById(Long id) throws EntityNotFoundException;
+    void updateUser(Long id,String col,String newval);
+    void deleteUser(Long id);
 
 }

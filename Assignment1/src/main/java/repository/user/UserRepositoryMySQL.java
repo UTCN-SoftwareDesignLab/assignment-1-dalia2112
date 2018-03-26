@@ -1,11 +1,15 @@
 package repository.user;
 
+import model.Client;
 import model.User;
+import model.builder.ClientBuilder;
 import model.builder.UserBuilder;
 import model.validation.Notification;
+import repository.EntityNotFoundException;
 import repository.security.RightsRolesRepository;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import static database.Constants.Tables.USER;
@@ -26,7 +30,21 @@ public class UserRepositoryMySQL implements UserRepository {
 
     @Override
     public List<User> findAll() {
-        return null;
+
+        List<User> users = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            String sql = "Select * from user";
+            ResultSet rs = statement.executeQuery(sql);
+
+            while (rs.next()) {
+                users.add(getUserFromResultSet(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return users;
     }
 
     @Override
@@ -89,5 +107,51 @@ public class UserRepositoryMySQL implements UserRepository {
         }
     }
 
+    public User findById(Long id) throws EntityNotFoundException{
+        try {
+            Statement statement = connection.createStatement();
+            String sql = "Select * from user where id=" + id;
+            ResultSet rs = statement.executeQuery(sql);
+
+            if (rs.next()) {
+                return getUserFromResultSet(rs);
+            } else {
+                throw new EntityNotFoundException(id, Client.class.getSimpleName());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new EntityNotFoundException(id, Client.class.getSimpleName());
+        }
+    }
+
+    private User getUserFromResultSet(ResultSet rs) throws SQLException {
+        long id = rs.getLong("id");
+        return new UserBuilder()
+                .setUsername(rs.getString("username"))
+                .setPassword(rs.getString("password"))
+                .setRoles(rightsRolesRepository.findRolesForUser(id))
+                .setId(rs.getLong("id"))
+                .build();
+    }
+
+    public void updateUser(Long id,String column,String newval){
+        try {
+            Statement statement = connection.createStatement();
+            String sql = "UPDATE user SET "+column+"='"+newval+"' where id="+id;
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteUser(Long id){
+        try {
+            Statement statement = connection.createStatement();
+            String sql = "DELETE from user where id="+id;
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

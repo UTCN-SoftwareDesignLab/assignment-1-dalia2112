@@ -15,6 +15,8 @@ import service.client.ClientService;
 import service.client.ClientServiceImpl;
 import service.user.AuthenticationService;
 import service.user.AuthenticationServiceMySQL;
+import service.user.UserService;
+import service.user.UserServiceMySQL;
 
 import java.sql.Connection;
 
@@ -31,6 +33,8 @@ public class ComponentFactory {
     private final ClientRepository clientRepository;
     private final AccountService accountService;
     private final AccountRepository accountRepository;
+    private final UserService userService;
+
 
     private static ComponentFactory instance;
 
@@ -50,6 +54,7 @@ public class ComponentFactory {
         this.clientService=new ClientServiceImpl(this.clientRepository);
         this.accountRepository=new AccountRepositoryMySQL(connection);
         this.accountService=new AccountServiceImpl(this.accountRepository);
+        this.userService=new UserServiceMySQL(userRepository);
     }
 
     public AuthenticationService getAuthenticationService() {
@@ -70,5 +75,9 @@ public class ComponentFactory {
 
     public AccountService getAccountService() {
         return accountService;
+    }
+
+    public UserService getUserService() {
+        return userService;
     }
 }

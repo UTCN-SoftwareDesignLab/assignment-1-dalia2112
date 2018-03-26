@@ -21,6 +21,12 @@ public class UserBuilder {
         return this;
     }
 
+    public UserBuilder setId(long id) {
+        user.setId(id);
+        return this;
+    }
+
+
     public UserBuilder setPassword(String password) {
         user.setPassword(password);
         return this;

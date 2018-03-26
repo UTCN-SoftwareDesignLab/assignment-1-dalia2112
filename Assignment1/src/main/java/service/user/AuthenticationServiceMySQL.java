@@ -11,8 +11,11 @@ import repository.user.UserRepository;
 
 import java.security.MessageDigest;
 import java.util.Collections;
+import java.util.List;
 
+import static database.Constants.Roles.ADMINISTRATOR;
 import static database.Constants.Roles.CLIENT;
+import static database.Constants.Roles.EMPLOYEE;
 
 /**
  * Created by Alex on 11/03/2017.
@@ -50,6 +53,31 @@ public class AuthenticationServiceMySQL implements AuthenticationService {
             return userRegisterNotification;
         }
     }
+    public Notification<Boolean> registerUser(String username, String password,boolean admin) {
+        Role userRole;
+        if (admin)
+             userRole = rightsRolesRepository.findRoleByTitle(ADMINISTRATOR);
+        else userRole = rightsRolesRepository.findRoleByTitle(EMPLOYEE);
+        User user = new UserBuilder()
+                .setUsername(username)
+                .setPassword(password)
+                .setRoles(Collections.singletonList(userRole))
+                .build();
+
+        UserValidator userValidator = new UserValidator(user);
+        boolean userValid = userValidator.validate();
+        Notification<Boolean> userRegisterNotification = new Notification<>();
+
+        if (!userValid) {
+            userValidator.getErrors().forEach(userRegisterNotification::addError);
+            userRegisterNotification.setResult(Boolean.FALSE);
+            return userRegisterNotification;
+        } else {
+            user.setPassword(encodePassword(password));
+            userRegisterNotification.setResult(userRepository.save(user));
+            return userRegisterNotification;
+        }
+    }
 
     @Override
     public Notification<User> login(String username, String password) throws AuthenticationException {
@@ -59,6 +87,10 @@ public class AuthenticationServiceMySQL implements AuthenticationService {
     @Override
     public boolean logout(User user) {
         return false;
+    }
+
+    public Role findRoleForUserId(Long userId){
+        return rightsRolesRepository.findRoleForUserId(userId);
     }
 
     private String encodePassword(String password) {

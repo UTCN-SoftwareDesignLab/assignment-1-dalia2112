@@ -1,5 +1,7 @@
 package view;
 
+import javafx.scene.control.RadioButton;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -15,6 +17,7 @@ public class LoginView extends JFrame {
     private JTextField tfPassword;
     private JButton btnLogin;
     private JButton btnRegister;
+    private JRadioButton rdBtn;
 
     public LoginView() throws HeadlessException {
         setSize(300, 300);
@@ -25,6 +28,7 @@ public class LoginView extends JFrame {
         add(tfPassword);
         add(btnLogin);
         add(btnRegister);
+        add(rdBtn);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
     }
@@ -34,6 +38,7 @@ public class LoginView extends JFrame {
         tfPassword = new JTextField();
         btnLogin = new JButton("Login");
         btnRegister = new JButton("Register");
+        rdBtn=new JRadioButton("Admin");
     }
 
     public String getUsername() {
@@ -52,4 +57,7 @@ public class LoginView extends JFrame {
         btnRegister.addActionListener(registerButtonListener);
     }
 
+    public JRadioButton getRdBtn() {
+        return rdBtn;
+    }
 }

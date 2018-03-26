@@ -9,7 +9,6 @@ import java.util.Vector;
 
 public class EmployeeView extends JDialog {
     private JPanel contentPane;
-//    private JFrame frame;
     private JTable table;
     private JButton updateClientButton;
     private JButton addClientButton;
@@ -147,7 +146,6 @@ public class EmployeeView extends JDialog {
         return Long.parseLong(amount.getText());
     }
     public Long getClientId_card_nr(){
-//        System.out.println();
         return  Long.valueOf(idcardnr.getText());
     }
     public Long getClientPersNr(){

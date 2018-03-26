@@ -63,6 +63,7 @@ public class RightsRolesRepositoryMySQL implements RightsRolesRepository {
         return null;
     }
 
+
     @Override
     public Role findRoleById(Long roleId) {
         Statement statement;
@@ -129,6 +130,22 @@ public class RightsRolesRepositoryMySQL implements RightsRolesRepository {
         }
         return null;
     }
+
+    public Role findRoleForUserId(Long userId) {
+        try {
+            Role role;
+            Statement statement = connection.createStatement();
+            String fetchRoleSql = "Select * from " + USER_ROLE + " where `user_id`=\'" + userId + "\'";
+            ResultSet userRoleResultSet = statement.executeQuery(fetchRoleSql);
+            userRoleResultSet.next();
+            long roleId = userRoleResultSet.getLong("role_id");
+            role=findRoleById(roleId);
+            return role;
+        } catch (SQLException e) {
+        }
+        return null;
+    }
+
 
     @Override
     public void addRoleRight(Long roleId, Long rightId) {

@@ -3,7 +3,7 @@
   <grid id="cbd77" binding="contentPane" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>
-      <xy x="-8" y="53" width="1014" height="620"/>
+      <xy x="-8" y="53" width="1361" height="620"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -157,7 +157,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <grid id="ae006" layout-manager="GridLayoutManager" row-count="6" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+              <grid id="ae006" layout-manager="GridLayoutManager" row-count="6" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints/>
                 <properties/>
@@ -165,7 +165,7 @@
                 <children>
                   <scrollpane id="e89a">
                     <constraints>
-                      <grid row="0" column="1" row-span="3" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                      <grid row="0" column="1" row-span="3" col-span="4" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <enabled value="false"/>
@@ -220,7 +220,7 @@
                       <text value="Delete Account"/>
                     </properties>
                   </component>
-                  <component id="c880c" class="javax.swing.JLabel" binding="owner">
+                  <component id="c880c" class="javax.swing.JLabel">
                     <constraints>
                       <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false">
                         <preferred-size width="122" height="16"/>
@@ -240,14 +240,6 @@
                       <model/>
                     </properties>
                   </component>
-                  <component id="3164b" class="javax.swing.JTextField" binding="amount">
-                    <constraints>
-                      <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                        <preferred-size width="150" height="-1"/>
-                      </grid>
-                    </constraints>
-                    <properties/>
-                  </component>
                   <component id="5359" class="javax.swing.JComboBox" binding="typeCombo">
                     <constraints>
                       <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="false">
@@ -258,14 +250,6 @@
                       <model/>
                     </properties>
                   </component>
-                  <component id="e88d0" class="javax.swing.JLabel">
-                    <constraints>
-                      <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <text value="Amount"/>
-                    </properties>
-                  </component>
                   <component id="6f547" class="javax.swing.JLabel">
                     <constraints>
                       <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false">
@@ -274,6 +258,46 @@
                     </constraints>
                     <properties>
                       <text value="Type"/>
+                    </properties>
+                  </component>
+                  <component id="e88d0" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                        <preferred-size width="418" height="16"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value="Amount"/>
+                    </properties>
+                  </component>
+                  <component id="3164b" class="javax.swing.JTextField" binding="amount">
+                    <constraints>
+                      <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                        <preferred-size width="418" height="24"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="76dda" class="javax.swing.JComboBox" binding="accToTransfComb">
+                    <constraints>
+                      <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="78e2a" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Tranfer to this account"/>
+                    </properties>
+                  </component>
+                  <component id="11ee4" class="javax.swing.JButton" binding="transferMoneyButton" default-binding="true">
+                    <constraints>
+                      <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Transfer Money"/>
                     </properties>
                   </component>
                 </children>

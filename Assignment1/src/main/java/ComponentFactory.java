@@ -1,5 +1,4 @@
 import database.DBConnectionFactory;
-import model.Client;
 import repository.account.AccountRepository;
 import repository.account.AccountRepositoryMySQL;
 import repository.client.ClientRepository;
@@ -8,7 +7,7 @@ import repository.security.RightsRolesRepository;
 import repository.security.RightsRolesRepositoryMySQL;
 import repository.user.UserRepository;
 import repository.user.UserRepositoryMySQL;
-import repository.client.ClientRepositoryMySQL;
+//import repository.client.ClientRepositoryMySQL;
 import service.account.AccountService;
 import service.account.AccountServiceImpl;
 import service.client.ClientService;
@@ -19,6 +18,7 @@ import service.user.UserService;
 import service.user.UserServiceMySQL;
 
 import java.sql.Connection;
+//import java.util.List;
 
 /**
  * Created by Alex on 18/03/2017.
@@ -80,4 +80,9 @@ public class ComponentFactory {
     public UserService getUserService() {
         return userService;
     }
+
+//    public static void main(String[] args){
+//        ComponentFactory c=new ComponentFactory();
+//        List<Account> ac=c.accountRepository.findByOwner((long)9);
+//    }
 }

@@ -2,9 +2,12 @@ package controller;
 
 import model.Account;
 import model.Client;
-import model.User;
+
+import java.awt.*;
+import java.util.*;
 import model.builder.ClientBuilder;
 import model.builder.AccountBuilder;
+import model.validation.AccountValidator;
 import service.account.AccountService;
 import service.client.ClientService;
 import view.EmployeeView;
@@ -12,6 +15,7 @@ import view.EmployeeView;
 import javax.swing.*;
 import java.awt.event.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Vector;
 
 import java.text.DateFormat;
@@ -42,7 +46,10 @@ public class EmployeeController {
         employeeView.setViewAccountButtonListener(new ViewAccountButtonListener());
         employeeView.setAccTableMouseListener(new AccTableMouseListener());
         employeeView.setDeleteAccountButtonListener(new DeleteAccountButtonListener());
+        employeeView.setTransferButtonListener(new TransferButtonListener());
+        employeeView.setOwnerComboActionListener(new OwnerComboActionListener());
         employeeView.setVisible(false);
+        setOwnerCombo();
     }
 
     private  void writeClientTable(){
@@ -65,10 +72,12 @@ public class EmployeeController {
         }
     }
 
-    private  void writeAccountTable(){
-        Vector<Vector<String>> data = accountService.getAllAccountsTable();
-        employeeView.setAccTable(data);
-        setOwnerCombo();
+    private  void writeAccountTable(List<Account> data){
+//        Vector<Vector<String>> data = accountService.getAllAccountsTable();
+        Vector<Vector<String>> tabl=accountService.getAllAccountsTable(data);
+        employeeView.setAccTable(tabl);
+        //setOwnerCombo();
+        setAccToTransfCombo();
     }
 
     private void setOwnerCombo(){
@@ -79,6 +88,18 @@ public class EmployeeController {
             dcm.addElement(nm);
         }
         employeeView.addOwnerCombo(dcm);
+
+    }
+
+    private void setAccToTransfCombo(){
+        Vector<Vector<String>> accounts=accountService.getAllAccountsTable(accountService.findAll());
+        DefaultComboBoxModel dcm=new DefaultComboBoxModel();
+        for(int i=0;i<accounts.size();i++){
+            String nameOwner=clientService.findById(Long.parseLong(accounts.elementAt(i).elementAt(4))).getName();
+            String nm=accounts.elementAt(i).elementAt(0)+" "+accounts.elementAt(i).elementAt(2)+" "+nameOwner;
+            dcm.addElement(nm);
+        }
+        employeeView.setAccToTransfComb(dcm);
 
     }
     private class TableMouseListener extends MouseAdapter {
@@ -153,7 +174,7 @@ public class EmployeeController {
             Long id=Long.parseLong(idd);
             String nv= String.valueOf(employeeView.getAccTable().getValueAt(row,col));
             accountService.updateAccount(id,col,nv);
-            writeAccountTable();
+            writeAccountTable(accountService.findAll());
         }
     }
 
@@ -172,8 +193,12 @@ public class EmployeeController {
                     .setDate(new Date())
                     .setOwner(ownerid)
                     .build();
-            accountService.save(a);
-            writeAccountTable();
+            AccountValidator accountValidator=new AccountValidator(a);
+            if(accountValidator.validate(0)) {
+                accountService.save(a);
+                writeAccountTable(accountService.findAll());
+            }
+            else JOptionPane.showMessageDialog(employeeView,accountValidator.getErrors().toString());
         }
     }
 
@@ -182,7 +207,7 @@ public class EmployeeController {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            writeAccountTable();
+            writeAccountTable(accountService.findAll());
         }
     }
 
@@ -195,7 +220,7 @@ public class EmployeeController {
             String idd=String.valueOf(employeeView.getAccTable().getModel().getValueAt(row,0));
             Long id=Long.parseLong(idd);
             accountService.deleteAccount(id);
-            writeAccountTable();
+            writeAccountTable(accountService.findAll());
         }
     }
 
@@ -209,6 +234,40 @@ public class EmployeeController {
         }
     }
 
+    private class TransferButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            //FIND client from whose account will be transfered money
+            int a=0;
+            long ownerid1=Long.parseLong(employeeView.getOwnerCombo().getSelectedItem().toString().substring(0,1));
+            writeAccountTable(accountService.findByOwner(ownerid1));   //list all the accounts
+//            System.out.println("Owner id= "+ownerid1);
+
+            //find the clicked account's id
+            int row=employeeView.getRowAccClicked();
+            String idd=String.valueOf(employeeView.getAccTable().getModel().getValueAt(row,0));
+            long accId1=Long.parseLong(idd);
+
+            //choose the 2nd account from combo box
+//            setAccToTransfCombo();
+            JOptionPane.showMessageDialog(null,employeeView.getAccToTransfComb().getSelectedItem().toString());
+            long accId2=Long.parseLong(employeeView.getAccToTransfComb().getSelectedItem().toString().substring(0,1));
+            float amount=employeeView.getAmount();
+
+            accountService.transferMoney(accId1,accId2,amount);
+            writeAccountTable(accountService.findAll());
+        }
+    }
+
+    private class OwnerComboActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            long id=Long.parseLong(employeeView.getOwnerCombo().getSelectedItem().toString().substring(0,1));
+            writeAccountTable(accountService.findByOwner(id));
+        }
+    }
     public void showUI(){
         employeeView.setVisible(true);
     }

@@ -29,8 +29,10 @@ public class EmployeeView extends JDialog {
     private JTable accTable;
     private JTextField amount;
     private JComboBox ownerCombo;
-    private JLabel owner;
+//    private JLabel owner;
     private JComboBox typeCombo;
+    private JButton transferMoneyButton;
+    private JComboBox accToTransfComb;
     private int rowClicked;
     private int colClicked;
     private int rowAccClicked;
@@ -43,8 +45,8 @@ public class EmployeeView extends JDialog {
 
         tabbedPane.addTab("Client",clientTab);
         tabbedPane.addTab("Account",accountTab);
-        contentPane.setSize(500,315);
-        setSize(735,600);
+        contentPane.setSize(800,315);
+        setSize(900,600);
         setContentPane(contentPane);
         scroll.setSize(500,500);
         clientTab.setSize(200,200);
@@ -52,12 +54,20 @@ public class EmployeeView extends JDialog {
         setResizable(false);
         setVisible(false);
         setTypeCombo();
+//        ownerCombo.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//
+//            }
+//        });
     }
 
     public JTextField getNameorId() {
         return name;
     }
-
+    public void setOwnerComboActionListener(ActionListener a){
+        ownerCombo.addActionListener(a);
+    }
     public int getRowClicked() {
         return rowClicked;
     }
@@ -94,7 +104,14 @@ public class EmployeeView extends JDialog {
         typeCombo.addItem("Personal");
         typeCombo.addItem("Real");
         typeCombo.addItem("Nominal");
+    }
 
+    public JComboBox getAccToTransfComb() {
+        return accToTransfComb;
+    }
+
+    public void setAccToTransfComb(DefaultComboBoxModel transf) {
+        accToTransfComb.setModel(transf);
     }
 
     public void addOwnerCombo(DefaultComboBoxModel own){
@@ -169,6 +186,10 @@ public class EmployeeView extends JDialog {
 
     public void setDeleteButtonListener(ActionListener deleteClientListener) {
         deleteClientButton.addActionListener(deleteClientListener);
+    }
+
+    public void setTransferButtonListener(ActionListener transferClientListener) {
+        transferMoneyButton.addActionListener(transferClientListener);
     }
 
     public void setTableMouseListener(MouseAdapter m) {

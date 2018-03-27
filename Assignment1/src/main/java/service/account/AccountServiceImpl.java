@@ -24,10 +24,10 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account findById(Long id) throws EntityNotFoundException {
+    public Account findById(Long id) {//throws EntityNotFoundException {
         return repository.findById(id);
     }
-    public Account findByOwner(Long id) throws EntityNotFoundException {
+    public List<Account> findByOwner(Long id) {//throws EntityNotFoundException {
         return repository.findByOwner(id);
     }
 
@@ -44,21 +44,12 @@ public class AccountServiceImpl implements AccountService {
         repository.deleteAccount(id);
     }
 
-    public Vector<Vector<String>> getAllAccountsTable(){
-        return repository.getAllAccountsTable();
+    public Vector<Vector<String>> getAllAccountsTable(List<Account> a){
+        return repository.getAllAccountsTable(a);
     }
-   /* @Override
-    public int getAgeOfBook(Long id) throws EntityNotFoundException {
-        Book book = findById(id);
-        Date publishedDate = book.getPublishedDate();
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(publishedDate);
-        int yearOfPublishing = calendar.get(Calendar.YEAR);
-        calendar.setTime(new Date());
-        int yearToday = calendar.get(Calendar.YEAR);
-
-        return yearToday - yearOfPublishing;
-    }*/
+    public void transferMoney(Long idAcc1,Long idAcc2,float sum){
+        repository.transferMoney(idAcc1,idAcc2,sum);
+    }
 
 }

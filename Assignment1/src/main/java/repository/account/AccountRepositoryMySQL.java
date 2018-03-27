@@ -37,7 +37,7 @@ public class AccountRepositoryMySQL implements AccountRepository {
     }
 
     @Override
-    public Account findById(Long id) throws EntityNotFoundException {
+    public Account findById(Long id){// throws EntityNotFoundException {
         try {
             Statement statement = connection.createStatement();
             String sql = "Select * from account where id=" + id;
@@ -46,29 +46,30 @@ public class AccountRepositoryMySQL implements AccountRepository {
             if (rs.next()) {
                 return getAccountFromResultSet(rs);
             } else {
-                throw new EntityNotFoundException(id, Account.class.getSimpleName());
+//                throw new EntityNotFoundException(id, Account.class.getSimpleName());
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new EntityNotFoundException(id, Account.class.getSimpleName());
+//            throw new EntityNotFoundException(id, Account.class.getSimpleName());
         }
+        return  null;
     }
 
-    public Account findByOwner(Long id) throws EntityNotFoundException {
+    public List<Account> findByOwner(Long id){//} throws EntityNotFoundException {
+        List<Account> accounts = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
             String sql = "Select * from account where ownerID=" + id;
             ResultSet rs = statement.executeQuery(sql);
 
-            if (rs.next()) {
-                return getAccountFromResultSet(rs);
-            } else {
-                throw new EntityNotFoundException(id, Account.class.getSimpleName());
+            while (rs.next()) {
+                accounts.add(getAccountFromResultSet(rs));
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new EntityNotFoundException(id, Account.class.getSimpleName());
+//            throw new EntityNotFoundException(id, Account.class.getSimpleName());
         }
+        return accounts;
     }
     @Override
     public boolean save(Account account) {
@@ -146,10 +147,10 @@ public class AccountRepositoryMySQL implements AccountRepository {
             e.printStackTrace();
         }
     }
-    public Vector<Vector<String>> getAllAccountsTable(){
-        String[][] t=new String[][]{};
+    public Vector<Vector<String>> getAllAccountsTable(List<Account> acc){
         Vector<Vector<String>> accounts = new Vector<>();
-        for(Account c:findAll()){
+        if(acc==null) JOptionPane.showMessageDialog(null,"getallAccTable is empty");
+        for(Account c:acc){
             Vector<String> data = new Vector<>();
             data.add(c.getId().toString());
             data.add(c.getType());
@@ -159,5 +160,25 @@ public class AccountRepositoryMySQL implements AccountRepository {
             accounts.add(data);
         }
         return accounts;
+    }
+
+
+    public void transferMoney(Long idAcc1,Long idAcc2,float sum){
+        Account a1=findById(idAcc1);
+        Account a2=findById(idAcc2);
+        float sumA1=a1.getAmount()+sum;
+        float sumA2=a2.getAmount()-sum;
+
+        JOptionPane.showMessageDialog(null,"Owner1: "+a1.getOwnerId()+" "+a1.getAmount()+"owner2: "+a2.getOwnerId()+" "+" "+a2.getAmount());
+        try {
+            Statement statement = connection.createStatement();
+            String sql1 = "UPDATE account SET amount='"+sumA1+"' where id="+idAcc1;
+            statement.executeUpdate(sql1);
+
+            String sql2 = "UPDATE account SET amount='"+sumA2+"' where id="+idAcc2;
+            statement.executeUpdate(sql2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

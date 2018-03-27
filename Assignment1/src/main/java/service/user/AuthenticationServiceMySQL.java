@@ -30,34 +30,8 @@ public class AuthenticationServiceMySQL implements AuthenticationService {
         this.rightsRolesRepository = rightsRolesRepository;
     }
 
-    @Override
-    public Notification<Boolean> register(String username, String password) {
-        Role customerRole = rightsRolesRepository.findRoleByTitle(CLIENT);
-        User user = new UserBuilder()
-                .setUsername(username)
-                .setPassword(password)
-                .setRoles(Collections.singletonList(customerRole))
-                .build();
-
-        UserValidator userValidator = new UserValidator(user);
-        boolean userValid = userValidator.validate();
-        Notification<Boolean> userRegisterNotification = new Notification<>();
-
-        if (!userValid) {
-            userValidator.getErrors().forEach(userRegisterNotification::addError);
-            userRegisterNotification.setResult(Boolean.FALSE);
-            return userRegisterNotification;
-        } else {
-            user.setPassword(encodePassword(password));
-            userRegisterNotification.setResult(userRepository.save(user));
-            return userRegisterNotification;
-        }
-    }
-    public Notification<Boolean> registerUser(String username, String password,boolean admin) {
-        Role userRole;
-        if (admin)
-             userRole = rightsRolesRepository.findRoleByTitle(ADMINISTRATOR);
-        else userRole = rightsRolesRepository.findRoleByTitle(EMPLOYEE);
+    public Notification<Boolean> registerUser(String username, String password,String role) {
+        Role userRole = rightsRolesRepository.findRoleByTitle(role);
         User user = new UserBuilder()
                 .setUsername(username)
                 .setPassword(password)

@@ -2,6 +2,7 @@ package controller;
 
 import model.Account;
 import model.Client;
+import model.User;
 import model.builder.ClientBuilder;
 import model.builder.AccountBuilder;
 import service.account.AccountService;
@@ -45,8 +46,23 @@ public class EmployeeController {
     }
 
     private  void writeClientTable(){
-        Vector<Vector<String>> data = clientService.getAllClientsTable();
-        employeeView.setTable(data);
+        if(employeeView.getNameorId().getText().equals("")) {
+            Vector<Vector<String>> data = clientService.getAllClientsTable();
+            employeeView.setTable(data);
+        }
+        else{
+            Vector<Vector<String>> data= new Vector<>();
+            Vector<String> d=new Vector<>();
+            Long id=Long.parseLong(employeeView.getNameorId().getText());
+            Client  u=clientService.findById(id);
+            d.add(u.getId().toString());
+            d.add(u.getName());
+            d.add(u.getId_card_nr().toString());
+            d.add(u.getPers_num_code().toString());
+            d.add(u.getAddress());
+            data.add(d);
+            employeeView.setTable(data);
+        }
     }
 
     private  void writeAccountTable(){

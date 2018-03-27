@@ -14,7 +14,7 @@ public class Launcher {
         ComponentFactory componentFactory = ComponentFactory.instance();
 //        EmployeeView ev = new EmployeeView();
         LoginController lg=new LoginController(new LoginView(), componentFactory.getAuthenticationService());
-        lg.attachAdminController(new AdminController(componentFactory.getUserService()));
+        lg.attachAdminController(new AdminController(componentFactory.getUserService(),componentFactory.getAuthenticationService()));
 
         lg.attachEmployeeController(new EmployeeController(componentFactory.getClientService(),componentFactory.getAccountService()));
 

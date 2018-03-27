@@ -38,7 +38,7 @@ public class ClientRepositoryMySQL implements ClientRepository {
     }
 
     @Override
-    public Client findById(Long id) throws EntityNotFoundException {
+    public Client findById(Long id) {//throws EntityNotFoundException {
         try {
             Statement statement = connection.createStatement();
             String sql = "Select * from client where id=" + id;
@@ -47,12 +47,13 @@ public class ClientRepositoryMySQL implements ClientRepository {
             if (rs.next()) {
                 return getClientFromResultSet(rs);
             } else {
-                throw new EntityNotFoundException(id, Client.class.getSimpleName());
+                //throw new EntityNotFoundException(id, Client.class.getSimpleName());
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new EntityNotFoundException(id, Client.class.getSimpleName());
+            //throw new EntityNotFoundException(id, Client.class.getSimpleName());
         }
+        return null;
     }
 
 

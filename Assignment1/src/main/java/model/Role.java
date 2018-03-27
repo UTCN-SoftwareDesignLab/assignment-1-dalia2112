@@ -11,6 +11,7 @@ public class Role {
     private String role;
     private List<Right> rights;
 
+
     public Role(Long id, String role, List<Right> rights) {
         this.id = id;
         this.role = role;
@@ -32,6 +33,7 @@ public class Role {
     public void setRole(String role) {
         this.role = role;
     }
+
 
     public List<Right> getRights() {
         return rights;

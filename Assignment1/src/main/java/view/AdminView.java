@@ -3,6 +3,7 @@ package view;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.util.Vector;
 
 public class AdminView extends JDialog {
@@ -13,20 +14,27 @@ public class AdminView extends JDialog {
     private JButton updateEmployeeButton;
     private JButton viewEmployeeButton;
     private JTextField idTf;
-    private JTextField passTf;
     private JTextField usernameTf;
+    private JTextField passTf;
     private JComboBox rolesCombo;
+    private int rowClicked;
+    private int colClicked;
     private String[] cols={"Id","Username","Password","Role"};
 
 
     public AdminView() {
         setContentPane(contentPane);
         setModal(true);
-        setSize(500,500);
-//        pack();
+        setSize(700,500);
+        setResizable(false);
+        setRolesCombo();
     }
 
 
+    public void setRolesCombo(){
+        rolesCombo.addItem("Administrator");
+        rolesCombo.addItem("Employee");
+    }
     public JTable getEmplTable() {
         return emplTable;
     }
@@ -44,12 +52,12 @@ public class AdminView extends JDialog {
         return idTf;
     }
 
-    public JTextField getPassTf() {
-        return passTf;
-    }
-
     public JTextField getUsernameTf() {
         return usernameTf;
+    }
+
+    public JTextField getPassTf() {
+        return passTf;
     }
 
     public JComboBox getRolesCombo() {
@@ -70,5 +78,25 @@ public class AdminView extends JDialog {
 
     public void setViewButtonListener(ActionListener viewButtonListener) {
         viewEmployeeButton.addActionListener(viewButtonListener);
+    }
+
+    public void setTableMouseListener(MouseAdapter m) {
+        emplTable.addMouseListener(m);
+    }
+
+    public int getRowClicked() {
+        return rowClicked;
+    }
+
+    public void setRowClicked(int rowClicked) {
+        this.rowClicked = rowClicked;
+    }
+
+    public int getColClicked() {
+        return colClicked;
+    }
+
+    public void setColClicked(int colClicked) {
+        this.colClicked = colClicked;
     }
 }

@@ -11,7 +11,7 @@ import java.util.Vector;
 public interface ClientRepository {
     List<Client> findAll();
 
-    Client findById(Long id) throws EntityNotFoundException;
+    Client findById(Long id) ;//throws EntityNotFoundException;
     Client findByName(String name) throws EntityNotFoundException;
 
     boolean save(Client client);

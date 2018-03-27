@@ -26,7 +26,6 @@ public class LoginController {
         this.loginView = loginView;
         this.authenticationService = authenticationService;
         loginView.setLoginButtonListener(new LoginButtonListener());
-        loginView.setRegisterButtonListener(new RegisterButtonListener());
     }
 
     private class LoginButtonListener implements ActionListener {
@@ -53,7 +52,7 @@ public class LoginController {
 
                     JOptionPane.showMessageDialog(loginView.getContentPane(), "Login successful("+role.getRole()+") !");
                     loginView.setVisible(false);
-                    if(role.getRole()==Constants.Roles.EMPLOYEE) {   //FOR EMPLOYEEE
+                    if(role.getRole().equalsIgnoreCase("employee")) {   //FOR EMPLOYEEE
                         SwingUtilities.invokeLater(() -> {
                             employeeController.showUI();
                         });
@@ -68,31 +67,6 @@ public class LoginController {
         }
     }
 
-    private class RegisterButtonListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String username = loginView.getUsername();
-            String password = loginView.getPassword();
-            boolean admin=loginView.getRdBtn().isSelected();
-//            Notification<Boolean> registerNotification = authenticationService.register(username, password);
-            Notification<Boolean> registerNotification = authenticationService.registerUser(username,password,admin);
-            if (registerNotification.hasErrors()) {
-                JOptionPane.showMessageDialog(loginView.getContentPane(), registerNotification.getFormattedErrors());
-            } else {
-                if (!registerNotification.getResult()) {
-                    JOptionPane.showMessageDialog(loginView.getContentPane(), "Registration not successful, please try again later.");
-                } else {
-                    String role="";
-                    if(admin)
-                        role="admin";
-                    else role="employee";
-                    JOptionPane.showMessageDialog(loginView.getContentPane(), "Registration successful("+role+") !");
-
-                }
-            }
-        }
-    }
 
     public void attachEmployeeController(EmployeeController employeeController){
         this.employeeController = employeeController;

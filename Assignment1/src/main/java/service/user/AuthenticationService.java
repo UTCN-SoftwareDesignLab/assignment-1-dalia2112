@@ -12,14 +12,13 @@ import java.util.List;
  */
 public interface AuthenticationService {
 
-    Notification<Boolean> register(String username, String password);
+//    Notification<Boolean> register(String username, String password,String role);
 
-    Notification<Boolean> registerUser(String username, String password,boolean admin);
+    Notification<Boolean> registerUser(String username, String password,String admin);
 
     Notification<User> login(String username, String password) throws AuthenticationException;
 
     boolean logout(User user);
 
-    public Role findRoleForUserId(Long userId);
 
 }

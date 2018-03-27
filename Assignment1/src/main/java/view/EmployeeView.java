@@ -49,10 +49,13 @@ public class EmployeeView extends JDialog {
         scroll.setSize(500,500);
         clientTab.setSize(200,200);
         setModal(true);
-//        pack();
         setResizable(false);
         setVisible(false);
         setTypeCombo();
+    }
+
+    public JTextField getNameorId() {
+        return name;
     }
 
     public int getRowClicked() {
@@ -190,10 +193,5 @@ public class EmployeeView extends JDialog {
     public void setAccTableMouseListener(MouseAdapter m) {
         accTable.addMouseListener(m);
     }
-
-//    public void showUI(){
-//        setVisible(true);
-//    }
-
 
 }

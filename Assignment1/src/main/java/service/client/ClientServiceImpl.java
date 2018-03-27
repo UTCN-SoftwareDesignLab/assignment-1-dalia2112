@@ -24,7 +24,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client findById(Long id) throws EntityNotFoundException {
+    public Client findById(Long id) {//throws EntityNotFoundException {
         return repository.findById(id);
     }
     public Client findByName(String name) throws EntityNotFoundException {

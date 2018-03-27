@@ -1,6 +1,5 @@
 package service.user;
 
-import model.Client;
 import model.User;
 import repository.EntityNotFoundException;
 import repository.user.UserRepository;
@@ -20,7 +19,7 @@ public class UserServiceMySQL implements UserService{
         return userRepository.findAll();
     }
 
-    public User findById(Long id) throws EntityNotFoundException{
+    public User findById(Long id) /*throws EntityNotFoundException*/{
         return userRepository.findById(id);
     }
 
@@ -34,20 +33,14 @@ public class UserServiceMySQL implements UserService{
         switch (col) {
             case 0:
                 JOptionPane.showMessageDialog(null,"Cannot change id!");
-                break;
+                return;
             case 1:
-                column="name";
+                column="username";
                 break;
             case 2:
-                column="id_card_nr";
+                column="password";
                 break;
-            case 3:
-                column="pers_num_code";
-                break;
-            case 4:
-                column="address";
-                break;
-            default: column="name";
+            default: column="username";
         }
         userRepository.updateUser(id,column,newval);
     }

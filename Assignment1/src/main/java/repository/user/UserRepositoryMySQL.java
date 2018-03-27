@@ -107,7 +107,7 @@ public class UserRepositoryMySQL implements UserRepository {
         }
     }
 
-    public User findById(Long id) throws EntityNotFoundException{
+    public User findById(Long id) /*throws EntityNotFoundException*/{
         try {
             Statement statement = connection.createStatement();
             String sql = "Select * from user where id=" + id;
@@ -116,12 +116,13 @@ public class UserRepositoryMySQL implements UserRepository {
             if (rs.next()) {
                 return getUserFromResultSet(rs);
             } else {
-                throw new EntityNotFoundException(id, Client.class.getSimpleName());
+//                throw new EntityNotFoundException(id, Client.class.getSimpleName());
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new EntityNotFoundException(id, Client.class.getSimpleName());
+//            throw new EntityNotFoundException(id, Client.class.getSimpleName());
         }
+        return null;
     }
 
     private User getUserFromResultSet(ResultSet rs) throws SQLException {

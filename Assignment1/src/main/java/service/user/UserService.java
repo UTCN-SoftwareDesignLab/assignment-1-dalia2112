@@ -10,7 +10,7 @@ public interface UserService {
 
     List<User> findAll();
 
-    User findById(Long id) throws EntityNotFoundException;
+    User findById(Long id) /*throws EntityNotFoundException*/;
 
     boolean save(User user);
 

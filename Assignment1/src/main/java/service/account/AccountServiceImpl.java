@@ -1,6 +1,7 @@
 package service.account;
 
 import model.Account;
+import model.Bill;
 import model.Book;
 import repository.EntityNotFoundException;
 import repository.account.AccountRepository;
@@ -48,6 +49,13 @@ public class AccountServiceImpl implements AccountService {
         return repository.getAllAccountsTable(a);
     }
 
+    public Vector<Vector<String>> getAllBillsTable(List<Bill> a){return repository.getAllBillsTable(a);}
+
+    @Override
+    public List<Bill> findBillByOwner(long id) {
+        return repository.findBillByOwner(id);
+    }
+
     public void transferMoney(Long idAcc1,Long idAcc2,float sum){
         repository.transferMoney(idAcc1,idAcc2,sum);
     }
@@ -57,6 +65,16 @@ public class AccountServiceImpl implements AccountService {
         return tabl;
     }
 
+    public Vector<Vector<String>> writeBillsTable(List<Bill> data){
+        Vector<Vector<String>> tabl=getAllBillsTable(data);
+        return tabl;
+    }
 
+    public void payBill(long accId,String code){
+        repository.payBill(accId,code);
+    }
 
+    public Bill findBillByCode(String code){
+        return repository.findBillByCode(code);
+    }
 }

@@ -1,6 +1,7 @@
 package service.account;
 
 import model.Account;
+import model.Bill;
 import model.Book;
 import repository.EntityNotFoundException;
 
@@ -25,4 +26,9 @@ public interface AccountService {
     void transferMoney(Long idAcc1,Long idAcc2,float sum);
 
     Vector<Vector<String>> writeAccountTable(List<Account> data);
+    Vector<Vector<String>> getAllBillsTable(List<Bill> a);
+    public List<Bill> findBillByOwner(long id);
+    Vector<Vector<String>> writeBillsTable(List<Bill> data);
+    void payBill(long accId,String code);
+    Bill findBillByCode(String code);
 }

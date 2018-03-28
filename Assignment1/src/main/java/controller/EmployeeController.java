@@ -49,14 +49,16 @@ public class EmployeeController {
         employeeView.setDeleteAccountButtonListener(new DeleteAccountButtonListener());
         employeeView.setTransferButtonListener(new TransferButtonListener());
         employeeView.setOwnerComboActionListener(new OwnerComboActionListener());
+        employeeView.setShowBillsButtonListener(new ShowBillsButtonListener());
+        employeeView.setPayBillsButtonListener(new PayBillsButtonListener());
         employeeView.setVisible(false);
-        setAccToTransfCombo();
+        setAccToTransfCombo(accountService.findAll());
         employeeView.addOwnerCombo(clientService.setOwnerCombo());
     }
 
 
-    private void setAccToTransfCombo(){
-        Vector<Vector<String>> accounts=accountService.getAllAccountsTable(accountService.findAll());
+    private void setAccToTransfCombo(List<Account> data){
+        Vector<Vector<String>> accounts=accountService.getAllAccountsTable(data);
         DefaultComboBoxModel dcm=new DefaultComboBoxModel();
         for(int i=0;i<accounts.size();i++){
             String nameOwner=clientService.findById(Long.parseLong(accounts.elementAt(i).elementAt(4))).getName();
@@ -99,6 +101,8 @@ public class EmployeeController {
             Long id=Long.parseLong(idd);
             clientService.deleteClient(id);
             employeeView.setTable(clientService.writeClientTable(employeeView.getNameorId()));
+            clientService.setOwnerCombo();
+//            setAccToTransfCombo(accountService.findAll());
         }
     }
 
@@ -236,6 +240,27 @@ public class EmployeeController {
         }
     }
 
+    private class ShowBillsButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            long ownerid1=Long.parseLong(employeeView.getOwnerCombo().substring(0,1));
+            employeeView.setBillTable(accountService.writeBillsTable(accountService.findBillByOwner(ownerid1)));
+            setAccToTransfCombo(accountService.findByOwner(ownerid1));
+        }
+    }
+    private class PayBillsButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            long ownerId=Long.parseLong(employeeView.getOwnerCombo().substring(0,1));
+            long accId=Long.parseLong(employeeView.getAccToTransfComb().substring(0,1));
+            String billToPayCode=employeeView.getAccTable().getModel().getValueAt(employeeView.getRowAccClicked(),0).toString().substring(0,7);
+            accountService.payBill(accId,billToPayCode);
+            employeeView.setBillTable(accountService.writeBillsTable(accountService.findBillByOwner(ownerId)));
+//            setAccToTransfCombo(accountService.findByOwner(ownerId));
+        }
+    }
     public void showUI(){
         employeeView.setVisible(true);
     }

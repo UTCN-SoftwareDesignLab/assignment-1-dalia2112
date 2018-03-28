@@ -10,10 +10,10 @@ public class BillBuilder {
 
     public BillBuilder(){
         bill=new Bill();
-        bill.setCode(RandomStringUtils.randomAlphanumeric(10));
+//        bill.setCode(RandomStringUtils.randomAlphanumeric(10));
     }
 
-    public BillBuilder setOwner(float price){
+    public BillBuilder setPrice(float price){
         bill.setPrice(price);
         return  this;
     }
@@ -25,6 +25,11 @@ public class BillBuilder {
 
     public BillBuilder setClientId(long id){
         bill.setClientId(id);
+        return  this;
+    }
+
+    public BillBuilder setCode(String code){
+        bill.setCode(code);
         return  this;
     }
 

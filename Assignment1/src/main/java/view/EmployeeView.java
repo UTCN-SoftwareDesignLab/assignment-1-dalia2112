@@ -32,12 +32,15 @@ public class EmployeeView extends JDialog {
     private JComboBox typeCombo;
     private JButton transferMoneyButton;
     private JComboBox accToTransfComb;
+    private JButton payBillsButton;
+    private JButton showBillsButton;
     private int rowClicked;
     private int colClicked;
     private int rowAccClicked;
     private int colAccClicked;
 
     private final Object[] cols={"Id","Name","Id_card_nr","Pers_num_code","Address"};
+    private final Object[] colsBill={"Code","Title","Price","Client ID"};
     private final Object[] accCols={"Id","Type","Amount","Date of creation","Owner ID"};
 
     public EmployeeView() {
@@ -45,7 +48,7 @@ public class EmployeeView extends JDialog {
         tabbedPane.addTab("Client",clientTab);
         tabbedPane.addTab("Account",accountTab);
         contentPane.setSize(800,315);
-        setSize(900,600);
+        setSize(900,700);
         setContentPane(contentPane);
         scroll.setSize(500,500);
         clientTab.setSize(200,200);
@@ -54,6 +57,7 @@ public class EmployeeView extends JDialog {
         setVisible(false);
         setTypeCombo();
     }
+
 
     public String getNameorId() {
         return name.getText();
@@ -97,6 +101,7 @@ public class EmployeeView extends JDialog {
         typeCombo.addItem("Personal");
         typeCombo.addItem("Real");
         typeCombo.addItem("Nominal");
+        typeCombo.setSize(50, typeCombo.getPreferredSize().height);
     }
 
     public String getAccToTransfComb() {
@@ -105,6 +110,7 @@ public class EmployeeView extends JDialog {
 
     public void setAccToTransfComb(DefaultComboBoxModel transf) {
         accToTransfComb.setModel(transf);
+        accToTransfComb.setSize(50, accToTransfComb.getPreferredSize().height);
     }
 
     public void addOwnerCombo(DefaultComboBoxModel own){
@@ -131,6 +137,15 @@ public class EmployeeView extends JDialog {
         DefaultTableModel dtm=new DefaultTableModel();
         dtm.setColumnIdentifiers(cols);
         table.setModel(dtm);
+        for(Vector<String> c:data1){
+            dtm.addRow(c);
+        }
+    }
+
+    public void setBillTable(Vector<Vector<String>> data1) {
+        DefaultTableModel dtm=new DefaultTableModel();
+        dtm.setColumnIdentifiers(colsBill);
+        accTable.setModel(dtm);
         for(Vector<String> c:data1){
             dtm.addRow(c);
         }
@@ -206,6 +221,14 @@ public class EmployeeView extends JDialog {
     }
     public void setAccTableMouseListener(MouseAdapter m) {
         accTable.addMouseListener(m);
+    }
+
+    public void setShowBillsButtonListener(ActionListener showBillsButtonListener) {
+        showBillsButton.addActionListener(showBillsButtonListener);
+    }
+
+    public void setPayBillsButtonListener(ActionListener payBillsButtonListener) {
+        payBillsButton.addActionListener(payBillsButtonListener);
     }
 
 }

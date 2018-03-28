@@ -1,12 +1,14 @@
 package repository.account;
 
 import model.Account;
-import model.Client;
+import model.Bill;
 import model.builder.AccountBuilder;
+import model.builder.BillBuilder;
 import model.validation.AccountValidator;
 import repository.EntityNotFoundException;
 
 import javax.swing.*;
+import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -110,6 +112,15 @@ public class AccountRepositoryMySQL implements AccountRepository {
                 .build();
     }
 
+    private Bill getBillFromResultSet(ResultSet rs) throws SQLException {
+        return new BillBuilder()
+                .setCode(rs.getString("code"))
+                .setTitle(rs.getString("title"))
+                .setPrice(rs.getFloat("price"))
+                .setClientId(rs.getLong("clientId"))
+                .build();
+    }
+
     public void updateAccount(Long id,int col,String newval){
         String column="";
         switch (col) {
@@ -122,10 +133,10 @@ public class AccountRepositoryMySQL implements AccountRepository {
             case 2:
                 column="amount";
                 AccountValidator accountValidator=new AccountValidator();
-                if(!accountValidator.validateTransfSum(Long.parseLong(newval),0,false)){
-                    JOptionPane.showMessageDialog(null,accountValidator.getErrors());
-                    return;
-                }
+//                if(!accountValidator.validateTransfSum(Long.parseLong(newval),0,false)){
+//                    JOptionPane.showMessageDialog(null,accountValidator.getErrors());
+//                    return;
+//                }
                 break;
             case 3:
                 column="date_of_creation";
@@ -192,4 +203,79 @@ public class AccountRepositoryMySQL implements AccountRepository {
             e.printStackTrace();
         }
     }
+
+    public List<Bill> findBillByOwner(long id){
+        List<Bill> accounts = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            String sql = "Select * from bill where clientId=" + id;
+            ResultSet rs = statement.executeQuery(sql);
+
+            while (rs.next()) {
+                accounts.add(getBillFromResultSet(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+//            throw new EntityNotFoundException(id, Account.class.getSimpleName());
+        }
+        return accounts;
+    }
+
+    public Bill findBillByCode(String code){// throws EntityNotFoundException {
+        try {
+            Statement statement = connection.createStatement();
+            String sql = "Select * from bill where `code`=\'" + code+"\'";
+            ResultSet rs = statement.executeQuery(sql);
+
+            if (rs.next()) {
+                return getBillFromResultSet(rs);
+            } else {
+//                throw new EntityNotFoundException(id, Account.class.getSimpleName());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+//            throw new EntityNotFoundException(id, Account.class.getSimpleName());
+        }
+        return  null;
+    }
+
+    public Vector<Vector<String>> getAllBillsTable(List<Bill> bl){
+        Vector<Vector<String>> bills = new Vector<>();
+        if(bl==null) JOptionPane.showMessageDialog(null,"No bills!");
+        for(Bill b:bl){
+            Vector<String> data = new Vector<>();
+            data.add(b.getCode());
+            data.add(b.getTitle());
+            data.add((String.valueOf(b.getPrice())));
+            data.add(String.valueOf(b.getClientId()));
+            bills.add(data);
+        }
+        return bills;
+    }
+    public void payBill(long accId,String code){
+        JOptionPane.showMessageDialog(null,"Account ID= "+accId+" bill code= " +code);
+        Account a=findById(accId);
+        Bill b=findBillByCode(code);
+        AccountValidator accountValidator=new AccountValidator();
+//        if(!accountValidator.validateTransfSum(a.getAmount(),b.getPrice(),true)){
+//            JOptionPane.showMessageDialog(null,accountValidator.getErrors().toString());
+//            return;
+//        }
+        float sumA1=a.getAmount()-b.getPrice();
+
+
+        try {
+            Statement statement = connection.createStatement();
+            String sql1 = "UPDATE account SET amount='"+sumA1+"' where id="+accId;
+            statement.executeUpdate(sql1);
+
+            String sql2 = "DELETE from bill where `code`=\'" + code+"\'";
+            statement.executeUpdate(sql2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }

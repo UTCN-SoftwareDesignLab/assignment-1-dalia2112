@@ -8,6 +8,7 @@ import java.util.*;
 import model.builder.ClientBuilder;
 import model.builder.AccountBuilder;
 import model.validation.AccountValidator;
+import model.validation.ClientValidator;
 import service.account.AccountService;
 import service.client.ClientService;
 import view.EmployeeView;
@@ -49,47 +50,10 @@ public class EmployeeController {
         employeeView.setTransferButtonListener(new TransferButtonListener());
         employeeView.setOwnerComboActionListener(new OwnerComboActionListener());
         employeeView.setVisible(false);
-        setOwnerCombo();
-    }
-
-    private  void writeClientTable(){
-        if(employeeView.getNameorId().getText().equals("")) {
-            Vector<Vector<String>> data = clientService.getAllClientsTable();
-            employeeView.setTable(data);
-        }
-        else{
-            Vector<Vector<String>> data= new Vector<>();
-            Vector<String> d=new Vector<>();
-            Long id=Long.parseLong(employeeView.getNameorId().getText());
-            Client  u=clientService.findById(id);
-            d.add(u.getId().toString());
-            d.add(u.getName());
-            d.add(u.getId_card_nr().toString());
-            d.add(u.getPers_num_code().toString());
-            d.add(u.getAddress());
-            data.add(d);
-            employeeView.setTable(data);
-        }
-    }
-
-    private  void writeAccountTable(List<Account> data){
-//        Vector<Vector<String>> data = accountService.getAllAccountsTable();
-        Vector<Vector<String>> tabl=accountService.getAllAccountsTable(data);
-        employeeView.setAccTable(tabl);
-        //setOwnerCombo();
         setAccToTransfCombo();
+        employeeView.addOwnerCombo(clientService.setOwnerCombo());
     }
 
-    private void setOwnerCombo(){
-        Vector<Vector<String>> clients=clientService.getAllClientsTable();
-        DefaultComboBoxModel dcm=new DefaultComboBoxModel();
-        for(int i=0;i<clients.size();i++){
-            String nm=clients.elementAt(i).elementAt(0)+" "+clients.elementAt(i).elementAt(1);
-            dcm.addElement(nm);
-        }
-        employeeView.addOwnerCombo(dcm);
-
-    }
 
     private void setAccToTransfCombo(){
         Vector<Vector<String>> accounts=accountService.getAllAccountsTable(accountService.findAll());
@@ -100,8 +64,8 @@ public class EmployeeController {
             dcm.addElement(nm);
         }
         employeeView.setAccToTransfComb(dcm);
-
     }
+
     private class TableMouseListener extends MouseAdapter {
 
         @Override
@@ -122,7 +86,7 @@ public class EmployeeController {
             Long id=Long.parseLong(idd);
             String nv= String.valueOf(employeeView.getTable().getValueAt(row,col));
             clientService.updateClient(id,col,nv);
-            writeClientTable();
+            employeeView.setTable(clientService.writeClientTable(employeeView.getNameorId()));
         }
     }
 
@@ -134,14 +98,14 @@ public class EmployeeController {
             String idd=String.valueOf(employeeView.getTable().getModel().getValueAt(row,0));
             Long id=Long.parseLong(idd);
             clientService.deleteClient(id);
-            writeClientTable();
+            employeeView.setTable(clientService.writeClientTable(employeeView.getNameorId()));
         }
     }
 
     private class ViewButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            writeClientTable();
+            employeeView.setTable(clientService.writeClientTable(employeeView.getNameorId()));
         }
     }
 
@@ -159,8 +123,14 @@ public class EmployeeController {
                     .setPersNumCode(clientPersNum)
                     .setAddress(clientAddress)
                     .build();
+            ClientValidator clientValidator=new ClientValidator(c);
+            clientValidator.validate();
+            if(!clientValidator.getErrors().isEmpty()) {
+                JOptionPane.showMessageDialog(null, clientValidator.getErrors());
+                return;
+            }
             clientService.save(c);
-            writeClientTable();
+            employeeView.setTable(clientService.writeClientTable(employeeView.getNameorId()));
         }
     }
 
@@ -174,7 +144,7 @@ public class EmployeeController {
             Long id=Long.parseLong(idd);
             String nv= String.valueOf(employeeView.getAccTable().getValueAt(row,col));
             accountService.updateAccount(id,col,nv);
-            writeAccountTable(accountService.findAll());
+            employeeView.setAccTable(accountService.writeAccountTable(accountService.findAll()));
         }
     }
 
@@ -182,21 +152,20 @@ public class EmployeeController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            int row=employeeView.getRowAccClicked();
-            int col=employeeView.getColAccClicked();
-            String type=employeeView.getTypeCombo().getSelectedItem().toString();
-            long ownerid=Long.parseLong(employeeView.getOwnerCombo().getSelectedItem().toString().substring(0,1));
+//            int row=employeeView.getRowAccClicked();
+//            int col=employeeView.getColAccClicked();
+            String type=employeeView.getTypeCombo();
+            long ownerid=Long.parseLong(employeeView.getOwnerCombo().substring(0,1));
             float amount=employeeView.getAmount();
             Account a=new AccountBuilder()
                     .setType(type)
                     .setAmount(amount)
-                    .setDate(new Date())
                     .setOwner(ownerid)
                     .build();
-            AccountValidator accountValidator=new AccountValidator(a);
-            if(accountValidator.validate(0)) {
+            AccountValidator accountValidator=new AccountValidator();
+            if(accountValidator.validateTransfSum(amount,0,false)) {
                 accountService.save(a);
-                writeAccountTable(accountService.findAll());
+                employeeView.setAccTable(accountService.writeAccountTable(accountService.findAll()));
             }
             else JOptionPane.showMessageDialog(employeeView,accountValidator.getErrors().toString());
         }
@@ -207,7 +176,7 @@ public class EmployeeController {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            writeAccountTable(accountService.findAll());
+            employeeView.setAccTable(accountService.writeAccountTable(accountService.findAll()));
         }
     }
 
@@ -220,7 +189,7 @@ public class EmployeeController {
             String idd=String.valueOf(employeeView.getAccTable().getModel().getValueAt(row,0));
             Long id=Long.parseLong(idd);
             accountService.deleteAccount(id);
-            writeAccountTable(accountService.findAll());
+            employeeView.setAccTable(accountService.writeAccountTable(accountService.findAll()));
         }
     }
 
@@ -238,25 +207,23 @@ public class EmployeeController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            //FIND client from whose account will be transfered money
-            int a=0;
-            long ownerid1=Long.parseLong(employeeView.getOwnerCombo().getSelectedItem().toString().substring(0,1));
-            writeAccountTable(accountService.findByOwner(ownerid1));   //list all the accounts
-//            System.out.println("Owner id= "+ownerid1);
+            //FIND client from whose account will be transferred money
+            long ownerid1=Long.parseLong(employeeView.getOwnerCombo().substring(0,1));
+            employeeView.setAccTable(accountService.writeAccountTable(accountService.findByOwner(ownerid1)));
 
             //find the clicked account's id
-            int row=employeeView.getRowAccClicked();
-            String idd=String.valueOf(employeeView.getAccTable().getModel().getValueAt(row,0));
+            int row = employeeView.getRowAccClicked();
+            String idd = String.valueOf(employeeView.getAccTable().getModel().getValueAt(row,0));
             long accId1=Long.parseLong(idd);
 
             //choose the 2nd account from combo box
-//            setAccToTransfCombo();
-            JOptionPane.showMessageDialog(null,employeeView.getAccToTransfComb().getSelectedItem().toString());
-            long accId2=Long.parseLong(employeeView.getAccToTransfComb().getSelectedItem().toString().substring(0,1));
+            long accId2 = Long.parseLong(employeeView.getAccToTransfComb().substring(0,1));
+
             float amount=employeeView.getAmount();
 
+
             accountService.transferMoney(accId1,accId2,amount);
-            writeAccountTable(accountService.findAll());
+            employeeView.setAccTable(accountService.writeAccountTable(accountService.findAll()));
         }
     }
 
@@ -264,10 +231,11 @@ public class EmployeeController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            long id=Long.parseLong(employeeView.getOwnerCombo().getSelectedItem().toString().substring(0,1));
-            writeAccountTable(accountService.findByOwner(id));
+            long id=Long.parseLong(employeeView.getOwnerCombo().substring(0,1));
+            employeeView.setAccTable(accountService.writeAccountTable(accountService.findByOwner(id)));
         }
     }
+
     public void showUI(){
         employeeView.setVisible(true);
     }

@@ -8,6 +8,7 @@ import model.validation.Notification;
 import repository.EntityNotFoundException;
 import repository.security.RightsRolesRepository;
 
+import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -116,10 +117,12 @@ public class UserRepositoryMySQL implements UserRepository {
             if (rs.next()) {
                 return getUserFromResultSet(rs);
             } else {
+                JOptionPane.showMessageDialog(null,"User with ID "+id+" does not exist!");
 //                throw new EntityNotFoundException(id, Client.class.getSimpleName());
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"User with ID "+id+" does not exist!");
 //            throw new EntityNotFoundException(id, Client.class.getSimpleName());
         }
         return null;

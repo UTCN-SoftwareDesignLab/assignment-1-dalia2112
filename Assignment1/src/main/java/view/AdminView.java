@@ -1,9 +1,10 @@
 package view;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
+import java.awt.event.*;
 import java.util.Vector;
 
 public class AdminView extends JDialog {
@@ -19,9 +20,7 @@ public class AdminView extends JDialog {
     private JComboBox rolesCombo;
     private int rowClicked;
     private int colClicked;
-    private String[] cols={"Id","Username","Password","Role"};
-
-
+    private final String[] cols={"Id","Username","Password","Role"};
     public AdminView() {
         setContentPane(contentPane);
         setModal(true);
@@ -29,7 +28,6 @@ public class AdminView extends JDialog {
         setResizable(false);
         setRolesCombo();
     }
-
 
     public void setRolesCombo(){
         rolesCombo.addItem("Administrator");
@@ -48,20 +46,20 @@ public class AdminView extends JDialog {
         }
     }
 
-    public JTextField getIdTf() {
-        return idTf;
+    public String getIdTf() {
+        return idTf.getText();
     }
 
-    public JTextField getUsernameTf() {
-        return usernameTf;
+    public String getUsernameTf() {
+        return usernameTf.getText();
     }
 
-    public JTextField getPassTf() {
-        return passTf;
+    public String getPassTf() {
+        return passTf.getText();
     }
 
-    public JComboBox getRolesCombo() {
-        return rolesCombo;
+    public String getRolesCombo() {
+        return rolesCombo.getSelectedItem().toString();
     }
 
     public void setAddButtonListener(ActionListener addButtonListener) {
@@ -98,5 +96,9 @@ public class AdminView extends JDialog {
 
     public void setColClicked(int colClicked) {
         this.colClicked = colClicked;
+    }
+
+    public void addWindowListener(WindowAdapter windowAdapter){
+        super.addWindowListener(windowAdapter);
     }
 }

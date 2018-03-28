@@ -22,13 +22,14 @@ public class Constants {
     public static class Tables {
         public static final String ACCOUNT = "account";
         public static final String CLIENT = "client";
+        public static final String BILL = "bill";
         public static final String USER = "user";
         public static final String ROLE = "role";
         public static final String RIGHT = "right";
         public static final String ROLE_RIGHT = "role_right";
         public static final String USER_ROLE = "user_role";
 
-        public static final String[] ORDERED_TABLES_FOR_CREATION = new String[]{USER, ROLE, RIGHT, ROLE_RIGHT, USER_ROLE, ACCOUNT, CLIENT};
+        public static final String[] ORDERED_TABLES_FOR_CREATION = new String[]{USER, ROLE, RIGHT, ROLE_RIGHT, USER_ROLE, CLIENT, ACCOUNT,BILL};
     }
 
     public static class Roles {
@@ -52,13 +53,10 @@ public class Constants {
         public static final String DELETE_ACCOUNT = "delete_account";
         public static final String UPDATE_ACCOUNT = "update_account";
 
-        //public static final String SELL_ACCOUNT = "sell_book";
         public static final String TRANSFER_MONEY = "transfer_money";
-        //public static final String BUY_ACCOUNT = "buy_book";
         public static final String PROCESS_BILLS = "process_bills";
-        //public static final String RETURN_ACCOUNT = "return_book";
 
-        public static final String[] RIGHTS = new String[]{CREATE_USER, DELETE_USER, UPDATE_USER, CREATE_ACCOUNT, DELETE_ACCOUNT, UPDATE_ACCOUNT, TRANSFER_MONEY, PROCESS_BILLS};
+        public static final String[] RIGHTS = new String[]{CREATE_CLIENT, DELETE_CLIENT, UPDATE_CLIENT,CREATE_USER, DELETE_USER, UPDATE_USER, CREATE_ACCOUNT, DELETE_ACCOUNT, UPDATE_ACCOUNT, TRANSFER_MONEY, PROCESS_BILLS};
     }
 
     public static Map<String, List<String>> getRolesRights() {
@@ -66,11 +64,9 @@ public class Constants {
         for (String role : ROLES) {
             ROLES_RIGHTS.put(role, new ArrayList<>());
         }
-        //ROLES_RIGHTS.get(ADMINISTRATOR).addAll(Arrays.asList(CREATE_USER,DELETE_USER,UPDATE_USER,GENERATE_REPORT));
         ROLES_RIGHTS.get(ADMINISTRATOR).addAll(Arrays.asList(RIGHTS));
 
         ROLES_RIGHTS.get(EMPLOYEE).addAll(Arrays.asList(CREATE_CLIENT, DELETE_CLIENT, UPDATE_CLIENT,CREATE_ACCOUNT, DELETE_ACCOUNT, UPDATE_ACCOUNT, TRANSFER_MONEY,PROCESS_BILLS));
-
 
         return ROLES_RIGHTS;
     }

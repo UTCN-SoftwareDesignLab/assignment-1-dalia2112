@@ -3,6 +3,7 @@ package repository.account;
 import model.Account;
 import model.Client;
 import model.builder.AccountBuilder;
+import model.validation.AccountValidator;
 import repository.EntityNotFoundException;
 
 import javax.swing.*;
@@ -120,6 +121,11 @@ public class AccountRepositoryMySQL implements AccountRepository {
                 break;
             case 2:
                 column="amount";
+                AccountValidator accountValidator=new AccountValidator();
+                if(!accountValidator.validateTransfSum(Long.parseLong(newval),0,false)){
+                    JOptionPane.showMessageDialog(null,accountValidator.getErrors());
+                    return;
+                }
                 break;
             case 3:
                 column="date_of_creation";
@@ -166,10 +172,15 @@ public class AccountRepositoryMySQL implements AccountRepository {
     public void transferMoney(Long idAcc1,Long idAcc2,float sum){
         Account a1=findById(idAcc1);
         Account a2=findById(idAcc2);
-        float sumA1=a1.getAmount()+sum;
-        float sumA2=a2.getAmount()-sum;
+        AccountValidator accountValidator=new AccountValidator();
+        if(!accountValidator.validateTransfSum(a1.getAmount(),sum,true)){
+            JOptionPane.showMessageDialog(null,accountValidator.getErrors());
+            return;
+        }
+        float sumA1=a1.getAmount()-sum;
+        float sumA2=a2.getAmount()+sum;
 
-        JOptionPane.showMessageDialog(null,"Owner1: "+a1.getOwnerId()+" "+a1.getAmount()+"owner2: "+a2.getOwnerId()+" "+" "+a2.getAmount());
+
         try {
             Statement statement = connection.createStatement();
             String sql1 = "UPDATE account SET amount='"+sumA1+"' where id="+idAcc1;

@@ -22,120 +22,57 @@
       <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/controller/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+            <state relative-caret-position="173">
+              <caret line="58" column="44" lean-forward="true" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="44" />
               <folding>
-                <element signature="method#LoginController#0;class#LoginController#0" expanded="false" />
                 <element signature="method#attachEmployeeController#0;class#LoginController#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EmployeeView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/view/EmployeeView.java">
+      <file leaf-file-name="AdminView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/view/AdminView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+            <state relative-caret-position="173">
+              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding>
-                <element signature="e#1980#1981#0" expanded="true" />
-                <element signature="e#2007#2008#0" expanded="true" />
-                <element signature="e#2070#2071#0" expanded="true" />
-                <element signature="e#2117#2118#0" expanded="true" />
-                <element signature="method#setTypeCombo#0;class#EmployeeView#0" expanded="false" />
-                <element signature="e#3026#3027#0" expanded="true" />
-                <element signature="e#3093#3094#0" expanded="true" />
-                <element signature="e#3141#3142#0" expanded="true" />
-                <element signature="method#setTable#0;class#EmployeeView#0" expanded="false" />
-                <element signature="method#setAccTable#0;class#EmployeeView#0" expanded="false" />
-                <element signature="method#main#0;class#EmployeeView#0" expanded="false" />
-                <element signature="e#4394#4395#0" expanded="true" />
-                <element signature="e#4449#4450#0" expanded="true" />
-                <element signature="method#setUpdateButtonListener#0;class#EmployeeView#0" expanded="false" />
-                <element signature="method#setAddButtonListener#0;class#EmployeeView#0" expanded="false" />
-                <element signature="method#setViewButtonListener#0;class#EmployeeView#0" expanded="false" />
-                <element signature="method#setDeleteButtonListener#0;class#EmployeeView#0" expanded="false" />
+                <element signature="method#setRolesCombo#0;class#AdminView#0" expanded="false" />
+                <element signature="method#setEmplTable#0;class#AdminView#0" expanded="false" />
+                <element signature="method#setAddButtonListener#0;class#AdminView#0" expanded="false" />
+                <element signature="method#setDeleteButtonListener#0;class#AdminView#0" expanded="false" />
+                <element signature="method#setUpdateButtonListener#0;class#AdminView#0" expanded="false" />
+                <element signature="method#setViewButtonListener#0;class#AdminView#0" expanded="false" />
+                <element signature="e#2754#2755#0" expanded="true" />
+                <element signature="e#2808#2809#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EmployeeView.form" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/view/EmployeeView.form">
+      <file leaf-file-name="AdminController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/AdminController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="22" column="96" lean-forward="false" selection-start-line="22" selection-start-column="96" selection-end-line="22" selection-end-column="96" />
+              <folding>
+                <element signature="method#AdminController#0;class#AdminController#0" expanded="false" />
+                <element signature="e#1193#1421#0" expanded="true" />
+                <element signature="e#1420#1421#0" expanded="true" />
+                <element signature="class#ViewButtonListener#0;class#AdminController#0" expanded="false" />
+                <element signature="class#AddButtonListener#0;class#AdminController#0" expanded="false" />
+                <element signature="class#UpdateButtonListener#0;class#AdminController#0" expanded="false" />
+                <element signature="class#DeleteButtonListener#0;class#AdminController#0" expanded="false" />
+                <element signature="class#TableMouseListener#0;class#AdminController#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AdminView.form" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/view/AdminView.form">
           <provider selected="true" editor-type-id="ui-designer">
             <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EmployeeController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controller/EmployeeController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="51" column="24" lean-forward="true" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#writeClientTable#0;class#EmployeeController#0" expanded="false" />
-                <element signature="class#TableMouseListener#0;class#EmployeeController#0" expanded="false" />
-                <element signature="class#UpdateButtonListener#0;class#EmployeeController#0" expanded="false" />
-                <element signature="class#DeleteButtonListener#0;class#EmployeeController#0" expanded="false" />
-                <element signature="method#actionPerformed#0;class#DeleteButtonListener#0;class#EmployeeController#0" expanded="false" />
-                <element signature="class#ViewButtonListener#0;class#EmployeeController#0" expanded="false" />
-                <element signature="e#5487#5488#0" expanded="true" />
-                <element signature="e#5529#5530#0" expanded="true" />
-                <element signature="class#AddButtonListener#0;class#EmployeeController#0" expanded="false" />
-                <element signature="class#AddAccountButtonListener#0;class#EmployeeController#0" expanded="false" />
-                <element signature="class#ViewAccountButtonListener#0;class#EmployeeController#0" expanded="false" />
-                <element signature="class#DeleteAccountButtonListener#0;class#EmployeeController#0" expanded="false" />
-                <element signature="class#AccTableMouseListener#0;class#EmployeeController#0" expanded="false" />
-                <element signature="e#10554#10555#0" expanded="true" />
-                <element signature="e#10599#10600#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AccountServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/service/account/AccountServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-              <folding>
-                <element signature="e#618#619#0" expanded="true" />
-                <element signature="e#698#699#0" expanded="true" />
-                <element signature="e#746#747#0" expanded="true" />
-                <element signature="e#829#830#0" expanded="true" />
-                <element signature="e#887#888#0" expanded="true" />
-                <element signature="e#934#935#0" expanded="true" />
-                <element signature="e#1007#1008#0" expanded="true" />
-                <element signature="e#1062#1063#0" expanded="true" />
-                <element signature="e#1103#1104#0" expanded="true" />
-                <element signature="e#1147#1148#0" expanded="true" />
-                <element signature="e#1220#1221#0" expanded="true" />
-                <element signature="e#1276#1277#0" expanded="true" />
-                <element signature="e#1343#1344#0" expanded="true" />
-                <element signature="e#1402#1403#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AccountRepositoryMySQL.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/repository/account/AccountRepositoryMySQL.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="169" column="35" lean-forward="false" selection-start-line="169" selection-start-column="35" selection-end-line="169" selection-end-column="35" />
-              <folding>
-                <element signature="method#findAll#0;class#AccountRepositoryMySQL#0" expanded="false" />
-                <element signature="method#findById#0;class#AccountRepositoryMySQL#0" expanded="false" />
-                <element signature="method#findByOwner#0;class#AccountRepositoryMySQL#0" expanded="false" />
-                <element signature="method#save#0;class#AccountRepositoryMySQL#0" expanded="false" />
-                <element signature="method#removeAll#0;class#AccountRepositoryMySQL#0" expanded="false" />
-                <element signature="method#getAccountFromResultSet#0;class#AccountRepositoryMySQL#0" expanded="false" />
-                <element signature="method#updateAccount#0;class#AccountRepositoryMySQL#0" expanded="false" />
-                <element signature="method#deleteAccount#0;class#AccountRepositoryMySQL#0" expanded="false" />
-                <element signature="method#getAllAccountsTable#0;class#AccountRepositoryMySQL#0" expanded="false" />
-              </folding>
-            </state>
           </provider>
         </entry>
       </file>
@@ -143,17 +80,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/Launcher.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
-              <caret line="15" column="32" lean-forward="false" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ComponentFactory.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ComponentFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-630">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="16" column="57" lean-forward="false" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -189,11 +116,14 @@
       <find>employeec</find>
       <find>role</find>
       <find>loginnotification.getresult().geti</find>
-      <find>rightsRolesRepository</find>
       <find>getallacc</find>
       <find>setow</find>
       <find>transfermon</find>
       <find>setOwnerCombo();</find>
+      <find>valida</find>
+      <find>getrol</find>
+      <find>rightsRolesRepository</find>
+      <find>getta</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -552,54 +482,57 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/java/database/JDBConnectionWrapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/database/DBConnectionFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/database/Boostrap.java" />
         <option value="$PROJECT_DIR$/src/main/java/repository/account/AccountRepositoryDecorator.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/Account.java" />
-        <option value="$PROJECT_DIR$/src/main/java/model/builder/AccountBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/repository/account/AccountRepositoryCacheDecorator.java" />
         <option value="$PROJECT_DIR$/src/main/java/repository/account/AccountRepositoryMock.java" />
-        <option value="$PROJECT_DIR$/src/main/java/database/SQLTableCreationFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/view/Gui.form" />
         <option value="$PROJECT_DIR$/src/main/java/view/Gui.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/builder/ClientBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/Client.java" />
-        <option value="$PROJECT_DIR$/src/main/java/model/validation/ClientValidator.java" />
         <option value="$PROJECT_DIR$/src/main/java/service/employee/EmployeeService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/database/Constants.java" />
-        <option value="$PROJECT_DIR$/src/main/java/repository/security/RightsRolesRepositoryMySQL.java" />
         <option value="$PROJECT_DIR$/src/main/java/repository/security/RightsRolesRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/builder/UserBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/Role.java" />
-        <option value="$PROJECT_DIR$/src/main/java/view/AdminView.java" />
         <option value="$PROJECT_DIR$/src/main/java/view/AdminView.form" />
-        <option value="$PROJECT_DIR$/src/main/java/Launcher.java" />
         <option value="$PROJECT_DIR$/src/main/java/view/LoginView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/controller/LoginController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/service/user/AuthenticationServiceMySQL.java" />
         <option value="$PROJECT_DIR$/src/main/java/service/user/AuthenticationService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/service/user/UserServiceMySQL.java" />
         <option value="$PROJECT_DIR$/src/main/java/repository/user/UserRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/repository/user/UserRepositoryMySQL.java" />
-        <option value="$PROJECT_DIR$/src/main/java/service/user/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/repository/client/ClientRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/repository/client/ClientRepositoryMySQL.java" />
-        <option value="$PROJECT_DIR$/src/main/java/service/client/ClientService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/service/client/ClientServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/controller/AdminController.java" />
         <option value="$PROJECT_DIR$/src/main/java/view/EmployeeView.form" />
-        <option value="$PROJECT_DIR$/src/main/java/repository/account/AccountRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/service/account/AccountService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/model/validation/AccountValidator.java" />
         <option value="$PROJECT_DIR$/src/test/java/service/user/AuthenticationServiceMySQLTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/view/EmployeeView.java" />
         <option value="$PROJECT_DIR$/src/main/java/ComponentFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/service/account/AccountServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/validation/Bill.java" />
+        <option value="$PROJECT_DIR$/src/main/java/database/SQLTableCreationFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/user/AuthenticationServiceMySQL.java" />
+        <option value="$PROJECT_DIR$/src/main/java/repository/account/AccountRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/repository/user/UserRepositoryMySQL.java" />
+        <option value="$PROJECT_DIR$/src/main/java/repository/security/RightsRolesRepositoryMySQL.java" />
+        <option value="$PROJECT_DIR$/src/main/java/view/EmployeeView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/database/Boostrap.java" />
+        <option value="$PROJECT_DIR$/src/main/java/database/Constants.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/builder/BillBuilder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/builder/AccountBuilder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/Bill.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/validation/ClientValidator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/repository/client/ClientRepositoryMySQL.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/validation/AccountValidator.java" />
         <option value="$PROJECT_DIR$/src/main/java/repository/account/AccountRepositoryMySQL.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/user/UserServiceMySQL.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/user/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/account/AccountService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/client/ClientServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/client/ClientService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/account/AccountServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/EmployeeController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Launcher.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/LoginController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/view/AdminView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/AdminController.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="115" />
     <option name="y" value="-13" />
     <option name="width" value="968" />
@@ -620,10 +553,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -663,7 +593,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="repository" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Assignment1" type="b2602c69:ProjectViewProjectNode" />
@@ -671,7 +601,24 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="repository" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="validation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Assignment1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Assignment1" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Assignment1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Assignment1" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
               <item name="account" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -680,6 +627,24 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Assignment1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Assignment1" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Assignment1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Assignment1" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -689,17 +654,20 @@
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="EmployeeView" type="e9f4de52:FormNode" />
+              <item name="AdminView" type="e9f4de52:FormNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../SD_Examples/LabCodeExamples/Example 4" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -893,10 +861,10 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Application.Launcher" />
-        <item index="1" class="java.lang.String" itemvalue="Application.ComponentFactory" />
-        <item index="2" class="java.lang.String" itemvalue="Application.EmployeeView" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.All in 1_test (1)" />
-        <item index="4" class="java.lang.String" itemvalue="Application.Boostrap" />
+        <item index="1" class="java.lang.String" itemvalue="Application.Boostrap" />
+        <item index="2" class="java.lang.String" itemvalue="Application.ComponentFactory" />
+        <item index="3" class="java.lang.String" itemvalue="Application.EmployeeView" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.All in 1_test (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -925,23 +893,24 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32873806" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826087" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27359492" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2804348" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15572916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16044776" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -955,7 +924,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.090137854" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -963,15 +931,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/repository/security/RightsRolesRepositoryMySQL.java</url>
-          <line>85</line>
-          <properties />
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="61" />
+      <option name="time" value="73" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1001,99 +961,7 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/repository/account/AccountRepositoryCacheDecorator.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/repository/account/AccountRepositoryDecorator.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/repository/EntityNotFoundException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/book/BookServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/awt/event/ActionListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="49" column="16" lean-forward="false" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/repository/book/BookRepositoryMySQL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1197">
-          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/repository/book/BookRepositoryCacheDecorator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/repository/book/BookRepositoryMySQLTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/builder/ClientBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding>
-            <element signature="e#779#780#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/repository/account/AccountRepositoryMock.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/Account.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="14" lean-forward="true" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/validation/ResultFetchException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="17" column="22" lean-forward="true" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="27" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/validation/UserValidator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="13" column="109" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="109" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/service/employee/EmployeeService.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/database/Boostrap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="33" column="18" lean-forward="false" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/repository/security/RightsRolesRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
@@ -1106,10 +974,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
           <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding>
-            <element signature="e#431#432#0" expanded="false" />
-            <element signature="e#471#472#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1120,69 +984,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/builder/UserBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="24" column="21" lean-forward="false" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/repository/security/RightsRolesRepositoryMySQL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding>
-            <element signature="method#addRole#0;class#RightsRolesRepositoryMySQL#0" expanded="false" />
-            <element signature="method#addRight#0;class#RightsRolesRepositoryMySQL#0" expanded="false" />
-            <element signature="method#findRoleById#0;class#RightsRolesRepositoryMySQL#0" expanded="false" />
-            <element signature="method#findRightByTitle#0;class#RightsRolesRepositoryMySQL#0" expanded="false" />
-            <element signature="method#addRolesToUser#0;class#RightsRolesRepositoryMySQL#0" expanded="false" />
-            <element signature="method#findRolesForUser#0;class#RightsRolesRepositoryMySQL#0" expanded="false" />
-            <element signature="method#findRoleForUserId#0;class#RightsRolesRepositoryMySQL#0" expanded="false" />
-            <element signature="method#addRoleRight#0;class#RightsRolesRepositoryMySQL#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/view/AdminView.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/Role.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding>
-            <element signature="e#497#498#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/view/LoginView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/database/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="688">
-          <caret line="65" column="25" lean-forward="false" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/AuthenticationServiceMySQL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding>
-            <element signature="method#encodePassword#0;class#AuthenticationServiceMySQL#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1198,81 +1004,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="61" lean-forward="false" selection-start-line="12" selection-start-column="61" selection-end-line="12" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/repository/user/UserRepositoryMySQL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="116" column="0" lean-forward="false" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="method#UserRepositoryMySQL#0;class#UserRepositoryMySQL#0" expanded="false" />
-            <element signature="method#findAll#0;class#UserRepositoryMySQL#0" expanded="false" />
-            <element signature="method#findByUsernameAndPassword#0;class#UserRepositoryMySQL#0" expanded="false" />
-            <element signature="method#removeAll#0;class#UserRepositoryMySQL#0" expanded="false" />
-            <element signature="method#getUserFromResultSet#0;class#UserRepositoryMySQL#0" expanded="false" />
-            <element signature="method#updateUser#0;class#UserRepositoryMySQL#0" expanded="false" />
-            <element signature="method#deleteUser#0;class#UserRepositoryMySQL#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding>
-            <element signature="e#237#238#0" expanded="false" />
-            <element signature="e#262#263#0" expanded="false" />
-            <element signature="e#513#514#0" expanded="false" />
-            <element signature="e#544#545#0" expanded="false" />
-            <element signature="e#696#697#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/UserServiceMySQL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-274">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#359#360#0" expanded="false" />
-            <element signature="e#411#412#0" expanded="false" />
-            <element signature="e#445#446#0" expanded="false" />
-            <element signature="e#492#493#0" expanded="false" />
-            <element signature="e#650#651#0" expanded="false" />
-            <element signature="e#698#699#0" expanded="false" />
-            <element signature="e#1228#1229#0" expanded="false" />
-            <element signature="e#1273#1274#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/view/AdminView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1398#1399#0" expanded="true" />
-            <element signature="method#setAddButtonListener#0;class#AdminView#0" expanded="false" />
-            <element signature="method#setDeleteButtonListener#0;class#AdminView#0" expanded="false" />
-            <element signature="method#setUpdateButtonListener#0;class#AdminView#0" expanded="false" />
-            <element signature="method#setViewButtonListener#0;class#AdminView#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1284,116 +1015,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/repository/client/ClientRepositoryMySQL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="553">
-          <caret line="55" column="20" lean-forward="false" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/client/ClientService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="15" column="30" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/client/ClientServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="26" column="37" lean-forward="false" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
-          <folding>
-            <element signature="e#722#723#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/AdminController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="51" column="24" lean-forward="false" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="method#AdminController#0;class#AdminController#0" expanded="false" />
-            <element signature="class#ViewButtonListener#0;class#AdminController#0" expanded="false" />
-            <element signature="e#2146#2147#0" expanded="false" />
-            <element signature="e#2190#2191#0" expanded="false" />
-            <element signature="class#AddButtonListener#0;class#AdminController#0" expanded="false" />
-            <element signature="class#UpdateButtonListener#0;class#AdminController#0" expanded="false" />
-            <element signature="class#DeleteButtonListener#0;class#AdminController#0" expanded="false" />
-            <element signature="class#TableMouseListener#0;class#AdminController#0" expanded="false" />
-            <element signature="e#4595#4596#0" expanded="false" />
-            <element signature="e#4637#4638#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/validation/ClientValidator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="34" column="36" lean-forward="false" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/validation/AccountValidator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="23" column="42" lean-forward="false" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/account/AccountService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="11" column="28" lean-forward="false" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/repository/account/AccountRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/service/user/AuthenticationServiceMySQLTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="50" column="5" lean-forward="false" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding>
-            <element signature="method#LoginController#0;class#LoginController#0" expanded="false" />
-            <element signature="method#attachEmployeeController#0;class#LoginController#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Launcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="15" column="32" lean-forward="false" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ComponentFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-630">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -1404,33 +1028,296 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/account/AccountServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/builder/UserBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+        <state relative-caret-position="399">
+          <caret line="24" column="21" lean-forward="false" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="38" column="32" lean-forward="false" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/Account.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/service/user/AuthenticationServiceMySQLTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="511">
+          <caret line="50" column="5" lean-forward="false" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/service/book/BookServiceImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.6/380ef5226de2c85ff3b38cbfefeea881c5fce09d/mysql-connector-java-5.1.6.jar!/com/mysql/jdbc/NonRegisteringDriver.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.6/380ef5226de2c85ff3b38cbfefeea881c5fce09d/mysql-connector-java-5.1.6.jar!/com/mysql/jdbc/ConnectionImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="1400" column="0" lean-forward="false" selection-start-line="1400" selection-start-column="0" selection-end-line="1400" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/Role.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
-            <element signature="e#618#619#0" expanded="true" />
-            <element signature="e#698#699#0" expanded="true" />
-            <element signature="e#746#747#0" expanded="true" />
-            <element signature="e#829#830#0" expanded="true" />
-            <element signature="e#887#888#0" expanded="true" />
-            <element signature="e#934#935#0" expanded="true" />
-            <element signature="e#1007#1008#0" expanded="true" />
-            <element signature="e#1062#1063#0" expanded="true" />
-            <element signature="e#1103#1104#0" expanded="true" />
-            <element signature="e#1147#1148#0" expanded="true" />
-            <element signature="e#1220#1221#0" expanded="true" />
-            <element signature="e#1276#1277#0" expanded="true" />
-            <element signature="e#1343#1344#0" expanded="true" />
-            <element signature="e#1402#1403#0" expanded="true" />
+            <element signature="e#377#378#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/Right.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <element signature="e#276#277#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/repository/account/AccountRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="13" column="15" lean-forward="true" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/AuthenticationServiceMySQL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="69" column="10" lean-forward="false" selection-start-line="69" selection-start-column="10" selection-end-line="69" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/repository/user/UserRepositoryMySQL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="119" column="46" lean-forward="true" selection-start-line="119" selection-start-column="46" selection-end-line="119" selection-end-column="46" />
+          <folding>
+            <element signature="method#UserRepositoryMySQL#0;class#UserRepositoryMySQL#0" expanded="false" />
+            <element signature="method#findAll#0;class#UserRepositoryMySQL#0" expanded="false" />
+            <element signature="method#findByUsernameAndPassword#0;class#UserRepositoryMySQL#0" expanded="false" />
+            <element signature="method#removeAll#0;class#UserRepositoryMySQL#0" expanded="false" />
+            <element signature="method#getUserFromResultSet#0;class#UserRepositoryMySQL#0" expanded="false" />
+            <element signature="method#updateUser#0;class#UserRepositoryMySQL#0" expanded="false" />
+            <element signature="method#deleteUser#0;class#UserRepositoryMySQL#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/repository/user/AuthenticationException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/repository/security/RightsRolesRepositoryMySQL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="155" column="56" lean-forward="false" selection-start-line="155" selection-start-column="56" selection-end-line="155" selection-end-column="56" />
+          <folding>
+            <element signature="method#addRole#0;class#RightsRolesRepositoryMySQL#0" expanded="false" />
+            <element signature="method#addRight#0;class#RightsRolesRepositoryMySQL#0" expanded="false" />
+            <element signature="method#findRoleByTitle#0;class#RightsRolesRepositoryMySQL#0" expanded="false" />
+            <element signature="method#findRoleById#0;class#RightsRolesRepositoryMySQL#0" expanded="false" />
+            <element signature="method#findRightByTitle#0;class#RightsRolesRepositoryMySQL#0" expanded="false" />
+            <element signature="method#addRolesToUser#0;class#RightsRolesRepositoryMySQL#0" expanded="false" />
+            <element signature="method#findRolesForUser#0;class#RightsRolesRepositoryMySQL#0" expanded="false" />
+            <element signature="method#findRoleForUserId#0;class#RightsRolesRepositoryMySQL#0" expanded="false" />
+            <element signature="method#addRoleRight#0;class#RightsRolesRepositoryMySQL#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/EmployeeView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-262">
+          <caret line="118" column="53" lean-forward="false" selection-start-line="118" selection-start-column="53" selection-end-line="118" selection-end-column="53" />
+          <folding>
+            <element signature="method#setTypeCombo#0;class#EmployeeView#0" expanded="false" />
+            <element signature="method#setTable#0;class#EmployeeView#0" expanded="false" />
+            <element signature="method#setAccTable#0;class#EmployeeView#0" expanded="false" />
+            <element signature="method#main#0;class#EmployeeView#0" expanded="false" />
+            <element signature="method#setUpdateButtonListener#0;class#EmployeeView#0" expanded="false" />
+            <element signature="method#setAddButtonListener#0;class#EmployeeView#0" expanded="false" />
+            <element signature="method#setViewButtonListener#0;class#EmployeeView#0" expanded="false" />
+            <element signature="method#setDeleteButtonListener#0;class#EmployeeView#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/database/Boostrap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="531">
+          <caret line="130" column="65" lean-forward="false" selection-start-line="130" selection-start-column="65" selection-end-line="130" selection-end-column="65" />
+          <folding>
+            <element signature="method#main#0;class#Boostrap#0" expanded="false" />
+            <element signature="method#dropAll#0;class#Boostrap#0" expanded="false" />
+            <element signature="method#bootstrapTables#0;class#Boostrap#0" expanded="false" />
+            <element signature="method#bootstrapUserData#0;class#Boostrap#0" expanded="false" />
+            <element signature="method#bootstrapRoles#0;class#Boostrap#0" expanded="false" />
+            <element signature="method#bootstrapRights#0;class#Boostrap#0" expanded="false" />
+            <element signature="method#bootstrapRoleRight#0;class#Boostrap#0" expanded="false" />
+            <element signature="method#bootstrapUserRoles#0;class#Boostrap#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/database/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1281">
+          <caret line="66" column="42" lean-forward="false" selection-start-line="66" selection-start-column="42" selection-end-line="66" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/database/DBConnectionFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/database/JDBConnectionWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/database/SQLTableCreationFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="38" column="51" lean-forward="true" selection-start-line="38" selection-start-column="51" selection-end-line="38" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/builder/BillBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/builder/AccountBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="35" column="38" lean-forward="false" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/Book.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/Bill.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding>
+            <element signature="e#169#170#0" expanded="true" />
+            <element signature="e#196#197#0" expanded="true" />
+            <element signature="e#236#237#0" expanded="true" />
+            <element signature="e#268#269#0" expanded="true" />
+            <element signature="e#300#301#0" expanded="true" />
+            <element signature="e#328#329#0" expanded="true" />
+            <element signature="e#370#371#0" expanded="true" />
+            <element signature="e#404#405#0" expanded="true" />
+            <element signature="e#435#436#0" expanded="true" />
+            <element signature="e#463#464#0" expanded="true" />
+            <element signature="e#504#505#0" expanded="true" />
+            <element signature="e#538#539#0" expanded="true" />
+            <element signature="e#571#572#0" expanded="true" />
+            <element signature="e#602#603#0" expanded="true" />
+            <element signature="e#648#649#0" expanded="true" />
+            <element signature="e#688#689#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/validation/ClientValidator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-417">
+          <caret line="29" column="31" lean-forward="true" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
+          <folding>
+            <element signature="e#596#597#0" expanded="true" />
+            <element signature="e#636#637#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/repository/EntityNotFoundException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/repository/client/ClientRepositoryMySQL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1074">
+          <caret line="140" column="69" lean-forward="false" selection-start-line="140" selection-start-column="69" selection-end-line="140" selection-end-column="69" />
+          <folding>
+            <element signature="method#findAll#0;class#ClientRepositoryMySQL#0" expanded="false" />
+            <element signature="method#findByName#0;class#ClientRepositoryMySQL#0" expanded="false" />
+            <element signature="method#save#0;class#ClientRepositoryMySQL#0" expanded="false" />
+            <element signature="method#removeAll#0;class#ClientRepositoryMySQL#0" expanded="false" />
+            <element signature="method#getClientFromResultSet#0;class#ClientRepositoryMySQL#0" expanded="false" />
+            <element signature="method#deleteClient#0;class#ClientRepositoryMySQL#0" expanded="false" />
+            <element signature="method#updateClient#0;class#ClientRepositoryMySQL#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/repository/account/AccountRepositoryMySQL.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="169" column="35" lean-forward="false" selection-start-line="169" selection-start-column="35" selection-end-line="169" selection-end-column="35" />
+        <state relative-caret-position="630">
+          <caret line="171" column="64" lean-forward="false" selection-start-line="171" selection-start-column="64" selection-end-line="171" selection-end-column="64" />
           <folding>
             <element signature="method#findAll#0;class#AccountRepositoryMySQL#0" expanded="false" />
             <element signature="method#findById#0;class#AccountRepositoryMySQL#0" expanded="false" />
@@ -1441,57 +1328,151 @@
             <element signature="method#updateAccount#0;class#AccountRepositoryMySQL#0" expanded="false" />
             <element signature="method#deleteAccount#0;class#AccountRepositoryMySQL#0" expanded="false" />
             <element signature="method#getAllAccountsTable#0;class#AccountRepositoryMySQL#0" expanded="false" />
+            <element signature="method#transferMoney#0;class#AccountRepositoryMySQL#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/view/EmployeeView.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+        <state relative-caret-position="357">
+          <caret line="22" column="58" lean-forward="false" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/validation/AccountValidator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="16" column="28" lean-forward="false" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
           <folding>
-            <element signature="e#1980#1981#0" expanded="true" />
-            <element signature="e#2007#2008#0" expanded="true" />
-            <element signature="e#2070#2071#0" expanded="true" />
-            <element signature="e#2117#2118#0" expanded="true" />
-            <element signature="method#setTypeCombo#0;class#EmployeeView#0" expanded="false" />
-            <element signature="e#3026#3027#0" expanded="true" />
-            <element signature="e#3093#3094#0" expanded="true" />
-            <element signature="e#3141#3142#0" expanded="true" />
-            <element signature="method#setTable#0;class#EmployeeView#0" expanded="false" />
-            <element signature="method#setAccTable#0;class#EmployeeView#0" expanded="false" />
-            <element signature="method#main#0;class#EmployeeView#0" expanded="false" />
-            <element signature="e#4394#4395#0" expanded="true" />
-            <element signature="e#4449#4450#0" expanded="true" />
-            <element signature="method#setUpdateButtonListener#0;class#EmployeeView#0" expanded="false" />
-            <element signature="method#setAddButtonListener#0;class#EmployeeView#0" expanded="false" />
-            <element signature="method#setViewButtonListener#0;class#EmployeeView#0" expanded="false" />
-            <element signature="method#setDeleteButtonListener#0;class#EmployeeView#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/user/UserServiceMySQL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="64" column="63" lean-forward="false" selection-start-line="64" selection-start-column="63" selection-end-line="64" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/account/AccountService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="26" column="65" lean-forward="false" selection-start-line="26" selection-start-column="65" selection-end-line="26" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/client/ClientService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="25" column="41" lean-forward="false" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/client/ClientServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="112" column="47" lean-forward="false" selection-start-line="112" selection-start-column="11" selection-end-line="112" selection-end-column="47" />
+          <folding>
+            <element signature="e#514#515#0" expanded="true" />
+            <element signature="e#558#559#0" expanded="true" />
+            <element signature="method#getAllClientsTable#0;class#ClientServiceImpl#0" expanded="false" />
+            <element signature="method#updateClient#0;class#ClientServiceImpl#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/account/AccountServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding>
+            <element signature="e#1343#1344#0" expanded="true" />
+            <element signature="e#1402#1403#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/EmployeeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="51" column="24" lean-forward="true" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="24" />
+        <state relative-caret-position="-171">
+          <caret line="53" column="15" lean-forward="false" selection-start-line="53" selection-start-column="15" selection-end-line="53" selection-end-column="15" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#writeClientTable#0;class#EmployeeController#0" expanded="false" />
             <element signature="class#TableMouseListener#0;class#EmployeeController#0" expanded="false" />
             <element signature="class#UpdateButtonListener#0;class#EmployeeController#0" expanded="false" />
             <element signature="class#DeleteButtonListener#0;class#EmployeeController#0" expanded="false" />
-            <element signature="method#actionPerformed#0;class#DeleteButtonListener#0;class#EmployeeController#0" expanded="false" />
             <element signature="class#ViewButtonListener#0;class#EmployeeController#0" expanded="false" />
-            <element signature="e#5487#5488#0" expanded="true" />
-            <element signature="e#5529#5530#0" expanded="true" />
             <element signature="class#AddButtonListener#0;class#EmployeeController#0" expanded="false" />
+            <element signature="class#UpdateAccountListener#0;class#EmployeeController#0" expanded="false" />
             <element signature="class#AddAccountButtonListener#0;class#EmployeeController#0" expanded="false" />
             <element signature="class#ViewAccountButtonListener#0;class#EmployeeController#0" expanded="false" />
             <element signature="class#DeleteAccountButtonListener#0;class#EmployeeController#0" expanded="false" />
             <element signature="class#AccTableMouseListener#0;class#EmployeeController#0" expanded="false" />
-            <element signature="e#10554#10555#0" expanded="true" />
-            <element signature="e#10599#10600#0" expanded="true" />
+            <element signature="class#TransferButtonListener#0;class#EmployeeController#0" expanded="false" />
+            <element signature="class#OwnerComboActionListener#0;class#EmployeeController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/AdminView.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Launcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="16" column="57" lean-forward="false" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="58" column="44" lean-forward="true" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="44" />
+          <folding>
+            <element signature="method#attachEmployeeController#0;class#LoginController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/view/AdminView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding>
+            <element signature="method#setRolesCombo#0;class#AdminView#0" expanded="false" />
+            <element signature="method#setEmplTable#0;class#AdminView#0" expanded="false" />
+            <element signature="method#setAddButtonListener#0;class#AdminView#0" expanded="false" />
+            <element signature="method#setDeleteButtonListener#0;class#AdminView#0" expanded="false" />
+            <element signature="method#setUpdateButtonListener#0;class#AdminView#0" expanded="false" />
+            <element signature="method#setViewButtonListener#0;class#AdminView#0" expanded="false" />
+            <element signature="e#2754#2755#0" expanded="true" />
+            <element signature="e#2808#2809#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/AdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="22" column="96" lean-forward="false" selection-start-line="22" selection-start-column="96" selection-end-line="22" selection-end-column="96" />
+          <folding>
+            <element signature="method#AdminController#0;class#AdminController#0" expanded="false" />
+            <element signature="e#1193#1421#0" expanded="true" />
+            <element signature="e#1420#1421#0" expanded="true" />
+            <element signature="class#ViewButtonListener#0;class#AdminController#0" expanded="false" />
+            <element signature="class#AddButtonListener#0;class#AdminController#0" expanded="false" />
+            <element signature="class#UpdateButtonListener#0;class#AdminController#0" expanded="false" />
+            <element signature="class#DeleteButtonListener#0;class#AdminController#0" expanded="false" />
+            <element signature="class#TableMouseListener#0;class#AdminController#0" expanded="false" />
           </folding>
         </state>
       </provider>

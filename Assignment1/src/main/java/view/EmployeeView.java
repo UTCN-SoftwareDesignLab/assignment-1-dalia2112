@@ -29,7 +29,6 @@ public class EmployeeView extends JDialog {
     private JTable accTable;
     private JTextField amount;
     private JComboBox ownerCombo;
-//    private JLabel owner;
     private JComboBox typeCombo;
     private JButton transferMoneyButton;
     private JComboBox accToTransfComb;
@@ -54,16 +53,10 @@ public class EmployeeView extends JDialog {
         setResizable(false);
         setVisible(false);
         setTypeCombo();
-//        ownerCombo.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//
-//            }
-//        });
     }
 
-    public JTextField getNameorId() {
-        return name;
+    public String getNameorId() {
+        return name.getText();
     }
     public void setOwnerComboActionListener(ActionListener a){
         ownerCombo.addActionListener(a);
@@ -106,8 +99,8 @@ public class EmployeeView extends JDialog {
         typeCombo.addItem("Nominal");
     }
 
-    public JComboBox getAccToTransfComb() {
-        return accToTransfComb;
+    public String getAccToTransfComb() {
+        return accToTransfComb.getSelectedItem().toString();
     }
 
     public void setAccToTransfComb(DefaultComboBoxModel transf) {
@@ -118,12 +111,12 @@ public class EmployeeView extends JDialog {
         ownerCombo.setModel(own);
     }
 
-    public JComboBox getOwnerCombo() {
-        return ownerCombo;
+    public String getOwnerCombo() {
+        return ownerCombo.getSelectedItem().toString();
     }
 
-    public JComboBox getTypeCombo() {
-        return typeCombo;
+    public String getTypeCombo() {
+        return typeCombo.getSelectedItem().toString();
     }
 
     public JTable getTable() {

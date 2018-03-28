@@ -52,4 +52,11 @@ public class AccountServiceImpl implements AccountService {
         repository.transferMoney(idAcc1,idAcc2,sum);
     }
 
+    public Vector<Vector<String>> writeAccountTable(List<Account> data){
+        Vector<Vector<String>> tabl=getAllAccountsTable(data);
+        return tabl;
+    }
+
+
+
 }

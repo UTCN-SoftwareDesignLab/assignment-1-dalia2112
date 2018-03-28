@@ -23,4 +23,6 @@ public interface AccountService {
     Vector<Vector<String>> getAllAccountsTable(List<Account> a);
 
     void transferMoney(Long idAcc1,Long idAcc2,float sum);
+
+    Vector<Vector<String>> writeAccountTable(List<Account> data);
 }

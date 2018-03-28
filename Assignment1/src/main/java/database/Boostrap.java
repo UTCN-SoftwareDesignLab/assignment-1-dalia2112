@@ -1,14 +1,21 @@
 package database;
 
+import com.mysql.jdbc.jdbc2.optional.ConnectionWrapper;
+import model.Right;
+import model.Role;
+import model.User;
+import model.builder.UserBuilder;
 import repository.security.RightsRolesRepository;
 import repository.security.RightsRolesRepositoryMySQL;
+import repository.user.UserRepository;
+import repository.user.UserRepositoryMySQL;
+import service.user.AuthenticationServiceMySQL;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static database.Constants.Rights.RIGHTS;
 import static database.Constants.Roles.ROLES;
@@ -21,6 +28,7 @@ import static database.Constants.getRolesRights;
 public class Boostrap {
 
     private static RightsRolesRepository rightsRolesRepository;
+    private static UserRepository userRepository;
 
     public static void main(String[] args) throws SQLException {
         dropAll();
@@ -44,7 +52,7 @@ public class Boostrap {
                     "TRUNCATE `user_role`;",
                     "DROP TABLE `user_role`;",
                     "TRUNCATE `role`;",
-                    "DROP TABLE  `account`, `role`, `user`;"
+                    "DROP TABLE  `account`, `role`, `user`, `bill`;"
             };
 
             Arrays.stream(dropStatements).forEach(dropStatement -> {
@@ -86,7 +94,7 @@ public class Boostrap {
 
             JDBConnectionWrapper connectionWrapper = new JDBConnectionWrapper(schema);
             rightsRolesRepository = new RightsRolesRepositoryMySQL(connectionWrapper.getConnection());
-
+            userRepository= new UserRepositoryMySQL(connectionWrapper.getConnection(),rightsRolesRepository);
             bootstrapRoles();
             bootstrapRights();
             bootstrapRoleRight();
@@ -122,5 +130,25 @@ public class Boostrap {
 
     private static void bootstrapUserRoles() throws SQLException {
 
+        Map<String, List<String>> rolesRights = getRolesRights();
+        Role r=rightsRolesRepository.findRoleByTitle("administrator");
+        List<Role>roles=new ArrayList<>();
+
+        List<Right> rights=new ArrayList<>();
+        for (String right : rolesRights.get("administrator")) {
+            Right right1 = rightsRolesRepository.findRightByTitle(right);
+            rights.add(right1);
+        }
+        r.setRights(rights);
+        roles.add(r);
+
+        User defaultAdmin= new UserBuilder()
+                .setId((long)1)
+                .setUsername("admin@gm.com")
+                .setPassword(AuthenticationServiceMySQL.encodePassword("dali123*"))
+                .setRoles(roles)
+                .build();
+
+        userRepository.save(defaultAdmin);
     }
 }

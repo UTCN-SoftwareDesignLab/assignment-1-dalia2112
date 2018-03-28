@@ -60,6 +60,25 @@ public class UserServiceMySQL implements UserService{
             users.add(data);
         }
         return users;
+    }
 
+    public Vector<Vector<String>> writeUserTable(String idGiven) {
+        if(idGiven.chars().allMatch(Character::isDigit) && !idGiven.equalsIgnoreCase("")){
+            Vector<Vector<String>> data= new Vector<>();
+            Vector<String> d=new Vector<>();
+            Long id=Long.parseLong(idGiven);
+            User u=findById(id);
+            d.add(u.getId().toString());
+            d.add(u.getUsername());
+            d.add((u.getPassword()));
+            d.add(u.getRoles().get(0).getRole());
+            data.add(d);
+//            adminView.setEmplTable(data);
+            return  data;
+        }
+        else {
+             return getAllUserTable();
+            //adminView.setEmplTable(data);
+        }
     }
 }

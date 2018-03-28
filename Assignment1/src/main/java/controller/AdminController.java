@@ -12,10 +12,7 @@ import service.user.UserService;
 import view.AdminView;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.util.Vector;
 
 public class AdminController {
@@ -32,32 +29,24 @@ public class AdminController {
         adminView.setUpdateButtonListener(new UpdateButtonListener());
         adminView.setDeleteButtonListener(new DeleteButtonListener());
         adminView.setTableMouseListener(new TableMouseListener());
+        WindowAdapter windowAdapter = new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+                //TODO show LogInUI
+                //TODO track activity
+            }
+        };
+        adminView.addWindowListener(windowAdapter);
         adminView.setVisible(false);
     }
 
-    private  void writeUserTable() {
-        if(adminView.getIdTf().getText().equals("")) {
-            Vector<Vector<String>> data = userService.getAllUserTable();
-            adminView.setEmplTable(data);
-        }
-        else {
-            Vector<Vector<String>> data= new Vector<>();
-            Vector<String> d=new Vector<>();
-            Long id=Long.parseLong(adminView.getIdTf().getText());
-            User u=userService.findById(id);
-            d.add(u.getId().toString());
-            d.add(u.getUsername());
-            d.add((u.getPassword()));
-            d.add(u.getRoles().get(0).getRole());
-            data.add(d);
-            adminView.setEmplTable(data);
-        }
-    }
+
 
     private class ViewButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-                writeUserTable();
+                adminView.setEmplTable(userService.writeUserTable(adminView.getIdTf()));
         }
     }
 
@@ -65,9 +54,9 @@ public class AdminController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            String username = adminView.getUsernameTf().getText();
-            String pass=adminView.getPassTf().getText();
-            String role=adminView.getRolesCombo().getSelectedItem().toString();
+            String username = adminView.getUsernameTf();
+            String pass=adminView.getPassTf();
+            String role=adminView.getRolesCombo();
             Notification<Boolean> registerNotification = authenticationService.registerUser(username,pass,role);
             if (registerNotification.hasErrors()) {
                 JOptionPane.showMessageDialog(adminView.getContentPane(), registerNotification.getFormattedErrors());
@@ -79,7 +68,7 @@ public class AdminController {
 
                 }
             }
-            writeUserTable();
+            adminView.setEmplTable(userService.writeUserTable(adminView.getIdTf()));
         }
     }
 
@@ -94,7 +83,7 @@ public class AdminController {
             String nv= String.valueOf(adminView.getEmplTable().getValueAt(row,col));
             System.out.println("New val "+nv);
             userService.updateUser(id,col,nv);
-            writeUserTable();
+            adminView.setEmplTable(userService.writeUserTable(adminView.getIdTf()));
         }
     }
 
@@ -107,7 +96,7 @@ public class AdminController {
             String idd=String.valueOf(adminView.getEmplTable().getModel().getValueAt(row,0));
             Long id=Long.parseLong(idd);
             userService.deleteUser(id);
-            writeUserTable();
+            adminView.setEmplTable(userService.writeUserTable(adminView.getIdTf()));
         }
     }
 

@@ -1,6 +1,8 @@
 package service.client;
 
+import model.Account;
 import model.Client;
+import model.validation.ClientValidator;
 import model.validation.Notification;
 import repository.EntityNotFoundException;
 import repository.client.ClientRepository;
@@ -66,9 +68,19 @@ public class ClientServiceImpl implements ClientService {
                 break;
             case 2:
                 column="id_card_nr";
+                ClientValidator clientValidator=new ClientValidator();
+                if(!clientValidator.validateIdCardNr(Long.parseLong(newval))){
+                    JOptionPane.showMessageDialog(null,clientValidator.getErrors().toString());
+                    return;
+                }
                 break;
             case 3:
                 column="pers_num_code";
+                ClientValidator clientValidato=new ClientValidator();
+                if(!clientValidato.validatePersNumCode(Long.parseLong(newval))) {
+                    JOptionPane.showMessageDialog(null,clientValidato.getErrors().toString());
+                    return;
+                }
                 break;
             case 4:
                 column="address";
@@ -78,6 +90,36 @@ public class ClientServiceImpl implements ClientService {
         repository.updateClient(id,column,newval);
     }
 
+    public Vector<Vector<String>> writeClientTable(String nameOrId){
+        if(nameOrId.chars().allMatch(Character::isDigit) && !nameOrId.equalsIgnoreCase("")) {
+
+            Vector<Vector<String>> data= new Vector<>();
+            Vector<String> d=new Vector<>();
+            Long id = Long.parseLong(nameOrId);
+            Client  u=findById(id);
+            d.add(u.getId().toString());
+            d.add(u.getName());
+            d.add(u.getId_card_nr().toString());
+            d.add(u.getPers_num_code().toString());
+            d.add(u.getAddress());
+            data.add(d);
+            return data;
+        }
+        else{
+            return getAllClientsTable();
+        }
+    }
+
+    public DefaultComboBoxModel setOwnerCombo(){
+        Vector<Vector<String>> clients=getAllClientsTable();
+        DefaultComboBoxModel dcm=new DefaultComboBoxModel();
+        for(int i=0;i<clients.size();i++){
+            String nm=clients.elementAt(i).elementAt(0)+" "+clients.elementAt(i).elementAt(1);
+            dcm.addElement(nm);
+        }
+        return dcm;
+
+    }
 
 
 }

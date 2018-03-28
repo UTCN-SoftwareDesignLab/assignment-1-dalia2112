@@ -10,6 +10,7 @@ public class AccountBuilder {
 
     public AccountBuilder() {
         account = new Account();
+        account.setDate_of_creation(new Date());
     }
 
     public AccountBuilder setId(Long id){

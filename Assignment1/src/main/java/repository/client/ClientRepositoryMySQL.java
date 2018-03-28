@@ -47,6 +47,7 @@ public class ClientRepositoryMySQL implements ClientRepository {
             if (rs.next()) {
                 return getClientFromResultSet(rs);
             } else {
+                JOptionPane.showMessageDialog(null,"Client with ID "+id+" does not exist!");
                 //throw new EntityNotFoundException(id, Client.class.getSimpleName());
             }
         } catch (SQLException e) {
@@ -133,7 +134,8 @@ public class ClientRepositoryMySQL implements ClientRepository {
                 String sql = "DELETE from client where id="+id;
                 statement.executeUpdate(sql);
             } catch (SQLException e) {
-                e.printStackTrace();
+                JOptionPane.showMessageDialog(null,"Client with ID "+id+" does not exist!");
+//                e.printStackTrace();
             }
         }
         public void updateClient(Long id,String column,String newval){

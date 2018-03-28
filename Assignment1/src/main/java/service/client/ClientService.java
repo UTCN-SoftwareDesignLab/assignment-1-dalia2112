@@ -5,6 +5,7 @@ import model.Client;
 import model.validation.Notification;
 import repository.EntityNotFoundException;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 import java.util.Vector;
@@ -20,6 +21,9 @@ public interface ClientService {
     Vector<Vector<String>> getAllClientsTable();
     void deleteClient(Long id);
     void updateClient(Long id,int col,String newval);
+    Vector<Vector<String>> writeClientTable(String nameOrId);
+
+    DefaultComboBoxModel setOwnerCombo();
 
 
 }

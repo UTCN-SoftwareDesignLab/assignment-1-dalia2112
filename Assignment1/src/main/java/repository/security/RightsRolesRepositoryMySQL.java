@@ -4,6 +4,7 @@ import model.Right;
 import model.Role;
 import model.User;
 
+import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +58,8 @@ public class RightsRolesRepositoryMySQL implements RightsRolesRepository {
             String roleTitle = roleResultSet.getString("role");
             return new Role(roleId, roleTitle, null);
         } catch (SQLException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Role " + role + " does not exist!");
         }
 
         return null;
@@ -75,7 +77,8 @@ public class RightsRolesRepositoryMySQL implements RightsRolesRepository {
             String roleTitle = roleResultSet.getString("role");
             return new Role(roleId, roleTitle, null);
         } catch (SQLException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Role with ID " + roleId + " does not exist!");
         }
 
         return null;
@@ -93,7 +96,8 @@ public class RightsRolesRepositoryMySQL implements RightsRolesRepository {
             String rightTitle = rightResultSet.getString("right");
             return new Right(rightId, rightTitle);
         } catch (SQLException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Right " + right + " does not exist!");
+//            e.printStackTrace();
         }
         return null;
     }
@@ -126,7 +130,7 @@ public class RightsRolesRepositoryMySQL implements RightsRolesRepository {
             }
             return roles;
         } catch (SQLException e) {
-
+            JOptionPane.showMessageDialog(null, "User with ID " + userId + " does not exist!");
         }
         return null;
     }
@@ -142,6 +146,7 @@ public class RightsRolesRepositoryMySQL implements RightsRolesRepository {
             role=findRoleById(roleId);
             return role;
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "User with ID " + userId + " does not exist!");
         }
         return null;
     }
@@ -156,7 +161,7 @@ public class RightsRolesRepositoryMySQL implements RightsRolesRepository {
             insertStatement.setLong(2, rightId);
             insertStatement.executeUpdate();
         } catch (SQLException e) {
-
+            JOptionPane.showMessageDialog(null, "Role with ID " + roleId + " or right with ID "+rightId+" does not exist!");
         }
     }
 }

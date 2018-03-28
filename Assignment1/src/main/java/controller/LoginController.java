@@ -40,7 +40,6 @@ public class LoginController {
             try {
                 loginNotification = authenticationService.login(username, password);
                 role=loginNotification.getResult().getRoles().get(0);
-                //role=authenticationService.findRoleForUserId(loginNotification.getResult().getId());
             } catch (AuthenticationException e1) {
                 e1.printStackTrace();
             }
@@ -50,7 +49,7 @@ public class LoginController {
                     JOptionPane.showMessageDialog(loginView.getContentPane(), loginNotification.getFormattedErrors());
                 } else {
 
-                    JOptionPane.showMessageDialog(loginView.getContentPane(), "Login successful("+role.getRole()+") !");
+                    JOptionPane.showMessageDialog(loginView.getContentPane(), "Login successful ("+role.getRole()+") !");
                     loginView.setVisible(false);
                     if(role.getRole().equalsIgnoreCase("employee")) {   //FOR EMPLOYEEE
                         SwingUtilities.invokeLater(() -> {

@@ -14,7 +14,7 @@ public interface AuthenticationService {
 
 //    Notification<Boolean> register(String username, String password,String role);
 
-    Notification<Boolean> registerUser(String username, String password,String admin);
+    Notification<Boolean> registerUser(String username, String password, String admin);
 
     Notification<User> login(String username, String password) throws AuthenticationException;
 

@@ -1,14 +1,11 @@
 package service.client;
 
-import model.Account;
 import model.Client;
 import model.validation.ClientValidator;
-import model.validation.Notification;
 import repository.EntityNotFoundException;
 import repository.client.ClientRepository;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.util.List;
 import java.util.Vector;
 
@@ -29,6 +26,7 @@ public class ClientServiceImpl implements ClientService {
     public Client findById(Long id) {//throws EntityNotFoundException {
         return repository.findById(id);
     }
+
     public Client findByName(String name) throws EntityNotFoundException {
         return repository.findByName(name);
     }
@@ -37,11 +35,10 @@ public class ClientServiceImpl implements ClientService {
     public boolean save(Client client) {
         return repository.save(client);
     }
-    public Vector<Vector<String>> getAllClientsTable(){
-        String[][] t=new String[][]{};
+
+    public Vector<Vector<String>> getAllClientsTable() {
         Vector<Vector<String>> clients = new Vector<>();
-        int i=0;
-        for(Client c:findAll()){
+        for (Client c : findAll()) {
             Vector<String> data = new Vector<>();
             data.add(c.getId().toString());
             data.add(c.getName());
@@ -53,50 +50,52 @@ public class ClientServiceImpl implements ClientService {
         return clients;
     }
 
-    public void deleteClient(Long id){
+    public void deleteClient(Long id) {
         repository.deleteClient(id);
     }
-    public void updateClient(Long id,int col,String newval){
 
-        String column="";
+    public void updateClient(Long id, int col, String newval) {
+
+        String column = "";
         switch (col) {
             case 0:
-                JOptionPane.showMessageDialog(null,"Cannot change id!");
+                JOptionPane.showMessageDialog(null, "Cannot change id!");
                 break;
             case 1:
-                column="name";
+                column = "name";
                 break;
             case 2:
-                column="id_card_nr";
-                ClientValidator clientValidator=new ClientValidator();
-                if(!clientValidator.validateIdCardNr(Long.parseLong(newval))){
-                    JOptionPane.showMessageDialog(null,clientValidator.getErrors().toString());
+                column = "id_card_nr";
+                ClientValidator clientValidator = new ClientValidator();
+                if (!clientValidator.validateIdCardNr(Long.parseLong(newval))) {
+                    JOptionPane.showMessageDialog(null, clientValidator.getErrors().toString());
                     return;
                 }
                 break;
             case 3:
-                column="pers_num_code";
-                ClientValidator clientValidato=new ClientValidator();
-                if(!clientValidato.validatePersNumCode(Long.parseLong(newval))) {
-                    JOptionPane.showMessageDialog(null,clientValidato.getErrors().toString());
+                column = "pers_num_code";
+                ClientValidator clientValidato = new ClientValidator();
+                if (!clientValidato.validatePersNumCode(Long.parseLong(newval))) {
+                    JOptionPane.showMessageDialog(null, clientValidato.getErrors().toString());
                     return;
                 }
                 break;
             case 4:
-                column="address";
+                column = "address";
                 break;
-            default: column="name";
+            default:
+                column = "name";
         }
-        repository.updateClient(id,column,newval);
+        repository.updateClient(id, column, newval);
     }
 
-    public Vector<Vector<String>> writeClientTable(String nameOrId){
-        if(nameOrId.chars().allMatch(Character::isDigit) && !nameOrId.equalsIgnoreCase("")) {
+    public Vector<Vector<String>> writeClientTable(String nameOrId) {
+        if (nameOrId.chars().allMatch(Character::isDigit) && !nameOrId.equalsIgnoreCase("")) {
 
-            Vector<Vector<String>> data= new Vector<>();
-            Vector<String> d=new Vector<>();
+            Vector<Vector<String>> data = new Vector<>();
+            Vector<String> d = new Vector<>();
             Long id = Long.parseLong(nameOrId);
-            Client  u=findById(id);
+            Client u = findById(id);
             d.add(u.getId().toString());
             d.add(u.getName());
             d.add(u.getId_card_nr().toString());
@@ -104,17 +103,16 @@ public class ClientServiceImpl implements ClientService {
             d.add(u.getAddress());
             data.add(d);
             return data;
-        }
-        else{
+        } else {
             return getAllClientsTable();
         }
     }
 
-    public DefaultComboBoxModel setOwnerCombo(){
-        Vector<Vector<String>> clients=getAllClientsTable();
-        DefaultComboBoxModel dcm=new DefaultComboBoxModel();
-        for(int i=0;i<clients.size();i++){
-            String nm=clients.elementAt(i).elementAt(0)+" "+clients.elementAt(i).elementAt(1);
+    public DefaultComboBoxModel setOwnerCombo() {
+        Vector<Vector<String>> clients = getAllClientsTable();
+        DefaultComboBoxModel dcm = new DefaultComboBoxModel();
+        for (int i = 0; i < clients.size(); i++) {
+            String nm = clients.elementAt(i).elementAt(0) + " " + clients.elementAt(i).elementAt(1);
             dcm.addElement(nm);
         }
         return dcm;

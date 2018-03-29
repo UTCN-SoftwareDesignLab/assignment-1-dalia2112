@@ -11,15 +11,18 @@ import java.util.Vector;
 public interface ClientRepository {
     List<Client> findAll();
 
-    Client findById(Long id) ;//throws EntityNotFoundException;
+    Client findById(Long id);//throws EntityNotFoundException;
+
     Client findByName(String name) throws EntityNotFoundException;
 
     boolean save(Client client);
 
     void removeAll();
-//    Vector<Vector<String>> getAllClientsTable();
+
+    //    Vector<Vector<String>> getAllClientsTable();
     void deleteClient(Long id);
-    void updateClient(Long id,String col,String newval);
+
+    void updateClient(Long id, String col, String newval);
 
 
 }

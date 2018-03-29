@@ -30,7 +30,7 @@ public class AuthenticationServiceMySQL implements AuthenticationService {
         this.rightsRolesRepository = rightsRolesRepository;
     }
 
-    public Notification<Boolean> registerUser(String username, String password,String role) {
+    public Notification<Boolean> registerUser(String username, String password, String role) {
         Role userRole = rightsRolesRepository.findRoleByTitle(role);
         User user = new UserBuilder()
                 .setUsername(username)
@@ -63,7 +63,7 @@ public class AuthenticationServiceMySQL implements AuthenticationService {
         return false;
     }
 
-    public Role findRoleForUserId(Long userId){
+    public Role findRoleForUserId(Long userId) {
         return rightsRolesRepository.findRoleForUserId(userId);
     }
 

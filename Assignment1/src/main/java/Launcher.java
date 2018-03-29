@@ -3,6 +3,7 @@ import controller.EmployeeController;
 import controller.LoginController;
 import org.apache.commons.lang3.RandomStringUtils;
 import repository.client.ClientRepository;
+import view.AdminView;
 import view.EmployeeView;
 import view.LoginView;
 
@@ -13,10 +14,10 @@ public class Launcher {
 
     public static void main(String[] args) {
         ComponentFactory componentFactory = ComponentFactory.instance();
-        LoginController lg=new LoginController(new LoginView(), componentFactory.getAuthenticationService());
-        lg.attachAdminController(new AdminController(componentFactory.getUserService(),componentFactory.getAuthenticationService()));
-
-        lg.attachEmployeeController(new EmployeeController(componentFactory.getClientService(),componentFactory.getAccountService()));
+        new LoginController(new LoginView(),
+                componentFactory.getAuthenticationService(),
+                new AdminController(new AdminView(), componentFactory.getUserService(), componentFactory.getAuthenticationService()),
+                new EmployeeController(new EmployeeView(), componentFactory.getClientService(), componentFactory.getAccountService()));
 
     }
 

@@ -52,7 +52,7 @@ public class Boostrap {
                     "TRUNCATE `user_role`;",
                     "DROP TABLE `user_role`;",
                     "TRUNCATE `role`;",
-                    "DROP TABLE  `account`, `role`, `user`, `bill`;"
+                    "DROP TABLE  `account`, `role`, `user`, `bill`,`client`;"
             };
 
             Arrays.stream(dropStatements).forEach(dropStatement -> {
@@ -94,7 +94,7 @@ public class Boostrap {
 
             JDBConnectionWrapper connectionWrapper = new JDBConnectionWrapper(schema);
             rightsRolesRepository = new RightsRolesRepositoryMySQL(connectionWrapper.getConnection());
-            userRepository= new UserRepositoryMySQL(connectionWrapper.getConnection(),rightsRolesRepository);
+            userRepository = new UserRepositoryMySQL(connectionWrapper.getConnection(), rightsRolesRepository);
             bootstrapRoles();
             bootstrapRights();
             bootstrapRoleRight();
@@ -131,10 +131,10 @@ public class Boostrap {
     private static void bootstrapUserRoles() throws SQLException {
 
         Map<String, List<String>> rolesRights = getRolesRights();
-        Role r=rightsRolesRepository.findRoleByTitle("administrator");
-        List<Role>roles=new ArrayList<>();
+        Role r = rightsRolesRepository.findRoleByTitle("administrator");
+        List<Role> roles = new ArrayList<>();
 
-        List<Right> rights=new ArrayList<>();
+        List<Right> rights = new ArrayList<>();
         for (String right : rolesRights.get("administrator")) {
             Right right1 = rightsRolesRepository.findRightByTitle(right);
             rights.add(right1);
@@ -142,8 +142,8 @@ public class Boostrap {
         r.setRights(rights);
         roles.add(r);
 
-        User defaultAdmin= new UserBuilder()
-                .setId((long)1)
+        User defaultAdmin = new UserBuilder()
+                .setId((long) 1)
                 .setUsername("admin@gm.com")
                 .setPassword(AuthenticationServiceMySQL.encodePassword("dali123*"))
                 .setRoles(roles)

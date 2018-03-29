@@ -8,29 +8,29 @@ public class BillBuilder {
 
     private Bill bill;
 
-    public BillBuilder(){
-        bill=new Bill();
+    public BillBuilder() {
+        bill = new Bill();
 //        bill.setCode(RandomStringUtils.randomAlphanumeric(10));
     }
 
-    public BillBuilder setPrice(float price){
+    public BillBuilder setPrice(float price) {
         bill.setPrice(price);
-        return  this;
+        return this;
     }
 
-    public BillBuilder setTitle(String title){
+    public BillBuilder setTitle(String title) {
         bill.setTitle(title);
-        return  this;
+        return this;
     }
 
-    public BillBuilder setClientId(long id){
+    public BillBuilder setClientId(long id) {
         bill.setClientId(id);
-        return  this;
+        return this;
     }
 
-    public BillBuilder setCode(String code){
+    public BillBuilder setCode(String code) {
         bill.setCode(code);
-        return  this;
+        return this;
     }
 
     public Bill build() {

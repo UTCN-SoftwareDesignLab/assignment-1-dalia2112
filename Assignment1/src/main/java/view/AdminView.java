@@ -20,19 +20,21 @@ public class AdminView extends JDialog {
     private JComboBox rolesCombo;
     private int rowClicked;
     private int colClicked;
-    private final String[] cols={"Id","Username","Password","Role"};
+    private final String[] cols = {"Id", "Username", "Password", "Role"};
+
     public AdminView() {
         setContentPane(contentPane);
         setModal(true);
-        setSize(700,500);
+        setSize(700, 500);
         setResizable(false);
         setRolesCombo();
     }
 
-    public void setRolesCombo(){
+    public void setRolesCombo() {
         rolesCombo.addItem("Administrator");
         rolesCombo.addItem("Employee");
     }
+
     public JTable getEmplTable() {
         return emplTable;
     }
@@ -98,7 +100,7 @@ public class AdminView extends JDialog {
         this.colClicked = colClicked;
     }
 
-    public void addWindowListener(WindowAdapter windowAdapter){
+    public void addWindowListener(WindowAdapter windowAdapter) {
         super.addWindowListener(windowAdapter);
     }
 }

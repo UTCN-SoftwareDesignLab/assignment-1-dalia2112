@@ -7,16 +7,18 @@ import java.util.List;
 
 public class AccountValidator {
 
-    private final float MINSUM=10;
-//    private final Account account;
+    private final float MINSUM = 10;
+
+    //    private final Account account;
     public List<String> getErrors() {
         return errors;
     }
+
     private final List<String> errors;
 
     public AccountValidator() {
 //        this.account = account;
-        errors=new ArrayList<>();
+        errors = new ArrayList<>();
     }
 
 //    public boolean validate(long sumToTransfer) {
@@ -25,9 +27,9 @@ public class AccountValidator {
 //        return errors.isEmpty();
 //    }
 
-    public boolean validateTransfSum(float amount,float sumToTransfer,boolean transfer) {
-        if(amount-sumToTransfer<MINSUM)
-            if(transfer)
+    public boolean validateTransfSum(float amount, float sumToTransfer, boolean transfer) {
+        if (amount - sumToTransfer < MINSUM)
+            if (transfer)
                 errors.add("Cannot trasfer from this account! Not enough money!");
             else
                 errors.add("Not enough money! Provide at least 10 lei!");

@@ -18,8 +18,11 @@ public interface UserRepository {
     boolean save(User user);
 
     void removeAll();
+
     User findById(Long id) /*throws EntityNotFoundException*/;
-    void updateUser(Long id,String col,String newval);
+
+    void updateUser(Long id, String col, String newval);
+
     void deleteUser(Long id);
 
 }

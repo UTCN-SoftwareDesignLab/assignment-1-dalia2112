@@ -6,6 +6,7 @@ import model.User;
 import model.validation.Notification;
 import repository.user.AuthenticationException;
 import service.user.AuthenticationService;
+import view.AdminView;
 import view.LoginView;
 
 import javax.swing.*;
@@ -22,9 +23,11 @@ public class LoginController {
     private AdminController adminController;
     private final AuthenticationService authenticationService;
 
-    public LoginController(LoginView loginView, AuthenticationService authenticationService) {
+    public LoginController(LoginView loginView, AuthenticationService authenticationService, AdminController adminController, EmployeeController employeeController) {
         this.loginView = loginView;
         this.authenticationService = authenticationService;
+        this.adminController = adminController;
+        this.employeeController = employeeController;
         loginView.setLoginButtonListener(new LoginButtonListener());
     }
 
@@ -36,10 +39,10 @@ public class LoginController {
             String password = loginView.getPassword();
 
             Notification<User> loginNotification = null;
-            Role role=null;
+            Role role = null;
             try {
                 loginNotification = authenticationService.login(username, password);
-                role=loginNotification.getResult().getRoles().get(0);
+                role = loginNotification.getResult().getRoles().get(0);
             } catch (AuthenticationException e1) {
                 e1.printStackTrace();
             }
@@ -49,14 +52,13 @@ public class LoginController {
                     JOptionPane.showMessageDialog(loginView.getContentPane(), loginNotification.getFormattedErrors());
                 } else {
 
-                    JOptionPane.showMessageDialog(loginView.getContentPane(), "Login successful ("+role.getRole()+") !");
+                    JOptionPane.showMessageDialog(loginView.getContentPane(), "Login successful (" + role.getRole() + ") !");
                     loginView.setVisible(false);
-                    if(role.getRole().equalsIgnoreCase("employee")) {   //FOR EMPLOYEEE
+                    if (role.getRole().equalsIgnoreCase("employee")) {   //FOR EMPLOYEEE
                         SwingUtilities.invokeLater(() -> {
                             employeeController.showUI();
                         });
-                    }
-                    else{        //FOR ADMIN
+                    } else {        //FOR ADMIN
                         SwingUtilities.invokeLater(() -> {
                             adminController.showUI();
                         });
@@ -66,12 +68,4 @@ public class LoginController {
         }
     }
 
-
-    public void attachEmployeeController(EmployeeController employeeController){
-        this.employeeController = employeeController;
-    }
-
-    public void attachAdminController(AdminController adminController){
-        this.adminController=adminController;
-    }
 }

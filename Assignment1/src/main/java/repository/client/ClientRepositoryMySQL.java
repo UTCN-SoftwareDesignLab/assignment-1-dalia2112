@@ -47,7 +47,7 @@ public class ClientRepositoryMySQL implements ClientRepository {
             if (rs.next()) {
                 return getClientFromResultSet(rs);
             } else {
-                JOptionPane.showMessageDialog(null,"Client with ID "+id+" does not exist!");
+                JOptionPane.showMessageDialog(null, "Client with ID " + id + " does not exist!");
                 //throw new EntityNotFoundException(id, Client.class.getSimpleName());
             }
         } catch (SQLException e) {
@@ -74,6 +74,7 @@ public class ClientRepositoryMySQL implements ClientRepository {
             throw new EntityNotFoundException((long) 0.0, Client.class.getSimpleName());
         }
     }
+
     @Override
     public boolean save(Client client) {
         try {
@@ -128,25 +129,26 @@ public class ClientRepositoryMySQL implements ClientRepository {
 //        return clients;
 //    }
 
-        public void deleteClient(Long id){
-            try {
-                Statement statement = connection.createStatement();
-                String sql = "DELETE from client where id="+id;
-                statement.executeUpdate(sql);
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null,"Client with ID "+id+" does not exist!");
+    public void deleteClient(Long id) {
+        try {
+            Statement statement = connection.createStatement();
+            String sql = "DELETE from client where id=" + id;
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Client with ID " + id + " does not exist!");
 //                e.printStackTrace();
-            }
         }
-        public void updateClient(Long id,String column,String newval){
+    }
 
-            try {
-                Statement statement = connection.createStatement();
-                String sql = "UPDATE client SET "+column+"='"+newval+"' where id="+id;
-                statement.executeUpdate(sql);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+    public void updateClient(Long id, String column, String newval) {
+
+        try {
+            Statement statement = connection.createStatement();
+            String sql = "UPDATE client SET " + column + "='" + newval + "' where id=" + id;
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+    }
 
 }

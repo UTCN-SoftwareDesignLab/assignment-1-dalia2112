@@ -39,19 +39,19 @@ public class EmployeeView extends JDialog {
     private int rowAccClicked;
     private int colAccClicked;
 
-    private final Object[] cols={"Id","Name","Id_card_nr","Pers_num_code","Address"};
-    private final Object[] colsBill={"Code","Title","Price","Client ID"};
-    private final Object[] accCols={"Id","Type","Amount","Date of creation","Owner ID"};
+    private final Object[] cols = {"Id", "Name", "Id_card_nr", "Pers_num_code", "Address"};
+    private final Object[] colsBill = {"Code", "Title", "Price", "Client ID"};
+    private final Object[] accCols = {"Id", "Type", "Amount", "Date of creation", "Owner ID"};
 
     public EmployeeView() {
 
-        tabbedPane.addTab("Client",clientTab);
-        tabbedPane.addTab("Account",accountTab);
-        contentPane.setSize(800,315);
-        setSize(900,700);
+        tabbedPane.addTab("Client", clientTab);
+        tabbedPane.addTab("Account", accountTab);
+        contentPane.setSize(800, 315);
+        setSize(900, 700);
         setContentPane(contentPane);
-        scroll.setSize(500,500);
-        clientTab.setSize(200,200);
+        scroll.setSize(500, 500);
+        clientTab.setSize(200, 200);
         setModal(true);
         setResizable(false);
         setVisible(false);
@@ -62,9 +62,11 @@ public class EmployeeView extends JDialog {
     public String getNameorId() {
         return name.getText();
     }
-    public void setOwnerComboActionListener(ActionListener a){
+
+    public void setOwnerComboActionListener(ActionListener a) {
         ownerCombo.addActionListener(a);
     }
+
     public int getRowClicked() {
         return rowClicked;
     }
@@ -97,7 +99,7 @@ public class EmployeeView extends JDialog {
         this.colAccClicked = colAccClicked;
     }
 
-    public void setTypeCombo(){
+    public void setTypeCombo() {
         typeCombo.addItem("Personal");
         typeCombo.addItem("Real");
         typeCombo.addItem("Nominal");
@@ -113,7 +115,7 @@ public class EmployeeView extends JDialog {
         accToTransfComb.setSize(50, accToTransfComb.getPreferredSize().height);
     }
 
-    public void addOwnerCombo(DefaultComboBoxModel own){
+    public void addOwnerCombo(DefaultComboBoxModel own) {
         ownerCombo.setModel(own);
     }
 
@@ -129,55 +131,61 @@ public class EmployeeView extends JDialog {
         return table;
     }
 
-    public JTable getAccTable(){
+    public JTable getAccTable() {
         return accTable;
     }
 
     public void setTable(Vector<Vector<String>> data1) {
-        DefaultTableModel dtm=new DefaultTableModel();
+        DefaultTableModel dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(cols);
         table.setModel(dtm);
-        for(Vector<String> c:data1){
+        for (Vector<String> c : data1) {
             dtm.addRow(c);
         }
     }
 
     public void setBillTable(Vector<Vector<String>> data1) {
-        DefaultTableModel dtm=new DefaultTableModel();
+        DefaultTableModel dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(colsBill);
         accTable.setModel(dtm);
-        for(Vector<String> c:data1){
+        for (Vector<String> c : data1) {
             dtm.addRow(c);
         }
     }
 
     public void setAccTable(Vector<Vector<String>> data1) {
-        DefaultTableModel dtm=new DefaultTableModel();
+        DefaultTableModel dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(accCols);
         accTable.setModel(dtm);
-        for(Vector<String> c:data1){
+        for (Vector<String> c : data1) {
             dtm.addRow(c);
         }
     }
-    public static void main(String[] args){
-        EmployeeView ev=new EmployeeView();
+
+    public static void main(String[] args) {
+        EmployeeView ev = new EmployeeView();
         ev.setVisible(true);
-        System.out.println( Long.valueOf("3"));
+        System.out.println(Long.valueOf("3"));
     }
-    public String getClientName(){
-        return  name.getText();
+
+    public String getClientName() {
+        return name.getText();
     }
-    public String getClientAddress(){
-        return  address.getText();
+
+    public String getClientAddress() {
+        return address.getText();
     }
-    public float getAmount(){
+
+    public float getAmount() {
         return Long.parseLong(amount.getText());
     }
-    public Long getClientId_card_nr(){
-        return  Long.valueOf(idcardnr.getText());
+
+    public Long getClientId_card_nr() {
+        return Long.parseLong(idcardnr.getText());
     }
-    public Long getClientPersNr(){
-        return  Long.valueOf(persnum.getText());
+
+    public Long getClientPersNr() {
+        return Long.valueOf(persnum.getText());
     }
 
     public void setUpdateButtonListener(ActionListener updateButtonListener) {
@@ -219,6 +227,7 @@ public class EmployeeView extends JDialog {
     public void setDeleteAccountButtonListener(ActionListener deleteAccounListener) {
         deleteAccountBtn.addActionListener(deleteAccounListener);
     }
+
     public void setAccTableMouseListener(MouseAdapter m) {
         accTable.addMouseListener(m);
     }

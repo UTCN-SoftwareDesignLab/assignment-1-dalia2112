@@ -108,7 +108,7 @@ public class UserRepositoryMySQL implements UserRepository {
         }
     }
 
-    public User findById(Long id) /*throws EntityNotFoundException*/{
+    public User findById(Long id) /*throws EntityNotFoundException*/ {
         try {
             Statement statement = connection.createStatement();
             String sql = "Select * from user where id=" + id;
@@ -117,12 +117,12 @@ public class UserRepositoryMySQL implements UserRepository {
             if (rs.next()) {
                 return getUserFromResultSet(rs);
             } else {
-                JOptionPane.showMessageDialog(null,"User with ID "+id+" does not exist!");
+                JOptionPane.showMessageDialog(null, "User with ID " + id + " does not exist!");
 //                throw new EntityNotFoundException(id, Client.class.getSimpleName());
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null,"User with ID "+id+" does not exist!");
+            JOptionPane.showMessageDialog(null, "User with ID " + id + " does not exist!");
 //            throw new EntityNotFoundException(id, Client.class.getSimpleName());
         }
         return null;
@@ -138,20 +138,20 @@ public class UserRepositoryMySQL implements UserRepository {
                 .build();
     }
 
-    public void updateUser(Long id,String column,String newval){
+    public void updateUser(Long id, String column, String newval) {
         try {
             Statement statement = connection.createStatement();
-            String sql = "UPDATE user SET "+column+"='"+newval+"' where id="+id;
+            String sql = "UPDATE user SET " + column + "='" + newval + "' where id=" + id;
             statement.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void deleteUser(Long id){
+    public void deleteUser(Long id) {
         try {
             Statement statement = connection.createStatement();
-            String sql = "DELETE from user where id="+id;
+            String sql = "DELETE from user where id=" + id;
             statement.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();

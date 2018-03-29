@@ -29,14 +29,14 @@ public class Constants {
         public static final String ROLE_RIGHT = "role_right";
         public static final String USER_ROLE = "user_role";
 
-        public static final String[] ORDERED_TABLES_FOR_CREATION = new String[]{USER, ROLE, RIGHT, ROLE_RIGHT, USER_ROLE, CLIENT, ACCOUNT,BILL};
+        public static final String[] ORDERED_TABLES_FOR_CREATION = new String[]{USER, ROLE, RIGHT, ROLE_RIGHT, USER_ROLE, CLIENT, ACCOUNT, BILL};
     }
 
     public static class Roles {
         public static final String ADMINISTRATOR = "administrator";
         public static final String EMPLOYEE = "employee";
         public static final String CLIENT = "client";
-        public static final String[] ROLES = new String[]{ADMINISTRATOR, EMPLOYEE,CLIENT};
+        public static final String[] ROLES = new String[]{ADMINISTRATOR, EMPLOYEE, CLIENT};
     }
 
     public static class Rights {
@@ -56,7 +56,7 @@ public class Constants {
         public static final String TRANSFER_MONEY = "transfer_money";
         public static final String PROCESS_BILLS = "process_bills";
 
-        public static final String[] RIGHTS = new String[]{CREATE_CLIENT, DELETE_CLIENT, UPDATE_CLIENT,CREATE_USER, DELETE_USER, UPDATE_USER, CREATE_ACCOUNT, DELETE_ACCOUNT, UPDATE_ACCOUNT, TRANSFER_MONEY, PROCESS_BILLS};
+        public static final String[] RIGHTS = new String[]{CREATE_CLIENT, DELETE_CLIENT, UPDATE_CLIENT, CREATE_USER, DELETE_USER, UPDATE_USER, CREATE_ACCOUNT, DELETE_ACCOUNT, UPDATE_ACCOUNT, TRANSFER_MONEY, PROCESS_BILLS};
     }
 
     public static Map<String, List<String>> getRolesRights() {
@@ -66,7 +66,7 @@ public class Constants {
         }
         ROLES_RIGHTS.get(ADMINISTRATOR).addAll(Arrays.asList(RIGHTS));
 
-        ROLES_RIGHTS.get(EMPLOYEE).addAll(Arrays.asList(CREATE_CLIENT, DELETE_CLIENT, UPDATE_CLIENT,CREATE_ACCOUNT, DELETE_ACCOUNT, UPDATE_ACCOUNT, TRANSFER_MONEY,PROCESS_BILLS));
+        ROLES_RIGHTS.get(EMPLOYEE).addAll(Arrays.asList(CREATE_CLIENT, DELETE_CLIENT, UPDATE_CLIENT, CREATE_ACCOUNT, DELETE_ACCOUNT, UPDATE_ACCOUNT, TRANSFER_MONEY, PROCESS_BILLS));
 
         return ROLES_RIGHTS;
     }

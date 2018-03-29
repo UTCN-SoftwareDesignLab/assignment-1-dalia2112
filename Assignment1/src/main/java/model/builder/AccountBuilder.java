@@ -13,28 +13,29 @@ public class AccountBuilder {
         account.setDate_of_creation(new Date());
     }
 
-    public AccountBuilder setId(Long id){
+    public AccountBuilder setId(Long id) {
         account.setId(id);
-        return  this;
+        return this;
     }
-    public AccountBuilder setOwner(Long id){
+
+    public AccountBuilder setOwner(Long id) {
         account.setOwnerId(id);
-        return  this;
+        return this;
     }
 
-    public AccountBuilder setType(String type){
+    public AccountBuilder setType(String type) {
         account.setType(type);
-        return  this;
+        return this;
     }
 
-    public AccountBuilder setAmount(Float amount){
+    public AccountBuilder setAmount(Float amount) {
         account.setAmount(amount);
-        return  this;
+        return this;
     }
 
-    public AccountBuilder setDate(Date date){
+    public AccountBuilder setDate(Date date) {
         account.setDate_of_creation(date);
-        return  this;
+        return this;
     }
 
     public Account build() {

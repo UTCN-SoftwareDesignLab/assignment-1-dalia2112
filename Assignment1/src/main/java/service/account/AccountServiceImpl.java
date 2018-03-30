@@ -34,7 +34,7 @@ public class AccountServiceImpl implements AccountService {
         return repository.save(account);
     }  //CREATE
 
-    public void updateAccount(Long id, int col, String newval) {
+    public void updateAccount(Long id, String col, String newval) {
         repository.updateAccount(id, col, newval);
     }
 
@@ -42,13 +42,6 @@ public class AccountServiceImpl implements AccountService {
         repository.deleteAccount(id);
     }
 
-    public Vector<Vector<String>> getAllAccountsTable(List<Account> a) {
-        return repository.getAllAccountsTable(a);
-    }
-
-    public Vector<Vector<String>> getAllBillsTable(List<Bill> a) {
-        return repository.getAllBillsTable(a);
-    }
 
     @Override
     public List<Bill> findBillByOwner(long id) {
@@ -59,15 +52,15 @@ public class AccountServiceImpl implements AccountService {
         repository.transferMoney(idAcc1, idAcc2, sum);
     }
 
-    public Vector<Vector<String>> writeAccountTable(List<Account> data) {
-        Vector<Vector<String>> tabl = getAllAccountsTable(data);
-        return tabl;
-    }
+//    public Vector<Vector<String>> writeAccountTable(List<Account> data) {
+//        Vector<Vector<String>> tabl = getAllAccountsTable(data);
+//        return tabl;
+//    }
 
-    public Vector<Vector<String>> writeBillsTable(List<Bill> data) {
-        Vector<Vector<String>> tabl = getAllBillsTable(data);
-        return tabl;
-    }
+//    public Vector<Vector<String>> writeBillsTable(List<Bill> data) {
+//        Vector<Vector<String>> tabl = getAllBillsTable(data);
+//        return tabl;
+//    }
 
     public void payBill(long accId, String code) {
         repository.payBill(accId, code);

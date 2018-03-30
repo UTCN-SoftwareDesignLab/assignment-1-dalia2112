@@ -1,10 +1,11 @@
 package view;
 
-import controller.EmployeeController;
+import database.Constants;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
+import java.util.List;
 import java.util.Vector;
 
 public class EmployeeView extends JDialog {
@@ -39,9 +40,6 @@ public class EmployeeView extends JDialog {
     private int rowAccClicked;
     private int colAccClicked;
 
-    private final Object[] cols = {"Id", "Name", "Id_card_nr", "Pers_num_code", "Address"};
-    private final Object[] colsBill = {"Code", "Title", "Price", "Client ID"};
-    private final Object[] accCols = {"Id", "Type", "Amount", "Date of creation", "Owner ID"};
 
     public EmployeeView() {
 
@@ -68,41 +66,29 @@ public class EmployeeView extends JDialog {
     }
 
     public int getRowClicked() {
-        return rowClicked;
+
+        return table.getSelectedRow();
     }
 
     public int getColClicked() {
-        return colClicked;
+        return table.getSelectedColumn();
     }
 
-    public void setRowClicked(int rowClicked) {
-        this.rowClicked = rowClicked;
-    }
-
-    public void setColClicked(int colClicked) {
-        this.colClicked = colClicked;
-    }
 
     public int getRowAccClicked() {
-        return rowAccClicked;
+        return accTable.getSelectedRow();
     }
 
-    public void setRowAccClicked(int rowAccClicked) {
-        this.rowAccClicked = rowAccClicked;
-    }
 
     public int getColAccClicked() {
-        return colAccClicked;
+        return accTable.getSelectedColumn();
     }
 
-    public void setColAccClicked(int colAccClicked) {
-        this.colAccClicked = colAccClicked;
-    }
 
     public void setTypeCombo() {
-        typeCombo.addItem("Personal");
-        typeCombo.addItem("Real");
-        typeCombo.addItem("Nominal");
+        typeCombo.addItem(Constants.Columns.PERSONAL);
+        typeCombo.addItem(Constants.Columns.REAL);
+        typeCombo.addItem(Constants.Columns.NOMINAL);
         typeCombo.setSize(50, typeCombo.getPreferredSize().height);
     }
 
@@ -110,8 +96,12 @@ public class EmployeeView extends JDialog {
         return accToTransfComb.getSelectedItem().toString();
     }
 
-    public void setAccToTransfComb(DefaultComboBoxModel transf) {
-        accToTransfComb.setModel(transf);
+    public void setAccToTransfComb(List<String> accounts) {
+        DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel();
+        for (String accountAndOwner : accounts) {
+            defaultComboBoxModel.addElement(accountAndOwner);
+        }
+        accToTransfComb.setModel(defaultComboBoxModel);
         accToTransfComb.setSize(50, accToTransfComb.getPreferredSize().height);
     }
 
@@ -137,7 +127,7 @@ public class EmployeeView extends JDialog {
 
     public void setTable(Vector<Vector<String>> data1) {
         DefaultTableModel dtm = new DefaultTableModel();
-        dtm.setColumnIdentifiers(cols);
+        dtm.setColumnIdentifiers(Constants.Columns.CLIENT_COLS);
         table.setModel(dtm);
         for (Vector<String> c : data1) {
             dtm.addRow(c);
@@ -146,20 +136,21 @@ public class EmployeeView extends JDialog {
 
     public void setBillTable(Vector<Vector<String>> data1) {
         DefaultTableModel dtm = new DefaultTableModel();
-        dtm.setColumnIdentifiers(colsBill);
+        dtm.setColumnIdentifiers(Constants.Columns.BILL_COLS);
         accTable.setModel(dtm);
         for (Vector<String> c : data1) {
             dtm.addRow(c);
         }
     }
 
-    public void setAccTable(Vector<Vector<String>> data1) {
+    public void setAccTable(String[] columns, Vector<Vector<String>> data) {
         DefaultTableModel dtm = new DefaultTableModel();
-        dtm.setColumnIdentifiers(accCols);
-        accTable.setModel(dtm);
-        for (Vector<String> c : data1) {
+        dtm.setColumnIdentifiers(columns);
+
+        for (Vector<String> c : data) {
             dtm.addRow(c);
         }
+        accTable.setModel(dtm);
     }
 
     public static void main(String[] args) {
@@ -184,8 +175,8 @@ public class EmployeeView extends JDialog {
         return Long.parseLong(idcardnr.getText());
     }
 
-    public Long getClientPersNr() {
-        return Long.valueOf(persnum.getText());
+    public String getClientPersNr() {
+        return persnum.getText();
     }
 
     public void setUpdateButtonListener(ActionListener updateButtonListener) {

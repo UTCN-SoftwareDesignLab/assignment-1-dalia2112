@@ -46,13 +46,9 @@ public class ClientRepositoryMySQL implements ClientRepository {
 
             if (rs.next()) {
                 return getClientFromResultSet(rs);
-            } else {
-                JOptionPane.showMessageDialog(null, "Client with ID " + id + " does not exist!");
-                //throw new EntityNotFoundException(id, Client.class.getSimpleName());
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            //throw new EntityNotFoundException(id, Client.class.getSimpleName());
         }
         return null;
     }
@@ -113,21 +109,6 @@ public class ClientRepositoryMySQL implements ClientRepository {
                 .build();
     }
 
-//    public Vector<Vector<String>> getAllClientsTable(){
-//        String[][] t=new String[][]{};
-//        Vector<Vector<String>> clients = new Vector<>();
-//        int i=0;
-//        for(Client c:findAll()){
-//            Vector<String> data = new Vector<>();
-//            data.add(c.getId().toString());
-//            data.add(c.getName());
-//            data.add(c.getId_card_nr().toString());
-//            data.add(c.getPers_num_code().toString());
-//            data.add(c.getAddress());
-//            clients.add(data);
-//        }
-//        return clients;
-//    }
 
     public void deleteClient(Long id) {
         try {
@@ -135,8 +116,7 @@ public class ClientRepositoryMySQL implements ClientRepository {
             String sql = "DELETE from client where id=" + id;
             statement.executeUpdate(sql);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Client with ID " + id + " does not exist!");
-//                e.printStackTrace();
+            e.printStackTrace();
         }
     }
 

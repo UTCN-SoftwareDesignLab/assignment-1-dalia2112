@@ -1,15 +1,21 @@
 package repository.account;
 
+import database.Constants;
 import model.Account;
 import model.Bill;
 import model.builder.AccountBuilder;
 import model.builder.BillBuilder;
 import model.validation.AccountValidator;
+import org.joda.time.DateTime;
 import repository.EntityNotFoundException;
 
 import javax.swing.*;
 import java.awt.*;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -48,12 +54,9 @@ public class AccountRepositoryMySQL implements AccountRepository {
 
             if (rs.next()) {
                 return getAccountFromResultSet(rs);
-            } else {
-//                throw new EntityNotFoundException(id, Account.class.getSimpleName());
             }
         } catch (SQLException e) {
             e.printStackTrace();
-//            throw new EntityNotFoundException(id, Account.class.getSimpleName());
         }
         return null;
     }
@@ -79,7 +82,9 @@ public class AccountRepositoryMySQL implements AccountRepository {
     public boolean save(Account account) {
         try {
             PreparedStatement insertStatement = connection
-                    .prepareStatement("INSERT INTO account values (null, ?, ?, ?, ?)");
+                    .prepareStatement("INSERT INTO account values (null, ?, ?, ?, ?)",
+                            PreparedStatement.RETURN_GENERATED_KEYS
+                    );
             insertStatement.setString(1, account.getType());
             insertStatement.setFloat(2, account.getAmount());
             insertStatement.setDate(3, new java.sql.Date(account.getDate_of_creation().getTime()));
@@ -122,32 +127,7 @@ public class AccountRepositoryMySQL implements AccountRepository {
                 .build();
     }
 
-    public void updateAccount(Long id, int col, String newval) {
-        String column = "";
-        switch (col) {
-            case 0:
-                JOptionPane.showMessageDialog(null, "Cannot change id!");
-                break;
-            case 1:
-                column = "type";
-                break;
-            case 2:
-                column = "amount";
-                AccountValidator accountValidator = new AccountValidator();
-//                if(!accountValidator.validateTransfSum(Long.parseLong(newval),0,false)){
-//                    JOptionPane.showMessageDialog(null,accountValidator.getErrors());
-//                    return;
-//                }
-                break;
-            case 3:
-                column = "date_of_creation";
-                break;
-            case 4:
-                column = "ownerId";
-                break;
-            default:
-                column = "name";
-        }
+    public void updateAccount(Long id, String column, String newval) {
         try {
             Statement statement = connection.createStatement();
             String sql = "UPDATE account SET " + column + "='" + newval + "' where id=" + id;
@@ -167,30 +147,10 @@ public class AccountRepositoryMySQL implements AccountRepository {
         }
     }
 
-    public Vector<Vector<String>> getAllAccountsTable(List<Account> acc) {
-        Vector<Vector<String>> accounts = new Vector<>();
-        if (acc == null) JOptionPane.showMessageDialog(null, "getallAccTable is empty");
-        for (Account c : acc) {
-            Vector<String> data = new Vector<>();
-            data.add(c.getId().toString());
-            data.add(c.getType());
-            data.add(c.getAmount().toString());
-            data.add(c.getDate_of_creation().toString());
-            data.add(c.getOwnerId().toString());
-            accounts.add(data);
-        }
-        return accounts;
-    }
-
 
     public void transferMoney(Long idAcc1, Long idAcc2, float sum) {
         Account a1 = findById(idAcc1);
         Account a2 = findById(idAcc2);
-        AccountValidator accountValidator = new AccountValidator();
-        if (!accountValidator.validateTransfSum(a1.getAmount(), sum, true)) {
-            JOptionPane.showMessageDialog(null, accountValidator.getErrors());
-            return;
-        }
         float sumA1 = a1.getAmount() - sum;
         float sumA2 = a2.getAmount() + sum;
 
@@ -219,7 +179,6 @@ public class AccountRepositoryMySQL implements AccountRepository {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-//            throw new EntityNotFoundException(id, Account.class.getSimpleName());
         }
         return accounts;
     }
@@ -232,39 +191,19 @@ public class AccountRepositoryMySQL implements AccountRepository {
 
             if (rs.next()) {
                 return getBillFromResultSet(rs);
-            } else {
-//                throw new EntityNotFoundException(id, Account.class.getSimpleName());
             }
         } catch (SQLException e) {
             e.printStackTrace();
-//            throw new EntityNotFoundException(id, Account.class.getSimpleName());
         }
         return null;
     }
 
-    public Vector<Vector<String>> getAllBillsTable(List<Bill> bl) {
-        Vector<Vector<String>> bills = new Vector<>();
-        if (bl == null) JOptionPane.showMessageDialog(null, "No bills!");
-        for (Bill b : bl) {
-            Vector<String> data = new Vector<>();
-            data.add(b.getCode());
-            data.add(b.getTitle());
-            data.add((String.valueOf(b.getPrice())));
-            data.add(String.valueOf(b.getClientId()));
-            bills.add(data);
-        }
-        return bills;
-    }
 
     public void payBill(long accId, String code) {
         JOptionPane.showMessageDialog(null, "Account ID= " + accId + " bill code= " + code);
         Account a = findById(accId);
         Bill b = findBillByCode(code);
         AccountValidator accountValidator = new AccountValidator();
-//        if(!accountValidator.validateTransfSum(a.getAmount(),b.getPrice(),true)){
-//            JOptionPane.showMessageDialog(null,accountValidator.getErrors().toString());
-//            return;
-//        }
         float k = a.getAmount();
         float l = b.getPrice();
         float sumA1 = a.getAmount() - b.getPrice();

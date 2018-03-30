@@ -1,8 +1,6 @@
 import controller.AdminController;
 import controller.EmployeeController;
 import controller.LoginController;
-import org.apache.commons.lang3.RandomStringUtils;
-import repository.client.ClientRepository;
 import view.AdminView;
 import view.EmployeeView;
 import view.LoginView;
@@ -18,6 +16,7 @@ public class Launcher {
                 componentFactory.getAuthenticationService(),
                 new AdminController(new AdminView(), componentFactory.getUserService(), componentFactory.getAuthenticationService()),
                 new EmployeeController(new EmployeeView(), componentFactory.getClientService(), componentFactory.getAccountService()));
+
 
     }
 

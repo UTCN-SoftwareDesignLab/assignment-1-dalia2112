@@ -32,7 +32,6 @@ public class UserServiceMySQL implements UserService {
         String column = "";
         switch (col) {
             case 0:
-                JOptionPane.showMessageDialog(null, "Cannot change id!");
                 return;
             case 1:
                 column = "username";

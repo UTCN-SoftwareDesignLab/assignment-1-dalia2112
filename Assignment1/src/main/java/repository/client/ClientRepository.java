@@ -11,7 +11,7 @@ import java.util.Vector;
 public interface ClientRepository {
     List<Client> findAll();
 
-    Client findById(Long id);//throws EntityNotFoundException;
+    Client findById(Long id);
 
     Client findByName(String name) throws EntityNotFoundException;
 
@@ -19,7 +19,6 @@ public interface ClientRepository {
 
     void removeAll();
 
-    //    Vector<Vector<String>> getAllClientsTable();
     void deleteClient(Long id);
 
     void updateClient(Long id, String col, String newval);

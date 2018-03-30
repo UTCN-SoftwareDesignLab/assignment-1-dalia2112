@@ -1,6 +1,7 @@
 package view;
 
 import com.sun.org.apache.xpath.internal.SourceTree;
+import database.Constants;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -20,7 +21,6 @@ public class AdminView extends JDialog {
     private JComboBox rolesCombo;
     private int rowClicked;
     private int colClicked;
-    private final String[] cols = {"Id", "Username", "Password", "Role"};
 
     public AdminView() {
         setContentPane(contentPane);
@@ -31,8 +31,8 @@ public class AdminView extends JDialog {
     }
 
     public void setRolesCombo() {
-        rolesCombo.addItem("Administrator");
-        rolesCombo.addItem("Employee");
+        rolesCombo.addItem(Constants.Columns.ADMINISTRATOR);
+        rolesCombo.addItem(Constants.Columns.EMPLOYEE);
     }
 
     public JTable getEmplTable() {
@@ -41,7 +41,7 @@ public class AdminView extends JDialog {
 
     public void setEmplTable(Vector<Vector<String>> data1) {
         DefaultTableModel dtm = new DefaultTableModel();
-        dtm.setColumnIdentifiers(cols);
+        dtm.setColumnIdentifiers(Constants.Columns.USER_COLS);
         emplTable.setModel(dtm);
         for (Vector<String> c : data1) {
             dtm.addRow(c);
@@ -85,7 +85,7 @@ public class AdminView extends JDialog {
     }
 
     public int getRowClicked() {
-        return rowClicked;
+        return emplTable.getSelectedRow();
     }
 
     public void setRowClicked(int rowClicked) {
@@ -93,7 +93,7 @@ public class AdminView extends JDialog {
     }
 
     public int getColClicked() {
-        return colClicked;
+        return emplTable.getSelectedColumn();
     }
 
     public void setColClicked(int colClicked) {

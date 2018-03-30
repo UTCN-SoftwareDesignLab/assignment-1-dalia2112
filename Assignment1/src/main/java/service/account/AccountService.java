@@ -18,21 +18,21 @@ public interface AccountService {
 
     boolean save(Account account);
 
-    void updateAccount(Long id, int col, String newval);
+    void updateAccount(Long id, String col, String newval);
 
     void deleteAccount(Long id);
 
-    Vector<Vector<String>> getAllAccountsTable(List<Account> a);
+//    Vector<Vector<String>> getAllAccountsTable(List<Account> a);
 
     void transferMoney(Long idAcc1, Long idAcc2, float sum);
 
-    Vector<Vector<String>> writeAccountTable(List<Account> data);
+//    Vector<Vector<String>> writeAccountTable(List<Account> data);
 
-    Vector<Vector<String>> getAllBillsTable(List<Bill> a);
+//    Vector<Vector<String>> getAllBillsTable(List<Bill> a);
 
     public List<Bill> findBillByOwner(long id);
 
-    Vector<Vector<String>> writeBillsTable(List<Bill> data);
+//    Vector<Vector<String>> writeBillsTable(List<Bill> data);
 
     void payBill(long accId, String code);
 

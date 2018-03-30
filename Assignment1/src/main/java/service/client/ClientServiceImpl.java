@@ -59,7 +59,6 @@ public class ClientServiceImpl implements ClientService {
         String column = "";
         switch (col) {
             case 0:
-                JOptionPane.showMessageDialog(null, "Cannot change id!");
                 break;
             case 1:
                 column = "name";
@@ -68,7 +67,6 @@ public class ClientServiceImpl implements ClientService {
                 column = "id_card_nr";
                 ClientValidator clientValidator = new ClientValidator();
                 if (!clientValidator.validateIdCardNr(Long.parseLong(newval))) {
-                    JOptionPane.showMessageDialog(null, clientValidator.getErrors().toString());
                     return;
                 }
                 break;
@@ -76,7 +74,6 @@ public class ClientServiceImpl implements ClientService {
                 column = "pers_num_code";
                 ClientValidator clientValidato = new ClientValidator();
                 if (!clientValidato.validatePersNumCode(Long.parseLong(newval))) {
-                    JOptionPane.showMessageDialog(null, clientValidato.getErrors().toString());
                     return;
                 }
                 break;

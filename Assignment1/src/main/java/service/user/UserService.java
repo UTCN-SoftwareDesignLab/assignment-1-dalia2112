@@ -19,7 +19,4 @@ public interface UserService {
 
     void deleteUser(Long id);
 
-    Vector<Vector<String>> getAllUserTable();
-
-    Vector<Vector<String>> writeUserTable(String idGiven);
 }

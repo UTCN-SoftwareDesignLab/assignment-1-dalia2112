@@ -20,13 +20,11 @@ public interface ClientService {
 
     boolean save(Client client);
 
-    Vector<Vector<String>> getAllClientsTable();
 
     void deleteClient(Long id);
 
     void updateClient(Long id, int col, String newval);
 
-    Vector<Vector<String>> writeClientTable(String nameOrId);
 
     DefaultComboBoxModel setOwnerCombo();
 

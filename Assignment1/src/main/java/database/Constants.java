@@ -23,13 +23,14 @@ public class Constants {
         public static final String ACCOUNT = "account";
         public static final String CLIENT = "client";
         public static final String BILL = "bill";
+        public static final String ACTIVITY = "activity";
         public static final String USER = "user";
         public static final String ROLE = "role";
         public static final String RIGHT = "right";
         public static final String ROLE_RIGHT = "role_right";
         public static final String USER_ROLE = "user_role";
 
-        public static final String[] ORDERED_TABLES_FOR_CREATION = new String[]{USER, ROLE, RIGHT, ROLE_RIGHT, USER_ROLE, CLIENT, ACCOUNT, BILL};
+        public static final String[] ORDERED_TABLES_FOR_CREATION = new String[]{USER, ROLE, RIGHT, ROLE_RIGHT, USER_ROLE, CLIENT, ACCOUNT, BILL,ACTIVITY};
     }
 
     public static class Roles {
@@ -38,6 +39,46 @@ public class Constants {
         public static final String CLIENT = "client";
         public static final String[] ROLES = new String[]{ADMINISTRATOR, EMPLOYEE, CLIENT};
     }
+
+    public static class Columns {
+        public static final String ID = "Id";
+        public static final String TYPE = "Type";
+        public static final String AMOUNT = "Amount";
+        public static final String DATE_OF_CREATION = "Date of creation";
+        public static final String OWNERID = "Owner Id";
+
+        public static final String[] ACCOUNT_COLS = {ID, TYPE, AMOUNT, DATE_OF_CREATION, OWNERID};
+
+        public static final String CODE = "Code";
+        public static final String TITLE = "Title";
+        public static final String PRICE = "Date of creation";
+
+        public static final String[] BILL_COLS = {CODE, TITLE, PRICE, OWNERID};
+
+        public static final String NAME = "Name";
+        public static final String IDCARDNR = "Id card nr";
+        public static final String PERSNUMCODE = "Personal Num Code";
+        public static final String ADDRESS = "Address";
+
+        public static final String[] CLIENT_COLS = {ID, NAME, IDCARDNR, PERSNUMCODE, ADDRESS};
+
+        public static final String PERSONAL = "Personal";
+        public static final String REAL = "Real";
+        public static final String NOMINAL = "Nominal";
+
+        public static final String USERNAME = "Username";
+        public static final String PASSWORD = "Password";
+        public static final String ROLE = "Role";
+
+        public static final String[] USER_COLS = {ID, USERNAME, PASSWORD, ROLE};
+
+        public static final String ADMINISTRATOR = "Administrator";
+        public static final String EMPLOYEE = "Employee";
+
+
+
+    }
+
 
     public static class Rights {
         public static final String CREATE_USER = "create_user";

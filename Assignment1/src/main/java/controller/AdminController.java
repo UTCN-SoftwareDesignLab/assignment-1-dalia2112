@@ -1,5 +1,7 @@
 package controller;
 
+import mapper.UserTableMapper;
+import model.User;
 import model.validation.Notification;
 import service.user.AuthenticationService;
 import service.user.UserService;
@@ -7,11 +9,14 @@ import view.AdminView;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminController {
     private AdminView adminView;
     private UserService userService;
     private AuthenticationService authenticationService;
+    private UserTableMapper userTableMapper;
 
     public AdminController(AdminView adminView, UserService userService, AuthenticationService authenticationService) {
         this.userService = userService;
@@ -21,7 +26,7 @@ public class AdminController {
         adminView.setAddButtonListener(new AddButtonListener());
         adminView.setUpdateButtonListener(new UpdateButtonListener());
         adminView.setDeleteButtonListener(new DeleteButtonListener());
-        adminView.setTableMouseListener(new TableMouseListener());
+//        adminView.setTableMouseListener(new TableMouseListener());
         WindowAdapter windowAdapter = new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -32,13 +37,27 @@ public class AdminController {
         };
         adminView.addWindowListener(windowAdapter);
         adminView.setVisible(false);
+        userTableMapper = new UserTableMapper();
     }
 
 
     private class ViewButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            adminView.setEmplTable(userService.writeUserTable(adminView.getIdTf()));
+
+            userTableMapper.setUsers(userService.findAll());
+            adminView.setEmplTable(userTableMapper.formatUserTable());
+            if (adminView.getIdTf().chars().allMatch(Character::isDigit) && !adminView.getIdTf().equalsIgnoreCase("")) {
+                List<User> userList = new ArrayList<>();
+                long userId = Long.parseLong(adminView.getIdTf());
+                User user = userService.findById(userId);
+                userList.add(user);
+                userTableMapper.setUsers(userList);
+                adminView.setEmplTable(userTableMapper.formatUserTable());
+            } else {
+                userTableMapper.setUsers(userService.findAll());
+                adminView.setEmplTable(userTableMapper.formatUserTable());
+            }
         }
     }
 
@@ -60,7 +79,8 @@ public class AdminController {
 
                 }
             }
-            adminView.setEmplTable(userService.writeUserTable(adminView.getIdTf()));
+            userTableMapper.setUsers(userService.findAll());
+            adminView.setEmplTable(userTableMapper.formatUserTable());
         }
     }
 
@@ -70,12 +90,12 @@ public class AdminController {
         public void actionPerformed(ActionEvent e) {
             int row = adminView.getRowClicked();
             int col = adminView.getColClicked();
-            String idd = String.valueOf(adminView.getEmplTable().getModel().getValueAt(row, 0));
-            Long id = Long.parseLong(idd);
-            String nv = String.valueOf(adminView.getEmplTable().getValueAt(row, col));
-            System.out.println("New val " + nv);
-            userService.updateUser(id, col, nv);
-            adminView.setEmplTable(userService.writeUserTable(adminView.getIdTf()));
+            userTableMapper.setUsers(userService.findAll());
+            Long id = userTableMapper.getID(row);
+            String newValue = String.valueOf(adminView.getEmplTable().getValueAt(row, col));
+            userService.updateUser(id, col, newValue);
+            userTableMapper.setUsers(userService.findAll());
+            adminView.setEmplTable(userTableMapper.formatUserTable());
         }
     }
 
@@ -85,22 +105,14 @@ public class AdminController {
         public void actionPerformed(ActionEvent e) {
 
             int row = adminView.getRowClicked();
-            String idd = String.valueOf(adminView.getEmplTable().getModel().getValueAt(row, 0));
-            Long id = Long.parseLong(idd);
+            userTableMapper.setUsers(userService.findAll());
+            Long id = userTableMapper.getID(row);
             userService.deleteUser(id);
-            adminView.setEmplTable(userService.writeUserTable(adminView.getIdTf()));
+            userTableMapper.setUsers(userService.findAll());
+            adminView.setEmplTable(userTableMapper.formatUserTable());
         }
     }
 
-    private class TableMouseListener extends MouseAdapter {
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-
-            adminView.setRowClicked(adminView.getEmplTable().getSelectedRow());
-            adminView.setColClicked(adminView.getEmplTable().getSelectedColumn());
-        }
-    }
 
     public void showUI() {
         adminView.setVisible(true);

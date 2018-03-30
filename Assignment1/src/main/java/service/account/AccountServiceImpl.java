@@ -49,18 +49,15 @@ public class AccountServiceImpl implements AccountService {
     }
 
     public void transferMoney(Long idAcc1, Long idAcc2, float sum) {
-        repository.transferMoney(idAcc1, idAcc2, sum);
+        Account account1=findById(idAcc1);
+        Account account2=findById(idAcc2);
+        float sumA1 = account1.getAmount() - sum;
+        float sumA2 = account2.getAmount() + sum;
+        System.out.println("From "+account1.getAmount()+" to "+sumA1);
+        System.out.println("From "+account2.getAmount()+" to "+sumA2);
+        repository.transferMoney(idAcc1, idAcc2, sumA1,sumA2);
     }
 
-//    public Vector<Vector<String>> writeAccountTable(List<Account> data) {
-//        Vector<Vector<String>> tabl = getAllAccountsTable(data);
-//        return tabl;
-//    }
-
-//    public Vector<Vector<String>> writeBillsTable(List<Bill> data) {
-//        Vector<Vector<String>> tabl = getAllBillsTable(data);
-//        return tabl;
-//    }
 
     public void payBill(long accId, String code) {
         repository.payBill(accId, code);

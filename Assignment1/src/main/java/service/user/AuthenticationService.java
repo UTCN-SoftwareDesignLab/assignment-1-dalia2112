@@ -18,6 +18,7 @@ public interface AuthenticationService {
 
     Notification<User> login(String username, String password) throws AuthenticationException;
 
+    User findByUsername(String username);
     boolean logout(User user);
 
 

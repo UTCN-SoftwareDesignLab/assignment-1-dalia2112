@@ -19,6 +19,21 @@ public class UserTableMapper {
         this.users = users;
     }
 
+    public String getColumn(int col){
+        String column = "";
+        switch (col) {
+            case 0:
+                column="id";
+            case 1:
+                column = "username";
+                break;
+            case 2:
+                column = "password";
+                break;
+        }
+        return column;
+    }
+
     public Vector<Vector<String>> formatUserTable() {
         Vector<Vector<String>> usersList = new Vector<>();
         for (User user : users) {

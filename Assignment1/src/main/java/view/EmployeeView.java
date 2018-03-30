@@ -54,8 +54,17 @@ public class EmployeeView extends JDialog {
         setResizable(false);
         setVisible(false);
         setTypeCombo();
+//        scroll.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                super.mouseClicked(e);
+//            }
+//        });
     }
 
+    public void setRowAccClicked(int row){
+        rowAccClicked=row;
+    }
 
     public String getNameorId() {
         return name.getText();
@@ -76,14 +85,13 @@ public class EmployeeView extends JDialog {
 
 
     public int getRowAccClicked() {
-        return accTable.getSelectedRow();
+        return rowAccClicked;
     }
 
 
     public int getColAccClicked() {
         return accTable.getSelectedColumn();
     }
-
 
     public void setTypeCombo() {
         typeCombo.addItem(Constants.Columns.PERSONAL);

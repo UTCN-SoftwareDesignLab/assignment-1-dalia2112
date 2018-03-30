@@ -19,13 +19,16 @@ public class AdminView extends JDialog {
     private JTextField usernameTf;
     private JTextField passTf;
     private JComboBox rolesCombo;
-    private int rowClicked;
-    private int colClicked;
+    private JButton getActivityButton;
+    private JTextField fromDate;
+    private JTextField toDate;
+//    private int rowClicked;
+//    private int colClicked;
 
     public AdminView() {
         setContentPane(contentPane);
         setModal(true);
-        setSize(700, 500);
+        setSize(900, 500);
         setResizable(false);
         setRolesCombo();
     }
@@ -80,6 +83,9 @@ public class AdminView extends JDialog {
         viewEmployeeButton.addActionListener(viewButtonListener);
     }
 
+    public void setActivityButtonListener(ActionListener activityButtonListener) {
+        getActivityButton.addActionListener(activityButtonListener);
+    }
     public void setTableMouseListener(MouseAdapter m) {
         emplTable.addMouseListener(m);
     }
@@ -88,16 +94,29 @@ public class AdminView extends JDialog {
         return emplTable.getSelectedRow();
     }
 
-    public void setRowClicked(int rowClicked) {
-        this.rowClicked = rowClicked;
-    }
+//    public void setRowClicked(int rowClicked) {
+//        this.rowClicked = rowClicked;
+//    }
 
     public int getColClicked() {
         return emplTable.getSelectedColumn();
     }
 
-    public void setColClicked(int colClicked) {
-        this.colClicked = colClicked;
+//    public void setColClicked(int colClicked) {
+//        this.colClicked = colClicked;
+//    }
+
+
+    public String getFromDate() {
+        return fromDate.getText();
+    }
+
+    public String getToDate() {
+        return toDate.getText();
+    }
+
+    public void showActivities(String activities){
+        JOptionPane.showMessageDialog(this,activities);
     }
 
     public void addWindowListener(WindowAdapter windowAdapter) {

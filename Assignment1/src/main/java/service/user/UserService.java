@@ -13,9 +13,11 @@ public interface UserService {
 
     User findById(Long id) /*throws EntityNotFoundException*/;
 
+    User findByUsername(String username);
+
     boolean save(User user);
 
-    void updateUser(Long id, int col, String newval);
+    void updateUser(Long id, String column, String newval);
 
     void deleteUser(Long id);
 

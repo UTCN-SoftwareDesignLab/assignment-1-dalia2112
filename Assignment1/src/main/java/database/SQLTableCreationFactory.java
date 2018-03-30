@@ -24,7 +24,22 @@ public class SQLTableCreationFactory {
                         "    REFERENCES client (id)" +
                         "    ON DELETE CASCADE" +
                         "    ON UPDATE CASCADE);";
-            // ") ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;";
+
+            case ACTIVITY:
+                return "CREATE TABLE IF NOT EXISTS activity (" +
+                        "  id int(11) NOT NULL AUTO_INCREMENT," +
+                        "  description varchar(500) NOT NULL," +
+                        "  date datetime DEFAULT NULL," +
+                        "  userId int(11) NOT NULL,"+
+                        "  PRIMARY KEY (id)," +
+                        "  UNIQUE KEY id_UNIQUE (id)," +
+                        "  INDEX userId_idx (userId ASC)," +
+                        "  CONSTRAINT userId" +
+                        "    FOREIGN KEY (userId)" +
+                        "    REFERENCES user (id)" +
+                        "    ON DELETE CASCADE" +
+                        "    ON UPDATE CASCADE);";
+
 
             case BILL:
                 return "CREATE TABLE IF NOT EXISTS bill (" +

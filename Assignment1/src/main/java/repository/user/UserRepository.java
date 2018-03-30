@@ -14,6 +14,7 @@ public interface UserRepository {
     List<User> findAll();
 
     Notification<User> findByUsernameAndPassword(String username, String password) throws AuthenticationException;
+    User findByUsername(String username);
 
     boolean save(User user);
 

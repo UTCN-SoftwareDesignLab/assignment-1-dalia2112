@@ -22,7 +22,7 @@ public interface AccountRepository {
     void deleteAccount(Long id);
 
 
-    void transferMoney(Long idAcc1, Long idAcc2, float sum);
+    void transferMoney(Long idAcc1, Long idAcc2, float sumA1, float sumA2);
 
 
     List<Bill> findBillByOwner(long id);

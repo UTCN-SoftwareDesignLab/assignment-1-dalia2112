@@ -1,6 +1,8 @@
 import database.DBConnectionFactory;
 import repository.account.AccountRepository;
 import repository.account.AccountRepositoryMySQL;
+import repository.activity.ActivityRepository;
+import repository.activity.ActivityRepositoryMySQL;
 import repository.client.ClientRepository;
 import repository.client.ClientRepositoryMySQL;
 import repository.security.RightsRolesRepository;
@@ -10,6 +12,8 @@ import repository.user.UserRepositoryMySQL;
 //import repository.client.ClientRepositoryMySQL;
 import service.account.AccountService;
 import service.account.AccountServiceImpl;
+import service.activity.ActivityService;
+import service.activity.ActivityServiceImpl;
 import service.client.ClientService;
 import service.client.ClientServiceImpl;
 import service.user.AuthenticationService;
@@ -26,6 +30,8 @@ import java.sql.Connection;
 public class ComponentFactory {
 
     private final AuthenticationService authenticationService;
+    private final ActivityService activityService;
+    private final ActivityRepository activityRepository;
 
     private final UserRepository userRepository;
     private final RightsRolesRepository rightsRolesRepository;
@@ -34,6 +40,7 @@ public class ComponentFactory {
     private final AccountService accountService;
     private final AccountRepository accountRepository;
     private final UserService userService;
+
 
 
     private static ComponentFactory instance;
@@ -55,6 +62,8 @@ public class ComponentFactory {
         this.accountRepository = new AccountRepositoryMySQL(connection);
         this.accountService = new AccountServiceImpl(this.accountRepository);
         this.userService = new UserServiceMySQL(userRepository);
+        this.activityRepository= new ActivityRepositoryMySQL(connection);
+        this.activityService= new ActivityServiceImpl(activityRepository);
     }
 
     public AuthenticationService getAuthenticationService() {
@@ -79,6 +88,10 @@ public class ComponentFactory {
 
     public UserService getUserService() {
         return userService;
+    }
+
+    public ActivityService getActivityService(){
+        return activityService;
     }
 
 //    public static void main(String[] args){

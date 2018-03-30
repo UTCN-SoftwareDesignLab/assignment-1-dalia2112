@@ -55,6 +55,11 @@ public class LoginController {
                     JOptionPane.showMessageDialog(loginView.getContentPane(), "Login successful (" + role.getRole() + ") !");
                     loginView.setVisible(false);
 
+                    //SET THE LOGGED USER
+                    User loggedUser=authenticationService.findByUsername(username);
+                    employeeController.setLoggedUser(loggedUser);
+                    adminController.setLoggedUser(loggedUser);
+
                     if (role.getRole().equalsIgnoreCase("employee")) {   //FOR EMPLOYEEE
                         SwingUtilities.invokeLater(() -> {
                             employeeController.showUI();

@@ -10,12 +10,16 @@ import repository.user.AuthenticationException;
 import repository.user.UserRepository;
 
 import java.security.MessageDigest;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collections;
 import java.util.List;
 
 import static database.Constants.Roles.ADMINISTRATOR;
 import static database.Constants.Roles.CLIENT;
 import static database.Constants.Roles.EMPLOYEE;
+import static database.Constants.Tables.USER;
 
 /**
  * Created by Alex on 11/03/2017.
@@ -61,6 +65,10 @@ public class AuthenticationServiceMySQL implements AuthenticationService {
     @Override
     public boolean logout(User user) {
         return false;
+    }
+
+    public User findByUsername(String username){
+        return userRepository.findByUsername(username);
     }
 
     public Role findRoleForUserId(Long userId) {

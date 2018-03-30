@@ -46,7 +46,7 @@ public class AccountRepositoryMySQL implements AccountRepository {
     }
 
     @Override
-    public Account findById(Long id) {// throws EntityNotFoundException {
+    public Account findById(Long id) {
         try {
             Statement statement = connection.createStatement();
             String sql = "Select * from account where id=" + id;
@@ -61,7 +61,7 @@ public class AccountRepositoryMySQL implements AccountRepository {
         return null;
     }
 
-    public List<Account> findByOwner(Long id) {//} throws EntityNotFoundException {
+    public List<Account> findByOwner(Long id) {
         List<Account> accounts = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
@@ -73,28 +73,27 @@ public class AccountRepositoryMySQL implements AccountRepository {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-//            throw new EntityNotFoundException(id, Account.class.getSimpleName());
         }
         return accounts;
     }
 
     @Override
-    public boolean save(Account account) {
-        try {
-            PreparedStatement insertStatement = connection
-                    .prepareStatement("INSERT INTO account values (null, ?, ?, ?, ?)",
-                            PreparedStatement.RETURN_GENERATED_KEYS
-                    );
-            insertStatement.setString(1, account.getType());
-            insertStatement.setFloat(2, account.getAmount());
-            insertStatement.setDate(3, new java.sql.Date(account.getDate_of_creation().getTime()));
-            insertStatement.setLong(4, account.getOwnerId());
-            insertStatement.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
+    public boolean save(Account account) {try {
+        PreparedStatement insertStatement = connection
+                .prepareStatement("INSERT INTO account values (null, ?, ?, ?, ?)",
+                        PreparedStatement.RETURN_GENERATED_KEYS
+                );
+        insertStatement.setString(1, account.getType());
+        insertStatement.setFloat(2, account.getAmount());
+        insertStatement.setDate(3, new java.sql.Date(account.getDate_of_creation().getTime()));
+        insertStatement.setLong(4, account.getOwnerId());
+        insertStatement.executeUpdate();
+        return true;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+
     }
 
     @Override
@@ -148,12 +147,7 @@ public class AccountRepositoryMySQL implements AccountRepository {
     }
 
 
-    public void transferMoney(Long idAcc1, Long idAcc2, float sum) {
-        Account a1 = findById(idAcc1);
-        Account a2 = findById(idAcc2);
-        float sumA1 = a1.getAmount() - sum;
-        float sumA2 = a2.getAmount() + sum;
-
+    public void transferMoney(Long idAcc1, Long idAcc2, float sumA1,float sumA2) {
 
         try {
             Statement statement = connection.createStatement();

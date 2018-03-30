@@ -97,7 +97,7 @@ public class Constants {
         public static final String TRANSFER_MONEY = "transfer_money";
         public static final String PROCESS_BILLS = "process_bills";
 
-        public static final String[] RIGHTS = new String[]{CREATE_CLIENT, DELETE_CLIENT, UPDATE_CLIENT, CREATE_USER, DELETE_USER, UPDATE_USER, CREATE_ACCOUNT, DELETE_ACCOUNT, UPDATE_ACCOUNT, TRANSFER_MONEY, PROCESS_BILLS};
+        public static final String[] RIGHTS = new String[]{CREATE_CLIENT, DELETE_CLIENT, UPDATE_CLIENT, CREATE_USER, DELETE_USER, UPDATE_USER, CREATE_ACCOUNT, DELETE_ACCOUNT, UPDATE_ACCOUNT, TRANSFER_MONEY, PROCESS_BILLS,GENERATE_REPORT};
     }
 
     public static Map<String, List<String>> getRolesRights() {

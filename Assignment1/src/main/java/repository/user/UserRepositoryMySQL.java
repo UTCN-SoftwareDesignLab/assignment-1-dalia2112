@@ -73,6 +73,20 @@ public class UserRepositoryMySQL implements UserRepository {
         }
     }
 
+    public User findByUsername(String username){
+        try {
+            Statement statement = connection.createStatement();
+            String fetchUserSql = "Select * from `" + USER + "` where `username`=\'" + username + "\'";
+            ResultSet userResultSet = statement.executeQuery(fetchUserSql);
+            if (userResultSet.next()) {
+                return getUserFromResultSet(userResultSet);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @Override
     public boolean save(User user) {
         try {

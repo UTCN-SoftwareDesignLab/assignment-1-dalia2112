@@ -1,10 +1,8 @@
 package service.user;
 
 import model.User;
-import repository.EntityNotFoundException;
 import repository.user.UserRepository;
 
-import javax.swing.*;
 import java.util.List;
 import java.util.Vector;
 
@@ -23,25 +21,16 @@ public class UserServiceMySQL implements UserService {
         return userRepository.findById(id);
     }
 
+    public User findByUsername(String username) /*throws EntityNotFoundException*/ {
+        return userRepository.findByUsername(username);
+    }
+
     public boolean save(User user) {
         return userRepository.save(user);
     }
 
-    public void updateUser(Long id, int col, String newval) {
+    public void updateUser(Long id, String column, String newval) {
 
-        String column = "";
-        switch (col) {
-            case 0:
-                return;
-            case 1:
-                column = "username";
-                break;
-            case 2:
-                column = "password";
-                break;
-            default:
-                column = "username";
-        }
         userRepository.updateUser(id, column, newval);
     }
 

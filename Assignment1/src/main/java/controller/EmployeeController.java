@@ -5,23 +5,32 @@ import mapper.AccountTableMapper;
 import mapper.BillTableMapper;
 import mapper.ClientTableMapper;
 import model.Account;
+import model.Activity;
 import model.Client;
 
+import model.User;
+import model.builder.ActivityBuilder;
 import model.builder.ClientBuilder;
 import model.builder.AccountBuilder;
+import model.builder.UserBuilder;
 import model.validation.AccountValidator;
 import model.validation.ClientValidator;
 import service.account.AccountService;
+import service.activity.ActivityService;
 import service.client.ClientService;
 import view.EmployeeView;
 
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 public class EmployeeController {
+
+    private User loggedUser;
+    private ActivityService activityService;
 
     private EmployeeView employeeView;
     private ClientService clientService;
@@ -30,7 +39,7 @@ public class EmployeeController {
     private BillTableMapper billTableMapper;
     private ClientTableMapper clientTableMapper;
 
-    public EmployeeController(EmployeeView employeeView, ClientService clientService, AccountService accountService) {
+    public EmployeeController(EmployeeView employeeView, ClientService clientService, AccountService accountService, ActivityService activityService) {
         this.employeeView = employeeView;
         this.clientService = clientService;
         this.accountService = accountService;
@@ -46,13 +55,14 @@ public class EmployeeController {
         employeeView.setOwnerComboActionListener(new OwnerComboActionListener());
         employeeView.setShowBillsButtonListener(new ShowBillsButtonListener());
         employeeView.setPayBillsButtonListener(new PayBillsButtonListener());
+        employeeView.setAccTableMouseListener(new AccTableMouseListener());
         employeeView.setVisible(false);
         accountTableMapper = new AccountTableMapper();
         setAccToTransfCombo(accountService.findAll());
         employeeView.addOwnerCombo(clientService.setOwnerCombo());
         billTableMapper = new BillTableMapper();
         clientTableMapper = new ClientTableMapper();
-
+        this.activityService = activityService;
     }
 
 
@@ -77,17 +87,16 @@ public class EmployeeController {
             Long id = clientTableMapper.getClientId(row);
             String newValue = String.valueOf(employeeView.getTable().getValueAt(row, col));
             clientService.updateClient(id, col, newValue);
-            clientTableMapper.updateClient(row,col,newValue);
-            if (employeeView.getNameorId().chars().allMatch(Character::isDigit) && !employeeView.getNameorId().equalsIgnoreCase("")){
-                List<Client> clientsList=new ArrayList<>();
-                Client client=clientService.findById(id);
-                clientsList.add(client);
-                clientTableMapper.setClients(clientsList);
-                employeeView.setTable(clientTableMapper.formatClientTable());
-            }
-            else{
-                clientTableMapper.setClients(clientService.findAll());
-            }
+            clientTableMapper.updateClient(row, col, newValue);
+//            if (employeeView.getNameorId().chars().allMatch(Character::isDigit) && !employeeView.getNameorId().equalsIgnoreCase("")) {
+//                List<Client> clientsList = new ArrayList<>();
+//                Client client = clientService.findById(id);
+//                clientsList.add(client);
+//                clientTableMapper.setClients(clientsList);
+//                employeeView.setTable(clientTableMapper.formatClientTable());
+//            } else {
+            clientTableMapper.setClients(clientService.findAll());
+//            }
             employeeView.addOwnerCombo(clientService.setOwnerCombo());
         }
     }
@@ -146,6 +155,7 @@ public class EmployeeController {
             clientTableMapper.setClients(clientService.findAll());
             employeeView.setTable(clientTableMapper.formatClientTable());
             employeeView.addOwnerCombo(clientService.setOwnerCombo());
+            addActivity(" created  customer " + c.getName());
         }
     }
 
@@ -191,6 +201,7 @@ public class EmployeeController {
         @Override
         public void actionPerformed(ActionEvent e) {
 
+            accountTableMapper.setAccounts(accountService.findAll());
             employeeView.setAccTable(Constants.Columns.ACCOUNT_COLS, accountTableMapper.formatAccountTable());
         }
     }
@@ -209,18 +220,19 @@ public class EmployeeController {
         }
     }
 
-
     private class TransferButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             //FIND client from whose account will be transferred money
             long ownerId = getIDFromCombos(employeeView.getOwnerCombo());
+            System.out.println("Owner " + ownerId);
             accountTableMapper.setAccounts(accountService.findByOwner(ownerId));
             employeeView.setAccTable(Constants.Columns.ACCOUNT_COLS, accountTableMapper.formatAccountTable());
 
             //find the clicked account's id
             int row = employeeView.getRowAccClicked();
+            System.out.println("Row CLICKED " + row + " to " + accountTableMapper.getAccountId(row));
             long accId1 = accountTableMapper.getAccountId(row);
 
             //choose the 2nd account from combo box
@@ -268,19 +280,46 @@ public class EmployeeController {
             String billToPayCode = billTableMapper.getBillCode(employeeView.getRowAccClicked());
             accountService.payBill(accId, billToPayCode);
 
+            billTableMapper.setBills(accountService.findBillByOwner(ownerId));
             employeeView.setBillTable(billTableMapper.formatBillTable());
             accountTableMapper.setAccounts(accountService.findByOwner(ownerId));
             setAccToTransfCombo(accountService.findByOwner(ownerId));
         }
     }
 
+
+    private class AccTableMouseListener extends MouseAdapter {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            employeeView.setRowAccClicked(employeeView.getAccTable().getSelectedRow());
+            System.out.printf("" + employeeView.getAccTable().getSelectedRow());
+            super.mouseClicked(e);
+        }
+    }
+
     public void showUI() {
+
         employeeView.setVisible(true);
     }
 
-    public long getIDFromCombos(String content){
-        String[] tokens=content.split(" ");
+    public void setLoggedUser(User loggedUser) {
+        this.loggedUser = loggedUser;
+        System.out.println(loggedUser.getUsername());
+    }
+
+    public long getIDFromCombos(String content) {
+        String[] tokens = content.split(" ");
         return Long.parseLong(tokens[0]);
+    }
+
+    private void addActivity(String description) {
+        Activity activity = new ActivityBuilder()
+                .setDescription("User " + loggedUser.getUsername() + " : " + description)
+                .setDate(new Date())
+                .setUserId(loggedUser.getId())
+                .build();
+        activityService.addActivity(activity);
     }
 
 }

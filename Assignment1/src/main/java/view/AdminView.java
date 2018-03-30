@@ -31,6 +31,7 @@ public class AdminView extends JDialog {
         setSize(900, 500);
         setResizable(false);
         setRolesCombo();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     public void setRolesCombo() {

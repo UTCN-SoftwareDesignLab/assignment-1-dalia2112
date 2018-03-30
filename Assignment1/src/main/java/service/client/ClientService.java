@@ -23,7 +23,7 @@ public interface ClientService {
 
     void deleteClient(Long id);
 
-    void updateClient(Long id, int col, String newval);
+    void updateClient(Long id, String col, String newval);
 
 
     DefaultComboBoxModel setOwnerCombo();

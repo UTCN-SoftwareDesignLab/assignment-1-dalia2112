@@ -9,7 +9,6 @@ public class AccountValidator {
 
     private final float MINSUM = 10;
 
-    //    private final Account account;
     public List<String> getErrors() {
         return errors;
     }
@@ -17,24 +16,49 @@ public class AccountValidator {
     private final List<String> errors;
 
     public AccountValidator() {
-//        this.account = account;
         errors = new ArrayList<>();
     }
 
-//    public boolean validate(long sumToTransfer) {
-//        validateTransfSum(sumToTransfer,transfer);
-//        validateAmount(account.getAmount());
-//        return errors.isEmpty();
-//    }
 
-    public boolean validateTransfSum(float amount, float sumToTransfer, boolean transfer) {
-        if (amount - sumToTransfer < MINSUM)
-            if (transfer)
-                errors.add("Cannot trasfer from this account! Not enough money!");
-            else
-                errors.add("Not enough money! Provide at least 10 lei!");
-
-        return errors.isEmpty();
+    public boolean validateTransfSum(float amount, float sumToTransfer) {
+        if (amount - sumToTransfer < MINSUM) {
+            errors.add("Cannot transfer/pay from this account! Not enough money!");
+            return false;
+        }
+        return true;
     }
 
+    public boolean validateAmount(float amount) {
+        if (amount < MINSUM) {
+            errors.add("Not enough money! Provide at least 10 lei!");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validateUpdate(int column, String newValue) {
+        switch (column) {
+            case 0:
+                errors.add("Cannot change id!");
+                break;
+            case 1:
+                errors.add("Cannot change type!");
+                break;
+            case 2: return validateAmount(Float.parseFloat(newValue));
+            case 3:
+                errors.add("Cannot change date!");
+                break;
+            case 4:
+                errors.add("Cannot change owner ID!");
+                break;
+        }
+        return false;
+    }
+
+    public String getFormattedErrors() {
+        String result = "";
+        for (String error : getErrors())
+            result += error + "\n";
+        return result;
+    }
 }

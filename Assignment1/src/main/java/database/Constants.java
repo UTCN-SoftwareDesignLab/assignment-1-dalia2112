@@ -112,4 +112,28 @@ public class Constants {
         return ROLES_RIGHTS;
     }
 
+    public static class Activities{
+        public static final String LOGIN=" logged in ";
+        public static final String LOGOUT=" logged out ";
+        public static final String CREATE_USER=" created user ";
+        public static final String CREATE_CLIENT=" created client ";
+        public static final String CREATE_ACCOUNT=" created account for client with id ";
+        public static final String VIEW_USER=" watched user ";
+        public static final String VIEW_CLIENT=" watched client ";
+        public static final String VIEW_ACCOUNT=" watched all accounts ";
+        public static final String UPDATE_USER=" updated user with id ";
+        public static final String UPDATE_CLIENT=" updated client with id ";
+        public static final String UPDATE_ACCOUNT=" updated account with id ";
+        public static final String DELETE_USER=" deleted user with id ";
+        public static final String DELETE_CLIENT=" deleted client with id ";
+        public static final String DELETE_ACCOUNT=" deleted account with id ";
+        public static final String TRANSFER_MONEY1=" transfered money from account ";
+        public static final String TRANSFER_MONEY2=" to account ";
+        public static final String PAY_BILL1=" payed bill ";
+        public static final String PAY_BILL2=" of client ";
+        public static final String PAY_BILL3=" from account ";
+
+
+
+    }
 }

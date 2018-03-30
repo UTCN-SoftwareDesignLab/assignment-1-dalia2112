@@ -4,15 +4,11 @@ import database.Constants;
 import mapper.AccountTableMapper;
 import mapper.BillTableMapper;
 import mapper.ClientTableMapper;
-import model.Account;
-import model.Activity;
-import model.Client;
+import model.*;
 
-import model.User;
 import model.builder.ActivityBuilder;
 import model.builder.ClientBuilder;
 import model.builder.AccountBuilder;
-import model.builder.UserBuilder;
 import model.validation.AccountValidator;
 import model.validation.ClientValidator;
 import service.account.AccountService;
@@ -86,18 +82,16 @@ public class EmployeeController {
             clientTableMapper.setClients(clientService.findAll());
             Long id = clientTableMapper.getClientId(row);
             String newValue = String.valueOf(employeeView.getTable().getValueAt(row, col));
-            clientService.updateClient(id, col, newValue);
+            ClientValidator clientValidator = new ClientValidator();
+            if (!clientValidator.validateUpdate(col, newValue)) {
+                JOptionPane.showMessageDialog(null, clientValidator.getFormattedErrors());
+                return;
+            }
+            clientService.updateClient(id,clientTableMapper.getColumnName(col), newValue);
             clientTableMapper.updateClient(row, col, newValue);
-//            if (employeeView.getNameorId().chars().allMatch(Character::isDigit) && !employeeView.getNameorId().equalsIgnoreCase("")) {
-//                List<Client> clientsList = new ArrayList<>();
-//                Client client = clientService.findById(id);
-//                clientsList.add(client);
-//                clientTableMapper.setClients(clientsList);
-//                employeeView.setTable(clientTableMapper.formatClientTable());
-//            } else {
             clientTableMapper.setClients(clientService.findAll());
-//            }
             employeeView.addOwnerCombo(clientService.setOwnerCombo());
+            addActivity(Constants.Activities.UPDATE_CLIENT + id);
         }
     }
 
@@ -113,15 +107,26 @@ public class EmployeeController {
             employeeView.setTable(clientTableMapper.formatClientTable());
             clientService.setOwnerCombo();
             employeeView.addOwnerCombo(clientService.setOwnerCombo());
+            addActivity(Constants.Activities.DELETE_CLIENT + id);
         }
     }
 
     private class ViewButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            clientTableMapper.setClients(clientService.findAll());
-            employeeView.setTable(clientTableMapper.formatClientTable());
-            employeeView.addOwnerCombo(clientService.setOwnerCombo());
+            if (employeeView.getNameorId().chars().allMatch(Character::isDigit) && !employeeView.getNameorId().equalsIgnoreCase("")) {
+                List<Client> clientsList = new ArrayList<>();
+                Client client = clientService.findById(Long.parseLong(employeeView.getNameorId()));
+                clientsList.add(client);
+                clientTableMapper.setClients(clientsList);
+                employeeView.setTable(clientTableMapper.formatClientTable());
+                addActivity(Constants.Activities.VIEW_CLIENT + employeeView.getNameorId());
+            } else {
+                clientTableMapper.setClients(clientService.findAll());
+                employeeView.setTable(clientTableMapper.formatClientTable());
+                employeeView.addOwnerCombo(clientService.setOwnerCombo());
+                addActivity(Constants.Activities.VIEW_CLIENT + " : all clients");
+            }
         }
     }
 
@@ -131,26 +136,23 @@ public class EmployeeController {
         public void actionPerformed(ActionEvent e) {
             String clientname = employeeView.getClientName();
             String clientAddress = employeeView.getClientAddress();
-            Long clientIDcard = employeeView.getClientId_card_nr();
+            String clientIDcardString = employeeView.getClientId_card_nr();
             String clientPersNumCodeString = employeeView.getClientPersNr();
-            long clientPersNum = 0;
-            if (clientPersNumCodeString.chars().allMatch(Character::isDigit))
-                clientPersNum = Long.parseLong(clientPersNumCodeString);
-            else {
-                JOptionPane.showMessageDialog(null, "Personal numerical code must contain only digits!");
+            long clientPersNum = 0,clientIdCardNr=0;
+
+            ClientValidator clientValidator = new ClientValidator();
+            if (!clientValidator.validateIdCardNr(clientIDcardString) || !clientValidator.validatePersNumCode(clientPersNumCodeString)) {
+                JOptionPane.showMessageDialog(null, clientValidator.getFormattedErrors());
+                return;
             }
+            clientPersNum = Long.parseLong(clientPersNumCodeString);
+            clientIdCardNr = Long.parseLong(clientIDcardString);
             Client c = new ClientBuilder()
                     .setName(clientname)
-                    .setIdCard(clientIDcard)
+                    .setIdCard(clientIdCardNr)
                     .setPersNumCode(clientPersNum)
                     .setAddress(clientAddress)
                     .build();
-            ClientValidator clientValidator = new ClientValidator(c);
-            clientValidator.validate();
-            if (!clientValidator.getErrors().isEmpty()) {
-                JOptionPane.showMessageDialog(null, clientValidator.getErrors());
-                return;
-            }
             clientService.save(c);
             clientTableMapper.setClients(clientService.findAll());
             employeeView.setTable(clientTableMapper.formatClientTable());
@@ -167,10 +169,18 @@ public class EmployeeController {
             int col = employeeView.getColAccClicked();
             String idd = String.valueOf(accountTableMapper.getAccountId(row));
             Long id = Long.parseLong(idd);
-            String nv = String.valueOf(employeeView.getAccTable().getValueAt(row, col));
-            accountService.updateAccount(id, accountTableMapper.getColumnName(col), nv);
-            accountTableMapper.updateAccountFromTable(row, col, nv);
+            String newValue = String.valueOf(employeeView.getAccTable().getValueAt(row, col));
+            AccountValidator accountValidator = new AccountValidator();
+            if (!accountValidator.validateUpdate(col, newValue)) {
+                JOptionPane.showMessageDialog(null, accountValidator.getFormattedErrors());
+                employeeView.setAccTable(Constants.Columns.ACCOUNT_COLS, accountTableMapper.formatAccountTable());
+                return;
+            }
+            accountService.updateAccount(id, accountTableMapper.getColumnName(col), newValue);
+            accountTableMapper.updateAccountFromTable(row, col, newValue);
             employeeView.setAccTable(Constants.Columns.ACCOUNT_COLS, accountTableMapper.formatAccountTable());
+            setAccToTransfCombo(accountService.findAll());
+            addActivity(Constants.Activities.UPDATE_ACCOUNT + id);
         }
     }
 
@@ -181,18 +191,21 @@ public class EmployeeController {
             String type = employeeView.getTypeCombo();
             long ownerid = getIDFromCombos(employeeView.getOwnerCombo());
             float amount = employeeView.getAmount();
-            Account a = new AccountBuilder()
+            Account account = new AccountBuilder()
                     .setType(type)
                     .setAmount(amount)
                     .setOwner(ownerid)
                     .build();
             AccountValidator accountValidator = new AccountValidator();
-            if (accountValidator.validateTransfSum(amount, 0, false)) {
-                accountService.save(a);
-                accountTableMapper.setAccounts(accountService.findAll());
-                employeeView.setAccTable(Constants.Columns.ACCOUNT_COLS, accountTableMapper.formatAccountTable());
-                setAccToTransfCombo(accountService.findAll());
-            } else JOptionPane.showMessageDialog(employeeView, accountValidator.getErrors().toString());
+            if (!accountValidator.validateAmount(account.getAmount())) {
+                JOptionPane.showMessageDialog(null, accountValidator.getFormattedErrors());
+                return;
+            }
+            accountService.save(account);
+            accountTableMapper.setAccounts(accountService.findAll());
+            employeeView.setAccTable(Constants.Columns.ACCOUNT_COLS, accountTableMapper.formatAccountTable());
+            setAccToTransfCombo(accountService.findAll());
+            addActivity(Constants.Activities.CREATE_ACCOUNT + ownerid);
         }
     }
 
@@ -203,6 +216,7 @@ public class EmployeeController {
 
             accountTableMapper.setAccounts(accountService.findAll());
             employeeView.setAccTable(Constants.Columns.ACCOUNT_COLS, accountTableMapper.formatAccountTable());
+            addActivity(Constants.Activities.VIEW_ACCOUNT);
         }
     }
 
@@ -217,6 +231,7 @@ public class EmployeeController {
             accountService.deleteAccount(id);
             accountTableMapper.deleteAccountFromTable(row);
             employeeView.setAccTable(Constants.Columns.ACCOUNT_COLS, accountTableMapper.formatAccountTable());
+            addActivity(Constants.Activities.DELETE_ACCOUNT + id);
         }
     }
 
@@ -226,25 +241,30 @@ public class EmployeeController {
         public void actionPerformed(ActionEvent e) {
             //FIND client from whose account will be transferred money
             long ownerId = getIDFromCombos(employeeView.getOwnerCombo());
-            System.out.println("Owner " + ownerId);
             accountTableMapper.setAccounts(accountService.findByOwner(ownerId));
             employeeView.setAccTable(Constants.Columns.ACCOUNT_COLS, accountTableMapper.formatAccountTable());
 
             //find the clicked account's id
             int row = employeeView.getRowAccClicked();
-            System.out.println("Row CLICKED " + row + " to " + accountTableMapper.getAccountId(row));
             long accId1 = accountTableMapper.getAccountId(row);
-
+            Account account1 = accountService.findById(accId1);
             //choose the 2nd account from combo box
             long accId2 = getIDFromCombos(employeeView.getAccToTransfComb());
-
-            float amount = employeeView.getAmount();
-
-
-            accountService.transferMoney(accId1, accId2, amount);
+            float amountToTransfer = employeeView.getAmount();
+            if (accId1 == accId2) {
+                JOptionPane.showMessageDialog(null, "Cannot transfer to the same account");
+                return;
+            }
+            AccountValidator accountValidator = new AccountValidator();
+            if (!accountValidator.validateTransfSum(account1.getAmount(), amountToTransfer)) {
+                JOptionPane.showMessageDialog(null, accountValidator.getFormattedErrors());
+                return;
+            }
+            accountService.transferMoney(accId1, accId2, amountToTransfer);
             accountTableMapper.setAccounts(accountService.findAll());
             employeeView.setAccTable(Constants.Columns.ACCOUNT_COLS, accountTableMapper.formatAccountTable());
             setAccToTransfCombo(accountService.findAll());
+            addActivity(Constants.Activities.TRANSFER_MONEY1 + accId1 + Constants.Activities.TRANSFER_MONEY2 + accId2 + " " + amountToTransfer + " lei.");
         }
     }
 
@@ -277,13 +297,21 @@ public class EmployeeController {
             long ownerId = getIDFromCombos(employeeView.getOwnerCombo());
             billTableMapper.setBills(accountService.findBillByOwner(ownerId));
             long accId = getIDFromCombos(employeeView.getAccToTransfComb());
+            Account account = accountService.findById(accId);
             String billToPayCode = billTableMapper.getBillCode(employeeView.getRowAccClicked());
+            Bill bill = accountService.findBillByCode(billToPayCode);
+
+            AccountValidator accountValidator = new AccountValidator();
+            if (!accountValidator.validateTransfSum(account.getAmount(), bill.getPrice())) {
+                JOptionPane.showMessageDialog(null, accountValidator.getFormattedErrors());
+                return;
+            }
             accountService.payBill(accId, billToPayCode);
 
             billTableMapper.setBills(accountService.findBillByOwner(ownerId));
             employeeView.setBillTable(billTableMapper.formatBillTable());
-            accountTableMapper.setAccounts(accountService.findByOwner(ownerId));
-            setAccToTransfCombo(accountService.findByOwner(ownerId));
+            setAccToTransfCombo(accountService.findByOwner(ownerId));  //update accounts in combo box after payment
+            addActivity(Constants.Activities.PAY_BILL1 + billToPayCode + Constants.Activities.PAY_BILL2 + ownerId + Constants.Activities.PAY_BILL3 + accId);
         }
     }
 
@@ -293,19 +321,26 @@ public class EmployeeController {
         @Override
         public void mouseClicked(MouseEvent e) {
             employeeView.setRowAccClicked(employeeView.getAccTable().getSelectedRow());
-            System.out.printf("" + employeeView.getAccTable().getSelectedRow());
             super.mouseClicked(e);
         }
     }
 
     public void showUI() {
-
+        addActivity(Constants.Activities.LOGIN);
         employeeView.setVisible(true);
+    }
+
+    public void hideUI() {
+        addActivity(Constants.Activities.LOGOUT);
+        employeeView.setVisible(false);
     }
 
     public void setLoggedUser(User loggedUser) {
         this.loggedUser = loggedUser;
-        System.out.println(loggedUser.getUsername());
+    }
+
+    public void setWindowListener(WindowAdapter windowAdapter) {
+        employeeView.addWindowListener(windowAdapter);
     }
 
     public long getIDFromCombos(String content) {

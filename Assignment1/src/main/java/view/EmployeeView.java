@@ -35,6 +35,7 @@ public class EmployeeView extends JDialog {
     private JComboBox accToTransfComb;
     private JButton payBillsButton;
     private JButton showBillsButton;
+    private JButton logoffButton;
     private int rowClicked;
     private int colClicked;
     private int rowAccClicked;
@@ -54,12 +55,7 @@ public class EmployeeView extends JDialog {
         setResizable(false);
         setVisible(false);
         setTypeCombo();
-//        scroll.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                super.mouseClicked(e);
-//            }
-//        });
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     public void setRowAccClicked(int row){
@@ -179,8 +175,8 @@ public class EmployeeView extends JDialog {
         return Long.parseLong(amount.getText());
     }
 
-    public Long getClientId_card_nr() {
-        return Long.parseLong(idcardnr.getText());
+    public String getClientId_card_nr() {
+        return idcardnr.getText();
     }
 
     public String getClientPersNr() {
@@ -205,10 +201,6 @@ public class EmployeeView extends JDialog {
 
     public void setTransferButtonListener(ActionListener transferClientListener) {
         transferMoneyButton.addActionListener(transferClientListener);
-    }
-
-    public void setTableMouseListener(MouseAdapter m) {
-        table.addMouseListener(m);
     }
 
     public void setViewAccountButtonListener(ActionListener viewAccounListener) {
@@ -239,4 +231,11 @@ public class EmployeeView extends JDialog {
         payBillsButton.addActionListener(payBillsButtonListener);
     }
 
+    public void logoffButtonListener(ActionListener logoffButtonListener) {
+        logoffButton.addActionListener(logoffButtonListener);
+    }
+
+    public void addWindowListener(WindowAdapter windowAdapter) {
+        super.addWindowListener(windowAdapter);
+    }
 }

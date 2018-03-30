@@ -22,17 +22,12 @@ public interface AccountService {
 
     void deleteAccount(Long id);
 
-//    Vector<Vector<String>> getAllAccountsTable(List<Account> a);
 
     void transferMoney(Long idAcc1, Long idAcc2, float sum);
 
-//    Vector<Vector<String>> writeAccountTable(List<Account> data);
 
-//    Vector<Vector<String>> getAllBillsTable(List<Bill> a);
+    List<Bill> findBillByOwner(long id);
 
-    public List<Bill> findBillByOwner(long id);
-
-//    Vector<Vector<String>> writeBillsTable(List<Bill> data);
 
     void payBill(long accId, String code);
 

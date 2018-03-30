@@ -27,6 +27,11 @@ public class UserValidator {
         errors = new ArrayList<>();
     }
 
+    public UserValidator() {
+        user=null;
+        errors = new ArrayList<>();
+    }
+
     public boolean validate() {
         validateUsername(user.getUsername());
         validatePassword(user.getPassword());
@@ -71,5 +76,25 @@ public class UserValidator {
         return false;
     }
 
+    public boolean validateUpdate(int column, String newValue) {
+        switch (column) {
+            case 0:
+                errors.add("Cannot change id!");
+                break;
+            case 1:
+                return Pattern.compile(EMAIL_VALIDATION_REGEX).matcher(newValue).matches();
+            case 2:
+                validatePassword(newValue);
+                return errors.isEmpty();
 
+        }
+        return false;
+    }
+
+    public String getFormattedErrors() {
+        String result = "";
+        for (String error : getErrors())
+            result += error + "\n";
+        return result;
+    }
 }

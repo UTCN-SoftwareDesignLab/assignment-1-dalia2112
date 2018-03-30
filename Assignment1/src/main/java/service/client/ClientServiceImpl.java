@@ -54,56 +54,30 @@ public class ClientServiceImpl implements ClientService {
         repository.deleteClient(id);
     }
 
-    public void updateClient(Long id, int col, String newval) {
-
-        String column = "";
-        switch (col) {
-            case 0:
-                break;
-            case 1:
-                column = "name";
-                break;
-            case 2:
-                column = "id_card_nr";
-                ClientValidator clientValidator = new ClientValidator();
-                if (!clientValidator.validateIdCardNr(Long.parseLong(newval))) {
-                    return;
-                }
-                break;
-            case 3:
-                column = "pers_num_code";
-                ClientValidator clientValidato = new ClientValidator();
-                if (!clientValidato.validatePersNumCode(Long.parseLong(newval))) {
-                    return;
-                }
-                break;
-            case 4:
-                column = "address";
-                break;
-            default:
-                column = "name";
-        }
-        repository.updateClient(id, column, newval);
+    @Override
+    public void updateClient(Long id, String col, String newval) {
+        repository.updateClient(id, col, newval);
     }
 
-    public Vector<Vector<String>> writeClientTable(String nameOrId) {
-        if (nameOrId.chars().allMatch(Character::isDigit) && !nameOrId.equalsIgnoreCase("")) {
 
-            Vector<Vector<String>> data = new Vector<>();
-            Vector<String> d = new Vector<>();
-            Long id = Long.parseLong(nameOrId);
-            Client u = findById(id);
-            d.add(u.getId().toString());
-            d.add(u.getName());
-            d.add(u.getId_card_nr().toString());
-            d.add(u.getPers_num_code().toString());
-            d.add(u.getAddress());
-            data.add(d);
-            return data;
-        } else {
-            return getAllClientsTable();
-        }
-    }
+//    public Vector<Vector<String>> writeClientTable(String nameOrId) {
+//        if (nameOrId.chars().allMatch(Character::isDigit) && !nameOrId.equalsIgnoreCase("")) {
+//
+//            Vector<Vector<String>> data = new Vector<>();
+//            Vector<String> d = new Vector<>();
+//            Long id = Long.parseLong(nameOrId);
+//            Client u = findById(id);
+//            d.add(u.getId().toString());
+//            d.add(u.getName());
+//            d.add(u.getId_card_nr().toString());
+//            d.add(u.getPers_num_code().toString());
+//            d.add(u.getAddress());
+//            data.add(d);
+//            return data;
+//        } else {
+//            return getAllClientsTable();
+//        }
+//    }
 
     public DefaultComboBoxModel setOwnerCombo() {
         Vector<Vector<String>> clients = getAllClientsTable();

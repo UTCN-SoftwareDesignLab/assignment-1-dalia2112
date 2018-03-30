@@ -53,8 +53,6 @@ public class AccountServiceImpl implements AccountService {
         Account account2=findById(idAcc2);
         float sumA1 = account1.getAmount() - sum;
         float sumA2 = account2.getAmount() + sum;
-        System.out.println("From "+account1.getAmount()+" to "+sumA1);
-        System.out.println("From "+account2.getAmount()+" to "+sumA2);
         repository.transferMoney(idAcc1, idAcc2, sumA1,sumA2);
     }
 

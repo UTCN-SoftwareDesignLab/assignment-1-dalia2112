@@ -1,24 +1,14 @@
 package repository.account;
 
-import database.Constants;
 import model.Account;
 import model.Bill;
 import model.builder.AccountBuilder;
 import model.builder.BillBuilder;
 import model.validation.AccountValidator;
-import org.joda.time.DateTime;
-import repository.EntityNotFoundException;
 
-import javax.swing.*;
-import java.awt.*;
 import java.sql.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 public class AccountRepositoryMySQL implements AccountRepository {
     private final Connection connection;
@@ -194,14 +184,10 @@ public class AccountRepositoryMySQL implements AccountRepository {
 
 
     public void payBill(long accId, String code) {
-        JOptionPane.showMessageDialog(null, "Account ID= " + accId + " bill code= " + code);
-        Account a = findById(accId);
-        Bill b = findBillByCode(code);
+        Account account = findById(accId);
+        Bill bill = findBillByCode(code);
         AccountValidator accountValidator = new AccountValidator();
-        float k = a.getAmount();
-        float l = b.getPrice();
-        float sumA1 = a.getAmount() - b.getPrice();
-
+        float sumA1 = account.getAmount() - bill.getPrice();
 
         try {
             Statement statement = connection.createStatement();

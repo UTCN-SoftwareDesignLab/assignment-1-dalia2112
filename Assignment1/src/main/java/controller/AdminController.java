@@ -1,17 +1,21 @@
 package controller;
 
+import database.Constants;
+import jdk.nashorn.internal.scripts.JO;
 import mapper.UserTableMapper;
 import model.Activity;
 import model.User;
 import model.builder.ActivityBuilder;
 import model.builder.UserBuilder;
 import model.validation.Notification;
+import model.validation.UserValidator;
 import service.activity.ActivityService;
 import service.user.AuthenticationService;
 import service.user.UserService;
 import view.AdminView;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,16 +41,6 @@ public class AdminController {
         adminView.setUpdateButtonListener(new UpdateButtonListener());
         adminView.setDeleteButtonListener(new DeleteButtonListener());
         adminView.setActivityButtonListener(new ActivityButtonListener());
-//        adminView.setTableMouseListener(new TableMouseListener());
-        WindowAdapter windowAdapter = new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                System.exit(0);
-                //TODO show LogInUI
-                //TODO track activity
-            }
-        };
-        adminView.addWindowListener(windowAdapter);
         adminView.setVisible(false);
         userTableMapper = new UserTableMapper();
     }
@@ -65,11 +59,11 @@ public class AdminController {
                 userList.add(user);
                 userTableMapper.setUsers(userList);
                 adminView.setEmplTable(userTableMapper.formatUserTable());
-                addActivity(" watched user "+user.getUsername());
+                addActivity(Constants.Activities.VIEW_USER+user.getUsername());
             } else {
                 userTableMapper.setUsers(userService.findAll());
                 adminView.setEmplTable(userTableMapper.formatUserTable());
-                addActivity(" watched all users");
+                addActivity(Constants.Activities.VIEW_USER+" : all users");
             }
         }
     }
@@ -84,6 +78,7 @@ public class AdminController {
             Notification<Boolean> registerNotification = authenticationService.registerUser(username, pass, role);
             if (registerNotification.hasErrors()) {
                 JOptionPane.showMessageDialog(adminView.getContentPane(), registerNotification.getFormattedErrors());
+                return;
             } else {
                 if (!registerNotification.getResult()) {
                     JOptionPane.showMessageDialog(adminView.getContentPane(), "Registration not successful, please try again later.");
@@ -107,6 +102,11 @@ public class AdminController {
             userTableMapper.setUsers(userService.findAll());
             Long id = userTableMapper.getID(row);
             String newValue = String.valueOf(adminView.getEmplTable().getValueAt(row, col));
+            UserValidator userValidator=new UserValidator();
+            if(!userValidator.validateUpdate(col,newValue)){
+                JOptionPane.showMessageDialog(null,userValidator.getFormattedErrors());
+                return;
+            }
             userService.updateUser(id, userTableMapper.getColumn(col), newValue);
             userTableMapper.setUsers(userService.findAll());
             adminView.setEmplTable(userTableMapper.formatUserTable());
@@ -162,10 +162,14 @@ public class AdminController {
     }
 
     public void showUI() {
-
+        addActivity(" logged in");
         adminView.setVisible(true);
-
     }
+    public void hideUI(){
+        addActivity(" logged off.");
+        adminView.setVisible(false);
+    }
+    public void setWindowListener(WindowAdapter windowAdapter){adminView.addWindowListener(windowAdapter);}
 
     public void setLoggedUser(User loggedUser){
         this.loggedUser = loggedUser;

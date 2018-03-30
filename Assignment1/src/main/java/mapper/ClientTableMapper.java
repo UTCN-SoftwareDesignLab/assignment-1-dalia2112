@@ -2,6 +2,7 @@ package mapper;
 
 import model.Account;
 import model.Client;
+import model.validation.ClientValidator;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -80,4 +81,19 @@ public class ClientTableMapper {
         }
     }
 
+    public String getColumnName(int col) {
+        switch (col) {
+            case 0:
+                return "id";
+            case 1:
+                return  "name";
+            case 2:
+                return  "id_card_nr";
+            case 3:
+                return "pers_num_code";
+            case 4:
+                return "address";
+        }
+        return "";
+    }
 }

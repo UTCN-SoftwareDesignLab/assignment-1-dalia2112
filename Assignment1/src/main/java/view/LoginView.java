@@ -5,6 +5,7 @@ import javafx.scene.control.RadioButton;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 
 import static javax.swing.BoxLayout.Y_AXIS;
 
@@ -46,4 +47,6 @@ public class LoginView extends JFrame {
     public void setLoginButtonListener(ActionListener loginButtonListener) {
         btnLogin.addActionListener(loginButtonListener);
     }
+
+
 }

@@ -12,7 +12,6 @@ public class ClientValidator {
     private final int PERSNUMCODE_LENGTH = 5;
     private final int IDCARDNR_LENGTH = 6;
 
-    private Client client;
 
     public List<String> getErrors() {
         return errors;
@@ -20,59 +19,64 @@ public class ClientValidator {
 
     private final List<String> errors;
 
-    public ClientValidator(Client client) {
-        this.client = client;
-        errors = new ArrayList<>();
-    }
 
     public ClientValidator() {
         errors = new ArrayList<>();
     }
 
-    public boolean validate() {
-        validatePersNumCode(client.getPers_num_code());
-        validateIdCardNrr(client.getId_card_nr());
-        return errors.isEmpty();
-    }
-
-    public boolean validatePersNumCode(Long pnc) {
-        String spnc = String.valueOf(pnc);
-        System.out.printf(spnc + " " + spnc.substring(0, 1) + " ");
+    public boolean validatePersNumCode(String persNumCode) {
         boolean ok = true;
-        if (spnc.length() != PERSNUMCODE_LENGTH) {
+        if (!persNumCode.chars().allMatch((Character::isDigit))) {
+            errors.add("Pers num code must contain only digits!");
+            ok = false;
+        }
+        if (persNumCode.length() != PERSNUMCODE_LENGTH) {
             errors.add("Personal numerical code too short (13 digits)!");
             ok = false;
         }
-        if (!spnc.substring(0, 1).equalsIgnoreCase("1") && !spnc.substring(0, 1).equalsIgnoreCase("2")) {
+        if (!persNumCode.substring(0, 1).equalsIgnoreCase("1") && !persNumCode.substring(0, 1).equalsIgnoreCase("2")) {
             errors.add("Personal numerical must start with 1 or 2!");
             ok = false;
         }
         return ok;
     }
 
-//    private void validatePersNumCode() {
-//        String spnc=client.getPers_num_code().toString();
-//        if(spnc.length()!=PERSNUMCODE_LENGTH || (spnc.charAt(0)!=1 || spnc.charAt(1)!=2))
-//            errors.add("Invalid personal numerical code!");
-//    }
-
-    public boolean validateIdCardNr(Long icn) {
+    public boolean validateIdCardNr(String idCardNr) {
         boolean ok = true;
-        if (icn.toString().length() != IDCARDNR_LENGTH) {
+        if (idCardNr.length() != IDCARDNR_LENGTH) {
             errors.add("Invalid Id card number! Length must be at least 6!");
             ok = false;
         }
-        if (icn.toString().chars().allMatch(Character::isDigit)) {
+        if (idCardNr.chars().allMatch(Character::isDigit)) {
             errors.add("Id card number must contain only numeric characters!");
             ok = false;
         }
         return ok;
     }
 
-    private void validateIdCardNrr(Long icn) {
-        if (icn.toString().length() != IDCARDNR_LENGTH) {
-            errors.add("Invalid Id card number! Length must be at least 6!");
+    public boolean validateUpdate(int column, String newValue) {
+        switch (column) {
+            case 0:
+                errors.add("Cannot change id!");
+                break;
+            case 1:
+                return true;
+            case 2:
+                errors.add("Cannot change id card number!");
+            case 3:
+                errors.add("Cannot change personal numeric code!");
+                break;
+            case 4:
+                return true;
         }
-
+        return false;
     }
+
+    public String getFormattedErrors() {
+        String result = "";
+        for (String error : getErrors())
+            result += error + "\n";
+        return result;
+    }
+
 }

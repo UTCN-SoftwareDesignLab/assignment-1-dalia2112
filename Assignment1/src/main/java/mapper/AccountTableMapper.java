@@ -1,5 +1,6 @@
 package mapper;
 
+import database.Constants;
 import model.Account;
 import model.Bill;
 
@@ -20,20 +21,34 @@ public class AccountTableMapper {
         this.accounts = accounts;
     }
 
+
     public Vector<Vector<String>> formatAccountTable() {
         Vector<Vector<String>> accountsVect = new Vector<>();
         for (Account account : accounts) {
             Vector<String> data = new Vector<>();
-            data.add(account.getId().toString());
-            data.add(account.getType());
-            data.add(account.getAmount().toString());
-            data.add(account.getDate_of_creation().toString());
-            data.add(account.getOwnerId().toString());
+            for (String column : Constants.Columns.ACCOUNT_COLS) {
+                data.add(getValueAtColumn(column, account));
+            }
             accountsVect.add(data);
         }
         return accountsVect;
     }
 
+    public String getValueAtColumn(String column, Account account) {
+        switch (column) {
+            case "Id":
+                return account.getId().toString();
+            case "Type":
+                return account.getType();
+            case "Amount":
+                return account.getAmount().toString();
+            case "Date of creation":
+                return account.getDate_of_creation().toString();
+            case "Owner Id":
+                return account.getOwnerId().toString();
+        }
+        return "";
+    }
 
     public long getAccountId(int row) {
         return accounts.get(row).getId();

@@ -4,8 +4,8 @@ public class Bill {
 
     private String code;
     private String title;
-    private float price;
-    private long clientId;
+    private Float price;
+    private Long clientId;
 
     public String getCode() {
         return code;

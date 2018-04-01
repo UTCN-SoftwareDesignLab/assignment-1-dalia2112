@@ -1,6 +1,8 @@
 package mapper;
 
+import database.Constants;
 import model.Account;
+import model.Role;
 import model.User;
 
 import java.util.ArrayList;
@@ -19,11 +21,11 @@ public class UserTableMapper {
         this.users = users;
     }
 
-    public String getColumn(int col){
+    public String getColumn(int col) {
         String column = "";
         switch (col) {
             case 0:
-                column="id";
+                column = "id";
             case 1:
                 column = "username";
                 break;
@@ -38,16 +40,32 @@ public class UserTableMapper {
         Vector<Vector<String>> usersList = new Vector<>();
         for (User user : users) {
             Vector<String> data = new Vector<>();
-            data.add(user.getId().toString());
-            data.add(user.getUsername());
-            data.add(user.getPassword());
-            data.add(user.getRoles().get(0).getRole());
+            for (String column : Constants.Columns.USER_COLS) {
+                data.add(getValueAtColumn(column, user));
+            }
             usersList.add(data);
         }
         return usersList;
     }
 
-    public long getID(int row){
+    public String getValueAtColumn(String column, User user) {
+        switch (column) {
+            case "Id":
+                return user.getId().toString();
+            case "Username":
+                return user.getUsername();
+            case "Password":
+                return user.getPassword().toString();
+            case "Role":
+                String roles = "";
+                for (Role role : user.getRoles())
+                    roles += role.getRole() + " ";
+                return roles;
+        }
+        return "";
+    }
+
+    public long getID(int row) {
         return users.get(row).getId();
     }
 }

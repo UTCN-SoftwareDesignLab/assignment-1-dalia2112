@@ -87,7 +87,7 @@ public class EmployeeController {
                 JOptionPane.showMessageDialog(null, clientValidator.getFormattedErrors());
                 return;
             }
-            clientService.updateClient(id,clientTableMapper.getColumnName(col), newValue);
+            clientService.updateClient(id, clientTableMapper.getColumnName(col), newValue);
             clientTableMapper.updateClient(row, col, newValue);
             clientTableMapper.setClients(clientService.findAll());
             employeeView.addOwnerCombo(clientService.setOwnerCombo());
@@ -138,7 +138,7 @@ public class EmployeeController {
             String clientAddress = employeeView.getClientAddress();
             String clientIDcardString = employeeView.getClientId_card_nr();
             String clientPersNumCodeString = employeeView.getClientPersNr();
-            long clientPersNum = 0,clientIdCardNr=0;
+            long clientPersNum = 0, clientIdCardNr = 0;
 
             ClientValidator clientValidator = new ClientValidator();
             if (!clientValidator.validateIdCardNr(clientIDcardString) || !clientValidator.validatePersNumCode(clientPersNumCodeString)) {
@@ -240,6 +240,7 @@ public class EmployeeController {
         @Override
         public void actionPerformed(ActionEvent e) {
             //FIND client from whose account will be transferred money
+
             long ownerId = getIDFromCombos(employeeView.getOwnerCombo());
             accountTableMapper.setAccounts(accountService.findByOwner(ownerId));
             employeeView.setAccTable(Constants.Columns.ACCOUNT_COLS, accountTableMapper.formatAccountTable());
@@ -310,7 +311,7 @@ public class EmployeeController {
 
             billTableMapper.setBills(accountService.findBillByOwner(ownerId));
             employeeView.setBillTable(billTableMapper.formatBillTable());
-            setAccToTransfCombo(accountService.findByOwner(ownerId));  //update accounts in combo box after payment
+            setAccToTransfCombo(accountService.findAll());  //update accounts in combo box after payment
             addActivity(Constants.Activities.PAY_BILL1 + billToPayCode + Constants.Activities.PAY_BILL2 + ownerId + Constants.Activities.PAY_BILL3 + accId);
         }
     }

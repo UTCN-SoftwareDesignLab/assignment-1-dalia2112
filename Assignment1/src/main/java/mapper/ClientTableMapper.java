@@ -1,8 +1,10 @@
 package mapper;
 
+import database.Constants;
 import model.Account;
 import model.Client;
 import model.validation.ClientValidator;
+import repository.client.ClientRepository;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,14 +26,28 @@ public class ClientTableMapper {
         Vector<Vector<String>> clientsVect = new Vector<>();
         for (Client client : clients) {
             Vector<String> data = new Vector<>();
-            data.add(client.getId().toString());
-            data.add(client.getName());
-            data.add(client.getId_card_nr().toString());
-            data.add(client.getPers_num_code().toString());
-            data.add(client.getAddress().toString());
+            for (String column : Constants.Columns.CLIENT_COLS) {
+                data.add(getValueAtColumn(column, client));
+            }
             clientsVect.add(data);
         }
         return clientsVect;
+    }
+
+    public String getValueAtColumn(String column, Client client) {
+        switch (column) {
+            case "Id":
+                return client.getId().toString();
+            case "Name":
+                return client.getName();
+            case "Id card nr":
+                return client.getId_card_nr().toString();
+            case "Personal Num Code":
+                return client.getPers_num_code().toString();
+            case "Address":
+                return client.getAddress();
+        }
+        return "";
     }
 
     public long getClientId(int row) {
@@ -86,9 +102,9 @@ public class ClientTableMapper {
             case 0:
                 return "id";
             case 1:
-                return  "name";
+                return "name";
             case 2:
-                return  "id_card_nr";
+                return "id_card_nr";
             case 3:
                 return "pers_num_code";
             case 4:

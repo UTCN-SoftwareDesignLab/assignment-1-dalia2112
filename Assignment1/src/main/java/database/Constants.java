@@ -51,7 +51,7 @@ public class Constants {
 
         public static final String CODE = "Code";
         public static final String TITLE = "Title";
-        public static final String PRICE = "Date of creation";
+        public static final String PRICE = "Price";
 
         public static final String[] BILL_COLS = {CODE, TITLE, PRICE, OWNERID};
 

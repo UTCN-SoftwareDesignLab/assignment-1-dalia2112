@@ -1,6 +1,5 @@
 package model.validation;
 
-import model.Account;
 
 import java.util.ArrayList;
 import java.util.List;

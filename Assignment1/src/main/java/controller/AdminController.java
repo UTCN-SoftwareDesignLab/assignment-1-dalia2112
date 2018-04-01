@@ -1,12 +1,10 @@
 package controller;
 
 import database.Constants;
-import jdk.nashorn.internal.scripts.JO;
 import mapper.UserTableMapper;
 import model.Activity;
 import model.User;
 import model.builder.ActivityBuilder;
-import model.builder.UserBuilder;
 import model.validation.Notification;
 import model.validation.UserValidator;
 import service.activity.ActivityService;
@@ -15,12 +13,10 @@ import service.user.UserService;
 import view.AdminView;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 public class AdminController {
@@ -143,10 +139,9 @@ public class AdminController {
                 fromDate = sdf.parse(adminView.getFromDate());
                 toDate = sdf.parse(adminView.getToDate());
             } catch (java.text.ParseException e1) {
-                e1.printStackTrace();
+                JOptionPane.showMessageDialog(null,"Date must be of format yyyy-MM-dd");
+                return;
             }
-            System.out.println(fromDate);
-            System.out.println(toDate);
             String descriptions = activityService.formatActivities(activityService.findByUserId(id, fromDate, toDate));
             adminView.showActivities(descriptions);
         }

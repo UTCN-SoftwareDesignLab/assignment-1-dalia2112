@@ -31,7 +31,7 @@ public class ClientValidator {
             ok = false;
         }
         if (persNumCode.length() != PERSNUMCODE_LENGTH) {
-            errors.add("Personal numerical code too short (13 digits)!");
+            errors.add("Personal numerical code length is wrong! (5 digits)!");
             ok = false;
         }
         if (!persNumCode.substring(0, 1).equalsIgnoreCase("1") && !persNumCode.substring(0, 1).equalsIgnoreCase("2")) {
@@ -43,12 +43,12 @@ public class ClientValidator {
 
     public boolean validateIdCardNr(String idCardNr) {
         boolean ok = true;
-        if (idCardNr.length() != IDCARDNR_LENGTH) {
-            errors.add("Invalid Id card number! Length must be at least 6!");
+        if (!idCardNr.chars().allMatch((Character::isDigit))) {
+            errors.add("Id card nr must contain only digits!");
             ok = false;
         }
-        if (idCardNr.chars().allMatch(Character::isDigit)) {
-            errors.add("Id card number must contain only numeric characters!");
+        if (idCardNr.length() != IDCARDNR_LENGTH) {
+            errors.add("Invalid Id card number! Length must be at least 6!");
             ok = false;
         }
         return ok;

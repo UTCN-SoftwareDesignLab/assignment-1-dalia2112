@@ -71,9 +71,6 @@ public class AuthenticationServiceMySQL implements AuthenticationService {
         return userRepository.findByUsername(username);
     }
 
-    public Role findRoleForUserId(Long userId) {
-        return rightsRolesRepository.findRoleForUserId(userId);
-    }
 
     public static String encodePassword(String password) {
         try {

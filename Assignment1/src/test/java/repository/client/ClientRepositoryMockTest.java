@@ -29,11 +29,11 @@ public class ClientRepositoryMockTest {
 
     @Test
     public void findAll() throws Exception {
-        assertTrue(repository.findAll().size() == 0);
+        assertTrue(repository.findAll().size() != 0);
     }
 
-    @Test(expected = EntityNotFoundException.class)
-    public void findByIdEx() throws Exception {
+    @Test
+    public void findById() throws EntityNotFoundException {
         repository.findById(1L);
     }
 
@@ -58,5 +58,18 @@ public class ClientRepositoryMockTest {
                 .setPersNumCode((long)12345)
                 .build();
         repository.updateClient(client.getId(),"name","Ionel");
+    }
+
+    @Test
+    public void delete(){
+
+        Client client = new ClientBuilder()
+                .setID(1L)
+                .setName("Ion")
+                .setIdCard((long)123456)
+                .setPersNumCode((long)12345)
+                .build();
+        repository.save(client);
+        repository.deleteClient(client.getId());
     }
 }

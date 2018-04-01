@@ -20,6 +20,7 @@ public class AuthenticationServiceMySQLTest {
 
     public static final String TEST_USERNAME = "test@username.com";
     public static final String TEST_PASSWORD = "TestPassword1@";
+    public static final String ROLE = "ADMINISTRATOR";
     private static AuthenticationService authenticationService;
     private static UserRepository userRepository;
 
@@ -41,23 +42,18 @@ public class AuthenticationServiceMySQLTest {
     }
 
 
-    //@Test
-//    public void register() throws Exception {
-//        Assert.assertTrue(
-//                authenticationService.register(TEST_USERNAME, TEST_PASSWORD).getResult()
-//        );
-//    }
-
-   // @Test
-//    public void login() throws Exception {
-//        authenticationService.register(TEST_USERNAME, TEST_PASSWORD).getResult();
-//        User user = authenticationService.login(TEST_USERNAME, TEST_PASSWORD).getResult();
-//        Assert.assertNotNull(user);
-//    }
+    @Test
+    public void register() throws Exception {
+        Assert.assertTrue(
+                authenticationService.registerUser(TEST_USERNAME, TEST_PASSWORD, ROLE).getResult()
+        );
+    }
 
     @Test
-    public void logout() throws Exception {
-
+    public void login() throws Exception {
+        authenticationService.registerUser(TEST_USERNAME, TEST_PASSWORD, ROLE).getResult();
+        User user = authenticationService.login(TEST_USERNAME, TEST_PASSWORD).getResult();
+        Assert.assertNotNull(user);
     }
 
 }

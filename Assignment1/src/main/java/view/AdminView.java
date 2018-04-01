@@ -5,6 +5,7 @@ import database.Constants;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
 
@@ -117,6 +118,8 @@ public class AdminView extends JDialog {
     }
 
     public void showActivities(String activities){
+        if(activities.equalsIgnoreCase(""))
+            JOptionPane.showMessageDialog(this,"No activities for that period.");
         JOptionPane.showMessageDialog(this,activities);
     }
 

@@ -1,6 +1,5 @@
 package repository.client;
 
-import model.Book;
 import model.Client;
 import repository.EntityNotFoundException;
 

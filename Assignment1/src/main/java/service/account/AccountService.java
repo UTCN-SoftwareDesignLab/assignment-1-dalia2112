@@ -2,11 +2,8 @@ package service.account;
 
 import model.Account;
 import model.Bill;
-import model.Book;
-import repository.EntityNotFoundException;
 
 import java.util.List;
-import java.util.Vector;
 
 public interface AccountService {
 

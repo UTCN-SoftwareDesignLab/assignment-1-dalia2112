@@ -12,17 +12,8 @@ import java.util.List;
 import java.util.Vector;
 
 public class ClientTableMapper {
-    private List<Client> clients;
 
-    public ClientTableMapper() {
-        clients = new ArrayList<>();
-    }
-
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
-    }
-
-    public Vector<Vector<String>> formatClientTable() {
+    public Vector<Vector<String>> formatClientTable(List<Client> clients) {
         Vector<Vector<String>> clientsVect = new Vector<>();
         for (Client client : clients) {
             Vector<String> data = new Vector<>();
@@ -50,36 +41,11 @@ public class ClientTableMapper {
         return "";
     }
 
-    public long getClientId(int row) {
+    public long getClientId(List<Client> clients, int row) {
         return clients.get(row).getId();
     }
 
-    public String getClientName(int row) {
-        return clients.get(row).getName();
-    }
-
-    public long getClientId_card_nr(int row) {
-        return clients.get(row).getId_card_nr();
-    }
-
-    public long getClientPers_num_code(int row) {
-        return clients.get(row).getPers_num_code();
-    }
-
-    public String getClientAddress(int row) {
-        return clients.get(row).getAddress();
-    }
-
-    public void addClientToTable(Client client) {
-        clients.add(client);
-    }
-
-    public void deleteClientFromTable(int row) {
-        clients.remove(row);
-    }
-
-
-    public void updateClient(int row, int col, String newval) {
+    public void updateClient(List<Client> clients, int row, int col, String newval) {
         switch (col) {
             case 0:
                 break;

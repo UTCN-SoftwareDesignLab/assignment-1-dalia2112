@@ -3,6 +3,8 @@ import repository.account.AccountRepository;
 import repository.account.AccountRepositoryMySQL;
 import repository.activity.ActivityRepository;
 import repository.activity.ActivityRepositoryMySQL;
+import repository.bill.BillRepository;
+import repository.bill.BillRepositoryMySQL;
 import repository.client.ClientRepository;
 import repository.client.ClientRepositoryMySQL;
 import repository.security.RightsRolesRepository;
@@ -14,6 +16,8 @@ import service.account.AccountService;
 import service.account.AccountServiceImpl;
 import service.activity.ActivityService;
 import service.activity.ActivityServiceImpl;
+import service.bill.BillService;
+import service.bill.BillServiceImpl;
 import service.client.ClientService;
 import service.client.ClientServiceImpl;
 import service.user.AuthenticationService;
@@ -40,6 +44,8 @@ public class ComponentFactory {
     private final AccountService accountService;
     private final AccountRepository accountRepository;
     private final UserService userService;
+    private final BillService billService;
+    private final BillRepository billRepository;
 
 
 
@@ -64,6 +70,8 @@ public class ComponentFactory {
         this.userService = new UserServiceMySQL(userRepository);
         this.activityRepository= new ActivityRepositoryMySQL(connection);
         this.activityService= new ActivityServiceImpl(activityRepository);
+        this.billRepository=new BillRepositoryMySQL(connection);
+        this.billService=new BillServiceImpl(billRepository);
     }
 
     public AuthenticationService getAuthenticationService() {
@@ -94,7 +102,11 @@ public class ComponentFactory {
         return activityService;
     }
 
-//    public static void main(String[] args){
+    public BillService getBillService() {
+        return billService;
+    }
+
+    //    public static void main(String[] args){
 //        ComponentFactory c=new ComponentFactory();
 //        List<Account> ac=c.accountRepository.findByOwner((long)9);
 //    }

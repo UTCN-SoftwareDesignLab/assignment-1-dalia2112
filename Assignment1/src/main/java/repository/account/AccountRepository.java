@@ -1,10 +1,8 @@
 package repository.account;
 
 import model.Account;
-import model.Bill;
 
 import java.util.List;
-import java.util.Vector;
 
 public interface AccountRepository {
 
@@ -13,6 +11,7 @@ public interface AccountRepository {
     Account findById(Long id);
 
     List<Account> findByOwner(Long id);
+
     boolean save(Account account);
 
     void removeAll();
@@ -24,10 +23,4 @@ public interface AccountRepository {
 
     void transferMoney(Long idAcc1, Long idAcc2, float sumA1, float sumA2);
 
-
-    List<Bill> findBillByOwner(long id);
-
-    void payBill(long accId, String code);
-
-    Bill findBillByCode(String code);
 }

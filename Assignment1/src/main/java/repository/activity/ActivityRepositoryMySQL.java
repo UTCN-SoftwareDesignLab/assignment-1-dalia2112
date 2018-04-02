@@ -33,7 +33,6 @@ public class ActivityRepositoryMySQL implements ActivityRepository {
             preparedStatement.setLong(1, userId);
             preparedStatement.setDate(2, new java.sql.Date(fromDate.getTime()));
             preparedStatement.setDate(3, new java.sql.Date(toDate.getTime()));
-            System.out.println(preparedStatement.toString());
             ResultSet activityResultSet = preparedStatement.executeQuery();
             while (activityResultSet.next()) {
                 Activity activity = getActivityFromResultSet(activityResultSet);

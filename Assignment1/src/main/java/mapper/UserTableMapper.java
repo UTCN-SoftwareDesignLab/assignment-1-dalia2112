@@ -11,16 +11,6 @@ import java.util.Vector;
 
 public class UserTableMapper {
 
-    private List<User> users;
-
-    public UserTableMapper() {
-        users = new ArrayList<>();
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
     public String getColumn(int col) {
         String column = "";
         switch (col) {
@@ -36,7 +26,7 @@ public class UserTableMapper {
         return column;
     }
 
-    public Vector<Vector<String>> formatUserTable() {
+    public Vector<Vector<String>> formatUserTable(List<User> users) {
         Vector<Vector<String>> usersList = new Vector<>();
         for (User user : users) {
             Vector<String> data = new Vector<>();
@@ -65,7 +55,7 @@ public class UserTableMapper {
         return "";
     }
 
-    public long getID(int row) {
+    public long getID(List<User> users,int row) {
         return users.get(row).getId();
     }
 }

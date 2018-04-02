@@ -41,8 +41,10 @@ public class AuthenticationServiceMySQL implements AuthenticationService {
                 .setPassword(password)
                 .setRoles(Collections.singletonList(userRole))
                 .build();
-
         UserValidator userValidator = new UserValidator(user);
+        if(userRepository.findByUsername(username)!=null){
+            userValidator.setUserExists();
+        }
         boolean userValid = userValidator.validate();
         Notification<Boolean> userRegisterNotification = new Notification<>();
 

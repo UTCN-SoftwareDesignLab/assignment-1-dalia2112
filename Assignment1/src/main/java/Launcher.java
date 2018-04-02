@@ -26,7 +26,7 @@ public class Launcher {
         new LoginController(new LoginView(),
                 componentFactory.getAuthenticationService(),
                 new AdminController(new AdminView(), componentFactory.getUserService(), componentFactory.getAuthenticationService(),componentFactory.getActivityService()),
-                new EmployeeController(new EmployeeView(), componentFactory.getClientService(), componentFactory.getAccountService(),componentFactory.getActivityService()));
+                new EmployeeController(new EmployeeView(), componentFactory.getClientService(), componentFactory.getAccountService(), componentFactory.getActivityService(), componentFactory.getBillService()));
 
 
     }

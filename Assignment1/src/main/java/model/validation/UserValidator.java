@@ -26,6 +26,9 @@ public class UserValidator {
         this.user = user;
         errors = new ArrayList<>();
     }
+    public void setUserExists(){
+        errors.add("User already exists!");
+    }
 
     public UserValidator() {
         user=null;

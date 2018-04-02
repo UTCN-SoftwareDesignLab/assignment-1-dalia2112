@@ -26,11 +26,19 @@ import static org.junit.Assert.assertTrue;
 public class AccountRepositoryMySQLTest {
 
     private static AccountRepository accountRepository;
+    private static ClientRepository clientRepository;
 
     @BeforeClass
     public static void setupClass() {
         accountRepository = new AccountRepositoryCacheDecorator(
                 new AccountRepositoryMySQL(
+                        new DBConnectionFactory().getConnectionWrapper(true).getConnection()
+                ),
+                new Cache<>()
+        );
+
+        clientRepository = new ClientRepositoryCacheDecorator(
+                new ClientRepositoryMySQL(
                         new DBConnectionFactory().getConnectionWrapper(true).getConnection()
                 ),
                 new Cache<>()
@@ -53,9 +61,9 @@ public class AccountRepositoryMySQLTest {
     public void findAllWhenDbNotEmpty() throws Exception {
         Account account = new AccountBuilder()
                 .setType("Personal")
-                .setAmount((float)2)
+                .setAmount((float) 2)
                 .setDate(new Date())
-                .setOwner(1L)
+                .setOwner((long) 60)
                 .build();
         accountRepository.save(account);
         accountRepository.save(account);
@@ -75,12 +83,19 @@ public class AccountRepositoryMySQLTest {
 
     @Test
     public void save() throws Exception {
+        Client client=new ClientBuilder()
+                .setName("Jonny")
+                .setIdCard(1L)
+                .setPersNumCode(2L)
+                .setAddress("floresti")
+                .build();
+        clientRepository.save(client);
         assertTrue(accountRepository.save(
                 new AccountBuilder()
                         .setType("Personal")
-                        .setAmount((float)2)
+                        .setAmount((float) 2)
                         .setDate(new Date())
-                        .setOwner((long)1)
+                        .setOwner(client.getId())
                         .build()
         ));
     }

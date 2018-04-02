@@ -1,7 +1,6 @@
 package service.account;
 
 import model.Account;
-import model.Bill;
 
 import java.util.List;
 
@@ -22,11 +21,4 @@ public interface AccountService {
 
     void transferMoney(Long idAcc1, Long idAcc2, float sum);
 
-
-    List<Bill> findBillByOwner(long id);
-
-
-    void payBill(long accId, String code);
-
-    Bill findBillByCode(String code);
 }

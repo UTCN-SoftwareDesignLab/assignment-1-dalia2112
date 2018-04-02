@@ -53,7 +53,6 @@ public class ClientValidator {
         }
         return ok;
     }
-
     public boolean validateUpdate(int column, String newValue) {
         switch (column) {
             case 0:

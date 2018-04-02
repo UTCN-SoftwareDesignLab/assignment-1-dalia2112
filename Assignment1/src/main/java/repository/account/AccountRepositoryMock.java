@@ -83,18 +83,4 @@ public class AccountRepositoryMock implements AccountRepository {
 
     }
 
-    @Override
-    public List<Bill> findBillByOwner(long id) {
-        return null;
-    }
-
-    @Override
-    public void payBill(long accId, String code) {
-
-    }
-
-    @Override
-    public Bill findBillByCode(String code) {
-        return null;
-    }
 }

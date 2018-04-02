@@ -171,8 +171,8 @@ public class EmployeeView extends JDialog {
         return address.getText();
     }
 
-    public float getAmount() {
-        return Long.parseLong(amount.getText());
+    public String getAmount() {
+        return amount.getText();
     }
 
     public String getClientId_card_nr() {

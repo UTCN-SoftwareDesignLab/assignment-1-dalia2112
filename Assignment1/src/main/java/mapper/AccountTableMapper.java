@@ -11,18 +11,8 @@ import java.util.Vector;
 
 public class AccountTableMapper {
 
-    private List<Account> accounts;
 
-    public AccountTableMapper() {
-        accounts = new ArrayList<>();
-    }
-
-    public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
-    }
-
-
-    public Vector<Vector<String>> formatAccountTable() {
+    public Vector<Vector<String>> formatAccountTable(List<Account> accounts) {
         Vector<Vector<String>> accountsVect = new Vector<>();
         for (Account account : accounts) {
             Vector<String> data = new Vector<>();
@@ -50,32 +40,22 @@ public class AccountTableMapper {
         return "";
     }
 
-    public long getAccountId(int row) {
+    public long getAccountId(List<Account> accounts, int row) {
         return accounts.get(row).getId();
     }
 
-    public String getAccountType(int row) {
-        return accounts.get(row).getType();
-    }
 
-    public float getAccountAmount(int row) {
+    public float getAccountAmount(List<Account> accounts, int row) {
         return accounts.get(row).getAmount();
     }
 
-    public Date getAccountDate(int row) {
-        return accounts.get(row).getDate_of_creation();
-    }
 
-    public long getAccountOwnerId(int row) {
+    public long getAccountOwnerId(List<Account> accounts, int row) {
         return accounts.get(row).getOwnerId();
     }
 
 
-    public void deleteAccountFromTable(int row) {
-        accounts.remove(row);
-    }
-
-    public void updateAccountFromTable(int row, int col, String val) {
+    public void updateAccountFromTable(List<Account> accounts, int row, int col, String val) {
         switch (col) {
             case 0:
                 break;
@@ -90,9 +70,6 @@ public class AccountTableMapper {
         }
     }
 
-    public int tableSize() {
-        return accounts.size();
-    }
 
     public String getColumnName(int column) {
         String colName = "";
@@ -116,16 +93,4 @@ public class AccountTableMapper {
         return colName;
     }
 
-    public Vector<Vector<String>> formatBillTable(List<Bill> allBills) {
-        Vector<Vector<String>> bills = new Vector<>();
-        for (Bill bill : allBills) {
-            Vector<String> data = new Vector<>();
-            data.add(bill.getCode());
-            data.add(bill.getTitle());
-            data.add((String.valueOf(bill.getPrice())));
-            data.add(String.valueOf(bill.getClientId()));
-            bills.add(data);
-        }
-        return bills;
-    }
 }

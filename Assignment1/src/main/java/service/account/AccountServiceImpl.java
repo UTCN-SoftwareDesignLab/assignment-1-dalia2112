@@ -1,11 +1,9 @@
 package service.account;
 
 import model.Account;
-import model.Bill;
 import repository.account.AccountRepository;
 
 import java.util.List;
-import java.util.Vector;
 
 public class AccountServiceImpl implements AccountService {
 
@@ -42,26 +40,13 @@ public class AccountServiceImpl implements AccountService {
         repository.deleteAccount(id);
     }
 
-
-    @Override
-    public List<Bill> findBillByOwner(long id) {
-        return repository.findBillByOwner(id);
-    }
-
     public void transferMoney(Long idAcc1, Long idAcc2, float sum) {
-        Account account1=findById(idAcc1);
-        Account account2=findById(idAcc2);
+        Account account1 = findById(idAcc1);
+        Account account2 = findById(idAcc2);
         float sumA1 = account1.getAmount() - sum;
         float sumA2 = account2.getAmount() + sum;
-        repository.transferMoney(idAcc1, idAcc2, sumA1,sumA2);
+        repository.transferMoney(idAcc1, idAcc2, sumA1, sumA2);
     }
 
 
-    public void payBill(long accId, String code) {
-        repository.payBill(accId, code);
-    }
-
-    public Bill findBillByCode(String code) {
-        return repository.findBillByCode(code);
-    }
 }

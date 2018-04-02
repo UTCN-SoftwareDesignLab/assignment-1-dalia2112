@@ -27,8 +27,12 @@ public class AccountValidator {
         return true;
     }
 
-    public boolean validateAmount(float amount) {
-        if (amount < MINSUM) {
+    public boolean validateAmount(String amount) {
+        if(amount.equalsIgnoreCase("")){
+            errors.add("Amount cannot be null!");
+            return false;
+        }
+        if (Float.parseFloat(amount) < MINSUM) {
             errors.add("Not enough money! Provide at least 10 lei!");
             return false;
         }
@@ -43,7 +47,7 @@ public class AccountValidator {
             case 1:
                 errors.add("Cannot change type!");
                 break;
-            case 2: return validateAmount(Float.parseFloat(newValue));
+            case 2: return validateAmount(newValue);
             case 3:
                 errors.add("Cannot change date!");
                 break;

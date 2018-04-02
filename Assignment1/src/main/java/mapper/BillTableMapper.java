@@ -10,35 +10,13 @@ import java.util.Vector;
 
 public class BillTableMapper {
 
-    private List<Bill> bills;
 
-    public BillTableMapper() {
-        bills = new ArrayList<>();
-    }
-
-    public void setBills(List<Bill> bills) {
-        this.bills = bills;
-    }
-
-//    public Vector<Vector<String>> formatBillTable() {
-//        Vector<Vector<String>> billsVect = new Vector<>();
-//        for (Bill bill : bills) {
-//            Vector<String> data = new Vector<>();
-//            data.add(bill.getCode());
-//            data.add(bill.getTitle());
-//            data.add(String.valueOf(bill.getPrice()));
-//            data.add(String.valueOf(bill.getClientId()));
-//            billsVect.add(data);
-//        }
-//        return billsVect;
-//    }
-
-    public Vector<Vector<String>> formatBillTable() {
+    public Vector<Vector<String>> formatBillTable(List<Bill> bills) {
         Vector<Vector<String>> billsVect = new Vector<>();
         for (Bill bill : bills) {
             Vector<String> data = new Vector<>();
-            for(String column: Constants.Columns.BILL_COLS){
-                data.add(getValueAtColumn(column,bill));
+            for (String column : Constants.Columns.BILL_COLS) {
+                data.add(getValueAtColumn(column, bill));
             }
             billsVect.add(data);
         }
@@ -59,7 +37,7 @@ public class BillTableMapper {
         return "";
     }
 
-    public String getBillCode(int row){
+    public String getBillCode(List<Bill> bills, int row) {
         return bills.get(row).getCode();
     }
 }

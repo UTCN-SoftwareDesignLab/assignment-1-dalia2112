@@ -46,19 +46,16 @@ public class AdminController {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            userTableMapper.setUsers(userService.findAll());
-            adminView.setEmplTable(userTableMapper.formatUserTable());
+            adminView.setEmplTable(userTableMapper.formatUserTable(userService.findAll()));
             if (adminView.getIdTf().chars().allMatch(Character::isDigit) && !adminView.getIdTf().equalsIgnoreCase("")) {
                 List<User> userList = new ArrayList<>();
                 long userId = Long.parseLong(adminView.getIdTf());
                 User user = userService.findById(userId);
                 userList.add(user);
-                userTableMapper.setUsers(userList);
-                adminView.setEmplTable(userTableMapper.formatUserTable());
+                adminView.setEmplTable(userTableMapper.formatUserTable(userList));
                 addActivity(Constants.Activities.VIEW_USER+user.getUsername());
             } else {
-                userTableMapper.setUsers(userService.findAll());
-                adminView.setEmplTable(userTableMapper.formatUserTable());
+                adminView.setEmplTable(userTableMapper.formatUserTable(userService.findAll()));
                 addActivity(Constants.Activities.VIEW_USER+" : all users");
             }
         }
@@ -84,8 +81,7 @@ public class AdminController {
 
                 }
             }
-            userTableMapper.setUsers(userService.findAll());
-            adminView.setEmplTable(userTableMapper.formatUserTable());
+            adminView.setEmplTable(userTableMapper.formatUserTable(userService.findAll()));
         }
     }
 
@@ -95,8 +91,7 @@ public class AdminController {
         public void actionPerformed(ActionEvent e) {
             int row = adminView.getRowClicked();
             int col = adminView.getColClicked();
-            userTableMapper.setUsers(userService.findAll());
-            Long id = userTableMapper.getID(row);
+            Long id = userTableMapper.getID(userService.findAll(),row);
             String newValue = String.valueOf(adminView.getEmplTable().getValueAt(row, col));
             UserValidator userValidator=new UserValidator();
             if(!userValidator.validateUpdate(col,newValue)){
@@ -104,8 +99,7 @@ public class AdminController {
                 return;
             }
             userService.updateUser(id, userTableMapper.getColumn(col), newValue);
-            userTableMapper.setUsers(userService.findAll());
-            adminView.setEmplTable(userTableMapper.formatUserTable());
+            adminView.setEmplTable(userTableMapper.formatUserTable(userService.findAll()));
             addActivity(" updated "+userTableMapper.getColumn(col)+"= "+newValue+" of user with id "+id);
         }
     }
@@ -116,11 +110,9 @@ public class AdminController {
         public void actionPerformed(ActionEvent e) {
 
             int row = adminView.getRowClicked();
-            userTableMapper.setUsers(userService.findAll());
-            Long id = userTableMapper.getID(row);
+            Long id = userTableMapper.getID(userService.findAll(),row);
             userService.deleteUser(id);
-            userTableMapper.setUsers(userService.findAll());
-            adminView.setEmplTable(userTableMapper.formatUserTable());
+            adminView.setEmplTable(userTableMapper.formatUserTable(userService.findAll()));
             addActivity(" deleted user with id "+id);
         }
     }
@@ -132,8 +124,7 @@ public class AdminController {
             Date fromDate = null;
             Date toDate = null;
             int row = adminView.getRowClicked();
-            userTableMapper.setUsers(userService.findAll());
-            Long id = userTableMapper.getID(row);
+            Long id = userTableMapper.getID(userService.findAll(),row);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             try {
                 fromDate = sdf.parse(adminView.getFromDate());
